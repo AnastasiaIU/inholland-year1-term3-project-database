@@ -2,9 +2,10 @@
 {
     public class Room
     {
-        public int Id { get; set; }         // database id
-        public int Number { get; set; }     // RoomNumber, e.g. 206
-        public int Capacity { get; set; }   // number of beds, either 4, 6, 8, 12 or 16
-        public bool Type { get; set; }      // student = false, teacher = true
+        public string Number { get; set; }           // room_number, database primary key
+        public char BuildingNumber { get; set; }     // building_number, either 'A' or 'B'
+        public int Floor { get; set; }               // floor, either 0 or 1
+        public int Capacity { get; set; }            // number_of_beds, either 1 or 8
+        public bool Type { get { return Capacity == 1; } }   // student = false, teacher = true
     }
 }
