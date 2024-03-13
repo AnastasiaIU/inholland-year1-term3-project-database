@@ -10,7 +10,7 @@ namespace SomerenDAL
     {
         public List<Room> GetAllRooms()
         {
-            string query = "SELECT room_number, building_number, floor, number_of_beds FROM Rooms";
+            string query = "SELECT * FROM Rooms";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }

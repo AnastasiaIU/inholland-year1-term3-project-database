@@ -10,17 +10,17 @@ namespace SomerenService
 {
     public class LecturerService
     {
-        private LecturerDao teacherdb;
+        private LecturerDao lecturerdb;
 
         public LecturerService()
         {
-            teacherdb = new LecturerDao();
+            lecturerdb = new LecturerDao();
         }
 
         public List<Lecturer> GetLecturers()
         {
-            List<Lecturer> teachers = teacherdb.GetAllTeachers();
-            return teachers;
+            List<Lecturer> lecturers = lecturerdb.GetAllLecturers();
+            return lecturers;
         }
     }
 }

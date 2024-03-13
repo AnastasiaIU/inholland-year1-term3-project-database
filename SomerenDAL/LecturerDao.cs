@@ -12,16 +12,16 @@ namespace SomerenDAL
 {
     public class LecturerDao : BaseDao
     {
-        public List<Lecturer> GetAllTeachers()
+        public List<Lecturer> GetAllLecturers()
         {
-            string query = "SELECT * FROM [Lecturers]";
+            string query = "SELECT * FROM Lecturers";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
         private List<Lecturer> ReadTables(DataTable dataTable)
         {
-            List<Lecturer>lecturers = new List<Lecturer>();
+            List<Lecturer> lecturers = new List<Lecturer>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
@@ -40,8 +40,8 @@ namespace SomerenDAL
                 {
                     phoneNumber = (string)dr["phone_number"];
                 }
-                Lecturer teacher = new Lecturer(id, age, roomNumber, firstName, lastName, phoneNumber);
-                lecturers.Add(teacher);
+                Lecturer lecturer = new Lecturer(id, age, roomNumber, firstName, lastName, phoneNumber);
+                lecturers.Add(lecturer);
             };
             return lecturers;
         }
