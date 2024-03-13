@@ -12,7 +12,6 @@ namespace SomerenDAL
 {
     public class LecturerDao : BaseDao
     {
-
         public List<Lecturer> GetAllTeachers()
         {
             string query = "SELECT * FROM [Lecturers]";

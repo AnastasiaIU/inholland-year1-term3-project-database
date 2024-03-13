@@ -212,18 +212,22 @@
             // chFirstName
             // 
             chFirstName.Text = "First Name";
+            chFirstName.Width = 150;
             // 
             // chLastName
             // 
             chLastName.Text = "Last Name";
+            chLastName.Width = 150;
             // 
             // chPhoneNumber
             // 
             chPhoneNumber.Text = "Phone Number";
+            chPhoneNumber.Width = 200;
             // 
             // chAge
             // 
             chAge.Text = "Age";
+            chAge.Width = 75;
             // 
             // pnlStudents
             // 
