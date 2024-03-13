@@ -8,7 +8,6 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
-        LecturerService lecturerService;
         public SomerenUI()
         {
             InitializeComponent();
@@ -19,6 +18,7 @@ namespace SomerenUI
         {
             // hide all other panels
             pnlStudents.Hide();
+            pnlRooms.Hide();
             pnlLecturers.Hide();
 
             // show dashboard
@@ -29,6 +29,7 @@ namespace SomerenUI
         {
             // hide all other panels
             pnlDashboard.Hide();
+            pnlRooms.Hide();
             pnlLecturers.Hide();
 
             // show students
@@ -43,6 +44,27 @@ namespace SomerenUI
             catch (Exception e)
             {
                 MessageBox.Show("Something went wrong while loading the students: " + e.Message);
+            }
+        }
+
+        private void ShowRoomsPanel()
+        {
+            // hide all other panels
+            pnlDashboard.Hide();
+            pnlStudents.Hide();
+
+            // show students
+            pnlRooms.Show();
+
+            try
+            {
+                // get and display all rooms
+                List<Room> rooms = GetRooms();
+                DisplayRooms(rooms);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
             }
         }
 
@@ -72,6 +94,13 @@ namespace SomerenUI
             return students;
         }
 
+        private List<Room> GetRooms()
+        {
+            RoomService roomService = new RoomService();
+            List<Room> rooms = roomService.GetRooms();
+            return rooms;
+        }
+
         private List<Lecturer> GetLecturers()
         {
             LecturerService lecturerService = new LecturerService();
@@ -90,6 +119,30 @@ namespace SomerenUI
                 li.Tag = student;   // link student object to listview item
                 listViewStudents.Items.Add(li);
             }
+        }
+
+        private void DisplayRooms(List<Room> rooms)
+        {
+            // clear the listview before filling it
+            listViewRooms.Items.Clear();
+
+            foreach (Room room in rooms)
+            {
+                ListViewItem item = CreateRoomListViewItem(room);
+                listViewRooms.Items.Add(item);
+            }
+        }
+
+        private ListViewItem CreateRoomListViewItem(Room room)
+        {
+            string roomType = room.Type ? "Lecturer" : "Student";
+
+            ListViewItem item = new ListViewItem(room.Number);
+            item.SubItems.Add(room.Capacity.ToString());
+            item.SubItems.Add(roomType);
+            item.Tag = room;     // link room object to listview item
+
+            return item;
         }
 
         private void DisplayLecturers(List<Lecturer> lecturers)
@@ -121,6 +174,11 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowStudentsPanel();
+        }
+
+        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowRoomsPanel();
         }
 
         private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
