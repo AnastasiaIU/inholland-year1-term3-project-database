@@ -149,6 +149,7 @@
             // 
             // listViewStudents
             // 
+            listViewStudents.AutoArrange = false;
             listViewStudents.Location = new System.Drawing.Point(23, 70);
             listViewStudents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             listViewStudents.Name = "listViewStudents";
@@ -167,7 +168,7 @@
             pictureBox1.TabStop = false;
             // 
             // pnlLecturers
-            // 
+            //             
             pnlLecturers.Controls.Add(label2);
             pnlLecturers.Controls.Add(pictureBox2);
             pnlLecturers.Controls.Add(listViewLecturers);
@@ -199,6 +200,7 @@
             // 
             // listViewLecturers
             // 
+            listViewLecturers.AutoArrange = false;
             listViewLecturers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chFirstName, chLastName, chPhoneNumber, chAge });
             listViewLecturers.FullRowSelect = true;
             listViewLecturers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
