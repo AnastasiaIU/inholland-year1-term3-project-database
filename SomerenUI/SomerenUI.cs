@@ -83,7 +83,7 @@ namespace SomerenUI
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
-            listViewStudents.Clear();
+            listViewStudents.Items.Clear();
 
             foreach (Student student in students)
             {
@@ -96,26 +96,25 @@ namespace SomerenUI
         private void DisplayRooms(List<Room> rooms)
         {
             // clear the listview before filling it
-            // listViewRooms.Clear();
+            listViewRooms.Items.Clear();
 
             foreach (Room room in rooms)
             {
-                string roomType;
-                if (room.Type)
-                {
-                    roomType = "Lecturer";
-                }
-                else
-                {
-                    roomType = "Student";
-                }
-
-                ListViewItem li = new ListViewItem(room.Number);
-                li.SubItems.Add(room.Capacity.ToString());
-                li.SubItems.Add(roomType);
-                li.Tag = room;   // link room object to listview item
-                listViewRooms.Items.Add(li);
+                ListViewItem item = CreateRoomListViewItem(room);
+                listViewRooms.Items.Add(item);
             }
+        }
+
+        private ListViewItem CreateRoomListViewItem(Room room)
+        {
+            string roomType = room.Type ? "Lecturer" : "Student";
+
+            ListViewItem item = new ListViewItem(room.Number);
+            item.SubItems.Add(room.Capacity.ToString());
+            item.SubItems.Add(roomType);
+            item.Tag = room;     // link room object to listview item
+
+            return item;
         }
 
         private void dashboardToolStripMenuItem1_Click(object sender, System.EventArgs e)

@@ -21,14 +21,12 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Room room = new Room()
-                {
-                    Number = (string)dr["room_number"],
-                    BuildingNumber = dr["building_number"].ToString()[0],
-                    Floor = (int)dr["floor"],
-                    Capacity = (int)dr["number_of_beds"]
-                };
+                string number = (string)dr["room_number"];
+                char buildingNumber = dr["building_number"].ToString()[0];
+                int floor = (int)dr["floor"];
+                int capacity = (int)dr["number_of_beds"];
 
+                Room room = new Room(number, buildingNumber, floor, capacity);
                 rooms.Add(room);
             }
 
