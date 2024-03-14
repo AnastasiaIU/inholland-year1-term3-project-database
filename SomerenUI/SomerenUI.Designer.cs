@@ -341,7 +341,7 @@
             // picBoxActivities
             // 
             picBoxActivities.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject("picBoxActivities.Image");
+            picBoxActivities.Image = Properties.Resources.someren;
             picBoxActivities.Location = new System.Drawing.Point(732, 56);
             picBoxActivities.Name = "picBoxActivities";
             picBoxActivities.Size = new System.Drawing.Size(127, 116);
