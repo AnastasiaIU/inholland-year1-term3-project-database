@@ -368,13 +368,13 @@
             // 
             // chStartTime
             // 
-            chStartTime.Text = "Start time";
-            chStartTime.Width = 200;
+            chStartTime.Text = "Start Time";
+            chStartTime.Width = 225;
             // 
             // chEndTime
             // 
             chEndTime.Text = "End Time";
-            chEndTime.Width = 200;
+            chEndTime.Width = 225;
             // 
             // SomerenUI
             // 
