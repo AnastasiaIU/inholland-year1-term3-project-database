@@ -19,7 +19,6 @@ namespace SomerenDAL
         {
             List<Student> students = new List<Student>();
 
-
             foreach (DataRow dr in dataTable.Rows)
             {
                 int studentNumber = (int)dr["student_number"];
