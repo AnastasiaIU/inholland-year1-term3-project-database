@@ -35,9 +35,8 @@ namespace SomerenUI
 
             try
             {
-                // get and display all students
-                List<Student> students = GetStudents();
-                DisplayStudents(students);
+                // get and display all students                
+                DisplayStudents(GetStudents());
             }
             catch (Exception e)
             {
