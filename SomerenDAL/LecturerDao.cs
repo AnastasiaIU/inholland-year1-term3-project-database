@@ -31,7 +31,6 @@ namespace SomerenDAL
                 string firstName = (string)dr["first_name"];
                 string lastName = (string)dr["last_name"];
                 string phoneNumber;
-
                 if (dr["phone_number"] == DBNull.Value)
                 {
                     phoneNumber = null;

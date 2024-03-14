@@ -51,7 +51,7 @@ namespace SomerenUI
 
             try
             {
-                // get and display all students
+                // get and display all lecturers
                 List<Lecturer> lecturers = GetLecturers();
                 DisplayLecturers(lecturers);
             }
@@ -83,16 +83,16 @@ namespace SomerenUI
             return studentService.GetStudents();
         }
 
-        private List<Room> GetRooms()
-        {
-            RoomService roomService = new RoomService();
-            return roomService.GetRooms();
-        }
-
         private List<Lecturer> GetLecturers()
         {
             LecturerService lecturerService = new LecturerService();
             return lecturerService.GetLecturers();
+        }
+
+        private List<Room> GetRooms()
+        {
+            RoomService roomService = new RoomService();
+            return roomService.GetRooms();
         }
 
         private void DisplayStudents(List<Student> students)
@@ -102,10 +102,21 @@ namespace SomerenUI
 
             foreach (Student student in students)
             {
-                ListViewItem li = new ListViewItem(student.Name);
-                li.Tag = student;   // link student object to listview item
-                listViewStudents.Items.Add(li);
+                ListViewItem item = CreateStudentListViewItem(student);                
+                listViewStudents.Items.Add(item);
             }
+        }
+
+        private ListViewItem CreateStudentListViewItem(Student student)
+        {
+            ListViewItem item = new ListViewItem(student.FirstName);
+            item.SubItems.Add(student.LastName);
+            item.SubItems.Add(student.PhoneNumber);
+            item.SubItems.Add(student.StudentNumber.ToString());
+            item.SubItems.Add(student.ClassNumber);
+            item.Tag = student;     // link students object to listview item
+
+            return item;
         }
 
         private void DisplayLecturers(List<Lecturer> lecturers)
