@@ -35,9 +35,8 @@ namespace SomerenUI
 
             try
             {
-                // get and display all students
-                List<Student> students = GetStudents();
-                DisplayStudents(students);
+                // get and display all students                
+                DisplayStudents(GetStudents());
             }
             catch (Exception e)
             {
@@ -51,9 +50,8 @@ namespace SomerenUI
 
             try
             {
-                // get and display all students
-                List<Lecturer> lecturers = GetLecturers();
-                DisplayLecturers(lecturers);
+                // get and display all students                
+                DisplayLecturers(GetLecturers());
             }
             catch (Exception e)
             {
@@ -67,9 +65,8 @@ namespace SomerenUI
 
             try
             {
-                // get and display all rooms
-                List<Room> rooms = GetRooms();
-                DisplayRooms(rooms);
+                // get and display all rooms                
+                DisplayRooms(GetRooms());
             }
             catch (Exception e)
             {
