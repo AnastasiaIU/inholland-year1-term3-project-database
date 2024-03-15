@@ -187,10 +187,12 @@ namespace SomerenUI
         }
 
         private ListViewItem CreateDrinkListViewItem(Drink drink)
-        {            
+        {
+            string isAlcoholic = drink.IsAlcholic ? "Yes" : "No";
+
             ListViewItem item = new ListViewItem(drink.Name);
-            item.SubItems.Add(drink.Price.ToString());
-            item.SubItems.Add(drink.IsAlcholic.ToString());
+            item.SubItems.Add(drink.Price.ToString("0.00"));
+            item.SubItems.Add(isAlcoholic);
             item.SubItems.Add(drink.Stock.ToString());
             item.SubItems.Add(drink.StockLevel);
             item.Tag = drink;     // link room object to listview item

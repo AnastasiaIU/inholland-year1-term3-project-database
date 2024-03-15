@@ -260,7 +260,7 @@
             // chNameDrinks
             // 
             chNameDrinks.Text = "Name";
-            chNameDrinks.Width = 150;
+            chNameDrinks.Width = 200;
             // 
             // chPriceDrinks
             // 
