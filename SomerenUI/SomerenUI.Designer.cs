@@ -37,6 +37,7 @@
             menuItemLecturers = new System.Windows.Forms.ToolStripMenuItem();
             menuItemActivities = new System.Windows.Forms.ToolStripMenuItem();
             menuItemRooms = new System.Windows.Forms.ToolStripMenuItem();
+            menuItemDrinks = new System.Windows.Forms.ToolStripMenuItem();
             pnlDashboard = new System.Windows.Forms.Panel();
             lblDashboard = new System.Windows.Forms.Label();
             pnlStudents = new System.Windows.Forms.Panel();
@@ -44,6 +45,15 @@
             listViewStudents = new System.Windows.Forms.ListView();
             lblStudents = new System.Windows.Forms.Label();
             pnlRooms = new System.Windows.Forms.Panel();
+            pnlDrinks = new System.Windows.Forms.Panel();
+            lblDrinks = new System.Windows.Forms.Label();
+            picBoxDrinks = new System.Windows.Forms.PictureBox();
+            listViewDrinks = new System.Windows.Forms.ListView();
+            chNameDrinks = new System.Windows.Forms.ColumnHeader();
+            chPriceDrinks = new System.Windows.Forms.ColumnHeader();
+            chTypeDrinks = new System.Windows.Forms.ColumnHeader();
+            chStockDrinks = new System.Windows.Forms.ColumnHeader();
+            chStockStatusDrinks = new System.Windows.Forms.ColumnHeader();
             lblRooms = new System.Windows.Forms.Label();
             picBoxRooms = new System.Windows.Forms.PictureBox();
             listViewRooms = new System.Windows.Forms.ListView();
@@ -63,6 +73,8 @@
             pnlStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxStudents).BeginInit();
             pnlRooms.SuspendLayout();
+            pnlDrinks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxDrinks).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxRooms).BeginInit();
             pnlLecturers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLecturers).BeginInit();
@@ -71,11 +83,11 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemApplication, menuItemStudents, menuItemLecturers, menuItemActivities, menuItemRooms });
+            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemApplication, menuItemStudents, menuItemLecturers, menuItemActivities, menuItemRooms, menuItemDrinks });
             menuStrip.Location = new System.Drawing.Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            menuStrip.Size = new System.Drawing.Size(1000, 35);
+            menuStrip.Size = new System.Drawing.Size(1000, 45);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
             // 
@@ -83,49 +95,56 @@
             // 
             menuItemApplication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemDashboard, menuItemExit });
             menuItemApplication.Name = "menuItemApplication";
-            menuItemApplication.Size = new System.Drawing.Size(80, 19);
+            menuItemApplication.Size = new System.Drawing.Size(118, 29);
             menuItemApplication.Text = "Application";
             // 
             // menuItemDashboard
             // 
             menuItemDashboard.Name = "menuItemDashboard";
-            menuItemDashboard.Size = new System.Drawing.Size(131, 22);
+            menuItemDashboard.Size = new System.Drawing.Size(202, 34);
             menuItemDashboard.Text = "Dashboard";
             menuItemDashboard.Click += dashboardToolStripMenuItem_Click;
             // 
             // menuItemExit
             // 
             menuItemExit.Name = "menuItemExit";
-            menuItemExit.Size = new System.Drawing.Size(131, 22);
+            menuItemExit.Size = new System.Drawing.Size(202, 34);
             menuItemExit.Text = "Exit";
             menuItemExit.Click += exitToolStripMenuItem_Click;
             // 
             // menuItemStudents
             // 
             menuItemStudents.Name = "menuItemStudents";
-            menuItemStudents.Size = new System.Drawing.Size(65, 19);
+            menuItemStudents.Size = new System.Drawing.Size(97, 29);
             menuItemStudents.Text = "Students";
             menuItemStudents.Click += studentsToolStripMenuItem_Click;
             // 
             // menuItemLecturers
             // 
             menuItemLecturers.Name = "menuItemLecturers";
-            menuItemLecturers.Size = new System.Drawing.Size(67, 19);
+            menuItemLecturers.Size = new System.Drawing.Size(98, 29);
             menuItemLecturers.Text = "Lecturers";
             menuItemLecturers.Click += lecturersToolStripMenuItem_Click;
             // 
             // menuItemActivities
             // 
             menuItemActivities.Name = "menuItemActivities";
-            menuItemActivities.Size = new System.Drawing.Size(67, 19);
+            menuItemActivities.Size = new System.Drawing.Size(98, 29);
             menuItemActivities.Text = "Activities";
             // 
             // menuItemRooms
             // 
             menuItemRooms.Name = "menuItemRooms";
-            menuItemRooms.Size = new System.Drawing.Size(56, 19);
+            menuItemRooms.Size = new System.Drawing.Size(84, 29);
             menuItemRooms.Text = "Rooms";
             menuItemRooms.Click += roomsToolStripMenuItem_Click;
+            // 
+            // menuItemDrinks
+            // 
+            menuItemDrinks.Name = "menuItemDrinks";
+            menuItemDrinks.Size = new System.Drawing.Size(98, 29);
+            menuItemDrinks.Text = "Drinks";
+            menuItemDrinks.Click += menuItemDrinks_Click;
             // 
             // pnlDashboard
             // 
@@ -140,8 +159,8 @@
             lblDashboard.AutoSize = true;
             lblDashboard.Location = new System.Drawing.Point(0, 0);
             lblDashboard.Name = "lblDashboard";
-            lblDashboard.Size = new System.Drawing.Size(208, 15);
             lblDashboard.Padding = new System.Windows.Forms.Padding(16, 16, 8, 8);
+            lblDashboard.Size = new System.Drawing.Size(337, 49);
             lblDashboard.TabIndex = 2;
             lblDashboard.Text = "Welcome to the Someren Application!";
             // 
@@ -181,12 +200,12 @@
             lblStudents.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblStudents.Location = new System.Drawing.Point(16, 8);
             lblStudents.Name = "lblStudents";
-            lblStudents.Size = new System.Drawing.Size(107, 32);
+            lblStudents.Size = new System.Drawing.Size(157, 48);
             lblStudents.TabIndex = 2;
             lblStudents.Text = "Students";
             // 
             // pnlRooms
-            // 
+            //             
             pnlRooms.Controls.Add(lblRooms);
             pnlRooms.Controls.Add(picBoxRooms);
             pnlRooms.Controls.Add(listViewRooms);
@@ -195,13 +214,81 @@
             pnlRooms.Size = new System.Drawing.Size(1000, 565);
             pnlRooms.TabIndex = 1;
             // 
+            // pnlDrinks
+            // 
+            pnlDrinks.Controls.Add(lblDrinks);
+            pnlDrinks.Controls.Add(picBoxDrinks);
+            pnlDrinks.Controls.Add(listViewDrinks);
+            pnlDrinks.Location = new System.Drawing.Point(0, 35);
+            pnlDrinks.Name = "pnlDrinks";
+            pnlDrinks.Size = new System.Drawing.Size(1000, 565);
+            pnlDrinks.TabIndex = 1;
+            // 
+            // lblDrinks
+            // 
+            lblDrinks.AutoSize = true;
+            lblDrinks.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblDrinks.Location = new System.Drawing.Point(16, 8);
+            lblDrinks.Name = "lblDrinks";
+            lblDrinks.Size = new System.Drawing.Size(157, 48);
+            lblDrinks.TabIndex = 2;
+            lblDrinks.Text = "Drinks";
+            // 
+            // picBoxDrinks
+            // 
+            picBoxDrinks.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinks.Image");
+            picBoxDrinks.Location = new System.Drawing.Point(732, 56);
+            picBoxDrinks.Name = "picBoxDrinks";
+            picBoxDrinks.Size = new System.Drawing.Size(127, 116);
+            picBoxDrinks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            picBoxDrinks.TabIndex = 2;
+            picBoxDrinks.TabStop = false;
+            // 
+            // listViewDrinks
+            // 
+            listViewDrinks.AutoArrange = false;
+            listViewDrinks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chNameDrinks, chPriceDrinks, chTypeDrinks, chStockDrinks, chStockStatusDrinks });
+            listViewDrinks.FullRowSelect = true;
+            listViewDrinks.Location = new System.Drawing.Point(16, 56);
+            listViewDrinks.Name = "listViewDrinks";
+            listViewDrinks.Size = new System.Drawing.Size(700, 300);
+            listViewDrinks.TabIndex = 2;
+            listViewDrinks.UseCompatibleStateImageBehavior = false;
+            listViewDrinks.View = System.Windows.Forms.View.Details;
+            // 
+            // chNameDrinks
+            // 
+            chNameDrinks.Text = "Name";
+            chNameDrinks.Width = 150;
+            // 
+            // chPriceDrinks
+            // 
+            chPriceDrinks.Text = "Price";
+            chPriceDrinks.Width = 75;
+            // 
+            // chTypeDrinks
+            // 
+            chTypeDrinks.Text = "Alcholic";
+            chTypeDrinks.Width = 75;
+            // 
+            // chStockDrinks
+            // 
+            chStockDrinks.Text = "Stock";
+            chStockDrinks.Width = 75;
+            // 
+            // chStockStatusDrinks
+            // 
+            chStockStatusDrinks.Text = "Stock Status";
+            chStockStatusDrinks.Width = 200;
+            // 
             // lblRooms
             // 
             lblRooms.AutoSize = true;
             lblRooms.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblRooms.Location = new System.Drawing.Point(16, 8);
             lblRooms.Name = "lblRooms";
-            lblRooms.Size = new System.Drawing.Size(86, 32);
+            lblRooms.Size = new System.Drawing.Size(129, 48);
             lblRooms.TabIndex = 2;
             lblRooms.Text = "Rooms";
             // 
@@ -259,7 +346,7 @@
             lblLecturers.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblLecturers.Location = new System.Drawing.Point(16, 8);
             lblLecturers.Name = "lblLecturers";
-            lblLecturers.Size = new System.Drawing.Size(110, 32);
+            lblLecturers.Size = new System.Drawing.Size(165, 48);
             lblLecturers.TabIndex = 2;
             lblLecturers.Text = "Lecturers";
             // 
@@ -310,7 +397,6 @@
             // 
             // SomerenUI
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ClientSize = new System.Drawing.Size(1000, 600);
             Controls.Add(menuStrip);
@@ -318,6 +404,7 @@
             Controls.Add(pnlDashboard);
             Controls.Add(pnlStudents);
             Controls.Add(pnlLecturers);
+            Controls.Add(pnlDrinks);
             MainMenuStrip = menuStrip;
             Name = "SomerenUI";
             Text = "SomerenApp";
@@ -330,6 +417,9 @@
             ((System.ComponentModel.ISupportInitialize)picBoxStudents).EndInit();
             pnlRooms.ResumeLayout(false);
             pnlRooms.PerformLayout();
+            pnlDrinks.ResumeLayout(false);
+            pnlDrinks.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxDrinks).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxRooms).EndInit();
             pnlLecturers.ResumeLayout(false);
             pnlLecturers.PerformLayout();
@@ -369,5 +459,15 @@
         private System.Windows.Forms.ColumnHeader chRoomNumber;
         private System.Windows.Forms.ColumnHeader chRoomSize;
         private System.Windows.Forms.ColumnHeader chTypeOfRoom;
+        private System.Windows.Forms.ToolStripMenuItem menuItemDrinks;
+        private System.Windows.Forms.Panel pnlDrinks;
+        private System.Windows.Forms.Label lblDrinks;
+        private System.Windows.Forms.PictureBox picBoxDrinks;
+        private System.Windows.Forms.ListView listViewDrinks;
+        private System.Windows.Forms.ColumnHeader chNameDrinks;
+        private System.Windows.Forms.ColumnHeader chPriceDrinks;
+        private System.Windows.Forms.ColumnHeader chTypeDrinks;
+        private System.Windows.Forms.ColumnHeader chStockDrinks;
+        private System.Windows.Forms.ColumnHeader chStockStatusDrinks;
     }
 }
