@@ -269,7 +269,7 @@
             // 
             // chTypeDrinks
             // 
-            chTypeDrinks.Text = "Alcholic";
+            chTypeDrinks.Text = "Alcoholic";
             chTypeDrinks.Width = 75;
             // 
             // chStockDrinks
