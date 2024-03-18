@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SomerenModel;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Configuration;
 using System.Data;
+using SomerenModel;
+using System;
 
 namespace SomerenDAL
 {
@@ -39,6 +35,7 @@ namespace SomerenDAL
                 {
                     phoneNumber = (string)dr["phone_number"];
                 }
+
                 Lecturer lecturer = new Lecturer(id, age, roomNumber, firstName, lastName, phoneNumber);
                 lecturers.Add(lecturer);
             };
