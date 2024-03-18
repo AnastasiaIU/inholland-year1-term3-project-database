@@ -20,6 +20,7 @@ namespace SomerenUI
             pnlStudents.Hide();
             pnlLecturers.Hide();
             pnlRooms.Hide();
+            pnlActivities.Hide();
             pnlDrinks.Hide();
 
             panel.Show();
@@ -75,6 +76,22 @@ namespace SomerenUI
             }
         }
 
+        private void ShowActivitiesPanel()
+        {
+            ShowPanel(pnlActivities);
+
+            try
+            {
+                // get and display all activities
+                List<Activity> activities = GetActivities();
+                DisplayActivities(activities);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the activities: " + e.Message);
+            }
+        }
+
         private void ShowDrinksPanel()
         {
             ShowPanel(pnlDrinks);
@@ -96,16 +113,22 @@ namespace SomerenUI
             return studentService.GetStudents();
         }
 
+        private List<Lecturer> GetLecturers()
+        {
+            LecturerService lecturerService = new LecturerService();
+            return lecturerService.GetLecturers();
+        }
+
         private List<Room> GetRooms()
         {
             RoomService roomService = new RoomService();
             return roomService.GetRooms();
         }
 
-        private List<Lecturer> GetLecturers()
+        private List<Activity> GetActivities()
         {
-            LecturerService lecturerService = new LecturerService();
-            return lecturerService.GetLecturers();
+            ActivityService activityService = new ActivityService();
+            return activityService.GetActivities();
         }
 
         private List<Drink> GetDrinks()
@@ -121,10 +144,21 @@ namespace SomerenUI
 
             foreach (Student student in students)
             {
-                ListViewItem li = new ListViewItem(student.Name);
-                li.Tag = student;   // link student object to listview item
-                listViewStudents.Items.Add(li);
+                ListViewItem item = CreateStudentListViewItem(student);                
+                listViewStudents.Items.Add(item);
             }
+        }
+
+        private ListViewItem CreateStudentListViewItem(Student student)
+        {
+            ListViewItem item = new ListViewItem(student.FirstName);
+            item.SubItems.Add(student.LastName);
+            item.SubItems.Add(student.PhoneNumber);
+            item.SubItems.Add(student.StudentNumber.ToString());
+            item.SubItems.Add(student.ClassNumber);
+            item.Tag = student;     // link students object to listview item
+
+            return item;
         }
 
         private void DisplayLecturers(List<Lecturer> lecturers)
@@ -170,6 +204,28 @@ namespace SomerenUI
             item.SubItems.Add(room.Capacity.ToString());
             item.SubItems.Add(roomType);
             item.Tag = room;     // link room object to listview item
+
+            return item;
+        }
+
+        private void DisplayActivities(List<Activity> activities)
+        {
+            // clear the listview before filling it
+            listViewActivities.Items.Clear();
+
+            foreach (Activity activity in activities)
+            {
+                ListViewItem item = CreateActivityListViewItem(activity);
+                listViewActivities.Items.Add(item);
+            }
+        }
+
+        private ListViewItem CreateActivityListViewItem(Activity activity)
+        {
+            ListViewItem item = new ListViewItem(activity.ActivityName);
+            item.SubItems.Add(activity.StartTime.ToString());
+            item.SubItems.Add(activity.EndTime.ToString());
+            item.Tag = activity;     // link room object to listview item
 
             return item;
         }
@@ -228,6 +284,11 @@ namespace SomerenUI
         private void menuItemDrinks_Click(object sender, EventArgs e)
         {
             ShowDrinksPanel();
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowActivitiesPanel();
         }
     }
 }
