@@ -63,6 +63,13 @@
             chLastNameLecturers = new System.Windows.Forms.ColumnHeader();
             chPhoneNumberLecturers = new System.Windows.Forms.ColumnHeader();
             chAgeLecturers = new System.Windows.Forms.ColumnHeader();
+            pnlActivities = new System.Windows.Forms.Panel();
+            lblActivities = new System.Windows.Forms.Label();
+            picBoxActivities = new System.Windows.Forms.PictureBox();
+            listViewActivities = new System.Windows.Forms.ListView();
+            chActivityName = new System.Windows.Forms.ColumnHeader();
+            chStartTime = new System.Windows.Forms.ColumnHeader();
+            chEndTime = new System.Windows.Forms.ColumnHeader();
             menuStrip.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -71,6 +78,8 @@
             ((System.ComponentModel.ISupportInitialize)picBoxRooms).BeginInit();
             pnlLecturers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLecturers).BeginInit();
+            pnlActivities.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxActivities).BeginInit();
             SuspendLayout();
             // 
             // menuStrip
@@ -124,6 +133,7 @@
             menuItemActivities.Name = "menuItemActivities";
             menuItemActivities.Size = new System.Drawing.Size(98, 29);
             menuItemActivities.Text = "Activities";
+            menuItemActivities.Click += activitiesToolStripMenuItem_Click;
             // 
             // menuItemRooms
             // 
@@ -340,6 +350,64 @@
             chAgeLecturers.Text = "Age";
             chAgeLecturers.Width = 75;
             // 
+            // pnlActivities
+            // 
+            pnlActivities.Controls.Add(lblActivities);
+            pnlActivities.Controls.Add(picBoxActivities);
+            pnlActivities.Controls.Add(listViewActivities);
+            pnlActivities.Location = new System.Drawing.Point(0, 35);
+            pnlActivities.Name = "pnlActivities";
+            pnlActivities.Size = new System.Drawing.Size(1000, 565);
+            pnlActivities.TabIndex = 1;
+            // 
+            // lblActivities
+            // 
+            lblActivities.AutoSize = true;
+            lblActivities.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblActivities.Location = new System.Drawing.Point(16, 8);
+            lblActivities.Name = "lblActivities";
+            lblActivities.Size = new System.Drawing.Size(173, 65);
+            lblActivities.TabIndex = 2;
+            lblActivities.Text = "Activities";
+            // 
+            // picBoxActivities
+            // 
+            picBoxActivities.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            picBoxActivities.Image = Properties.Resources.someren;
+            picBoxActivities.Location = new System.Drawing.Point(732, 56);
+            picBoxActivities.Name = "picBoxActivities";
+            picBoxActivities.Size = new System.Drawing.Size(127, 116);
+            picBoxActivities.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            picBoxActivities.TabIndex = 2;
+            picBoxActivities.TabStop = false;
+            // 
+            // listViewActivities
+            // 
+            listViewActivities.AutoArrange = false;
+            listViewActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chActivityName, chStartTime, chEndTime });
+            listViewActivities.FullRowSelect = true;
+            listViewActivities.Location = new System.Drawing.Point(16, 56);
+            listViewActivities.Name = "listViewActivities";
+            listViewActivities.Size = new System.Drawing.Size(700, 300);
+            listViewActivities.TabIndex = 2;
+            listViewActivities.UseCompatibleStateImageBehavior = false;
+            listViewActivities.View = System.Windows.Forms.View.Details;
+            // 
+            // chActivityName
+            // 
+            chActivityName.Text = "Name";
+            chActivityName.Width = 200;
+            // 
+            // chStartTime
+            // 
+            chStartTime.Text = "Start Time";
+            chStartTime.Width = 225;
+            // 
+            // chEndTime
+            // 
+            chEndTime.Text = "End Time";
+            chEndTime.Width = 225;
+            // 
             // SomerenUI
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -349,6 +417,7 @@
             Controls.Add(pnlDashboard);
             Controls.Add(pnlStudents);
             Controls.Add(pnlLecturers);
+            Controls.Add(pnlActivities);
             MainMenuStrip = menuStrip;
             Name = "SomerenUI";
             Text = "SomerenApp";
@@ -365,6 +434,9 @@
             pnlLecturers.ResumeLayout(false);
             pnlLecturers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLecturers).EndInit();
+            pnlActivities.ResumeLayout(false);
+            pnlActivities.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxActivities).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -405,5 +477,12 @@
         private System.Windows.Forms.ColumnHeader chPhoneNumberStudents;
         private System.Windows.Forms.ColumnHeader chStudentNumber;
         private System.Windows.Forms.ColumnHeader chClassStudents;
+        private System.Windows.Forms.Panel pnlActivities;
+        private System.Windows.Forms.Label lblActivities;
+        private System.Windows.Forms.PictureBox picBoxActivities;
+        private System.Windows.Forms.ListView listViewActivities;
+        private System.Windows.Forms.ColumnHeader chActivityName;
+        private System.Windows.Forms.ColumnHeader chStartTime;
+        private System.Windows.Forms.ColumnHeader chEndTime;
     }
 }
