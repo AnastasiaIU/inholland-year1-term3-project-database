@@ -6,16 +6,16 @@ namespace SomerenService
 {
     public class ActivityService
     {
-        private ActivityDao activityDAO;
+        private ActivityDao activityDao;
 
         public ActivityService()
         {
-            activityDAO = new ActivityDao();
+            activityDao = new ActivityDao();
         }
 
         public List<Activity> GetActivities()
         {
-            return activityDAO.GetAllActivities();
+            return activityDao.GetAllActivities();
         }
     }
 }
