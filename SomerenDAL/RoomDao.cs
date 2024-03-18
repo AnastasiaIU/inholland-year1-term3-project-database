@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
-using System.Drawing;
 
 namespace SomerenDAL
 {
@@ -29,7 +28,6 @@ namespace SomerenDAL
                 Room room = new Room(number, buildingNumber, floor, capacity);
                 rooms.Add(room);
             }
-
             return rooms;
         }
     }
