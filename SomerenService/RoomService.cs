@@ -6,16 +6,16 @@ namespace SomerenService
 {
     public class RoomService
     {
-        private RoomDao roomdb;
+        private RoomDao roomDAO;
 
         public RoomService()
         {
-            roomdb = new RoomDao();
+            roomDAO = new RoomDao();
         }
 
         public List<Room> GetRooms()
         {            
-            return roomdb.GetAllRooms();
+            return roomDAO.GetAllRooms();
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿using SomerenModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-
+using SomerenModel;
 
 namespace SomerenDAL
 {
