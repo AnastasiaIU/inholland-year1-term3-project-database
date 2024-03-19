@@ -65,6 +65,7 @@
             chTypeDrinks = new System.Windows.Forms.ColumnHeader();
             chStockDrinks = new System.Windows.Forms.ColumnHeader();
             chStockStatusDrinks = new System.Windows.Forms.ColumnHeader();
+            btnAddPurchase = new System.Windows.Forms.Button();
             pnlLecturers = new System.Windows.Forms.Panel();
             lblLecturers = new System.Windows.Forms.Label();
             picBoxLecturers = new System.Windows.Forms.PictureBox();
@@ -310,6 +311,7 @@
             pnlDrinks.Controls.Add(lblDrinks);
             pnlDrinks.Controls.Add(picBoxDrinks);
             pnlDrinks.Controls.Add(listViewDrinks);
+            pnlDrinks.Controls.Add(btnAddPurchase);
             pnlDrinks.Location = new System.Drawing.Point(0, 35);
             pnlDrinks.Name = "pnlDrinks";
             pnlDrinks.Size = new System.Drawing.Size(1000, 565);
@@ -372,6 +374,16 @@
             // 
             chStockStatusDrinks.Text = "Stock Status";
             chStockStatusDrinks.Width = 200;
+            // 
+            // btnAddPurchase
+            // 
+            btnAddPurchase.AutoSize = true;
+            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btnAddPurchase.Location = new System.Drawing.Point(16, 372);
+            btnAddPurchase.Name = "btnAddPurchase";
+            btnAddPurchase.Size = new System.Drawing.Size(90, 25);
+            btnAddPurchase.TabIndex = 3;
+            btnAddPurchase.Text = "Add Purchase";
             // 
             // pnlLecturers
             // 
@@ -460,7 +472,7 @@
             // picBoxActivities
             // 
             picBoxActivities.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxActivities.Image = Properties.Resources.someren;
+            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject("picBoxActivities.Image");
             picBoxActivities.Location = new System.Drawing.Point(732, 56);
             picBoxActivities.Name = "picBoxActivities";
             picBoxActivities.Size = new System.Drawing.Size(127, 116);
@@ -585,5 +597,6 @@
         private System.Windows.Forms.ColumnHeader chTypeDrinks;
         private System.Windows.Forms.ColumnHeader chStockDrinks;
         private System.Windows.Forms.ColumnHeader chStockStatusDrinks;
+        private System.Windows.Forms.Button btnAddPurchase;
     }
 }
