@@ -256,6 +256,51 @@ namespace SomerenUI
             return item;
         }
 
+        /*CreateDrink click event
+         * 
+         * bool isAlcoholic = combobox for IsAlcocholic 
+         * 
+         * Drink drink = new Drink(fakeId, txtDrinkPrice.Text, isAlcoholic, txtDrinkName.Text, txtDrinkStock.Text);
+         * DrinkService drinkService = new DrinkService();
+         * drinkService.CreateDrink(drink);
+         * 
+         * MessageBox.Show($"Successfully added: {drink.Name});
+         * 
+         */
+
+        /*UpdateDrink click event
+         * 
+         * bool isAlcoholic = combobox for IsAlcocholic 
+         * 
+         * Drink drink = new Drink(txtDrinkPrice.Text, isAlcoholic, txtDrinkName.Text, txtDrinkStock.Text);
+         * DrinkService drinkService = new DrinkService();
+         * drinkService.UpdateDrink(drink);
+         * 
+         * MessageBox.Show($"Successfully updated: {drink.Name});
+         * 
+         */
+
+        /*Load txt
+         * 
+         * DrinkService drinkService = new DrinkService();
+         * Drink drink = drinkService.GetById(id);
+         * txtDrinkName.Text = drink.Name;
+         * txtDrinkPrice.Text = drink.Price;
+         * combox select isAlcoholic
+         * txtDrinkStock.Text = drink.Stock; 
+         * 
+         */
+
+        /*DeleteDrink click event
+         * 
+         * DrinkService drinkService = new DrinkService();
+         * Drink drink = (Drink)listViewDrinks.SelectedItem;
+         * drinkService.DeleteDrink((Drink)listViewDrinks.SelectedItem);
+         * 
+         * MessageBox.Show($"Successfully deleted: {drink.Name}");
+         * 
+         */
+
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
