@@ -18,17 +18,17 @@ namespace SomerenService
             return drinkdb.GetAllDrinks();
         }
 
-        public void CreateCustomer(Drink drink)
+        public void CreateDrink(Drink drink)
         {
             drinkdb.CreateDrink(drink);
         }
 
-        public void UpdateCustomer(Drink drink) 
+        public void UpdateDrink(Drink drink) 
         {
             drinkdb.UpdateDrink(drink);
         }
 
-        public void DeleteCustomer(Drink drink) 
+        public void DeleteDrink(Drink drink) 
         {
             drinkdb.DeleteDrink(drink);
         }

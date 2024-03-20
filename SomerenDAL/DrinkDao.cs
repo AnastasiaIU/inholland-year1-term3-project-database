@@ -15,9 +15,9 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        public Drink CreateDrink(Drink drink)
+        public void CreateDrink(Drink drink)
         {            
-            string query = "INSERT INTO Drinks VALUES (@Price, @IsAlcoholic, @Name, @Stock;" + "SELECT CAST(scope_identity() AS int)";
+            string query = "INSERT INTO Drinks VALUES (@Price, @IsAlcoholic, @Name, @Stock);" + "SELECT CAST(scope_identity() AS int)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("@Price", drink.Price),
@@ -26,11 +26,7 @@ namespace SomerenDAL
                 new SqlParameter("@Stock", drink.Stock)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
-            int id = -1;
-            //ExecuteScalar
-            return new Drink(id, drink.Price, drink.IsAlcholic, drink.Name, drink.Stock);
-            
+            int id = ExecuteInsertQuery(query, sqlParameters);            
         }
 
         public void UpdateDrink(Drink drink) 

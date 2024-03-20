@@ -16,12 +16,8 @@ namespace SomerenUI
 
         private void ShowPanel(Panel panel)
         {
-            pnlDashboard.Hide();
-            pnlStudents.Hide();
-            pnlLecturers.Hide();
-            pnlRooms.Hide();
-            pnlActivities.Hide();
-            pnlDrinks.Hide();
+            foreach (Control control in this.Controls)
+                if (control.Name.StartsWith("pnl")) control.Hide();
 
             panel.Show();
         }
@@ -144,7 +140,7 @@ namespace SomerenUI
 
             foreach (Student student in students)
             {
-                ListViewItem item = CreateStudentListViewItem(student);                
+                ListViewItem item = CreateStudentListViewItem(student);
                 listViewStudents.Items.Add(item);
             }
         }
@@ -230,7 +226,7 @@ namespace SomerenUI
             return item;
         }
 
-        private void DisplayDrinks(List<Drink> drinks)
+        public void DisplayDrinks(List<Drink> drinks)
         {
             // clear the listview before filling it
             listViewDrinks.Items.Clear();
@@ -254,52 +250,7 @@ namespace SomerenUI
             item.Tag = drink;     // link room object to listview item
 
             return item;
-        }
-
-        /*CreateDrink click event
-         * 
-         * bool isAlcoholic = combobox for IsAlcocholic 
-         * 
-         * Drink drink = new Drink(fakeId, txtDrinkPrice.Text, isAlcoholic, txtDrinkName.Text, txtDrinkStock.Text);
-         * DrinkService drinkService = new DrinkService();
-         * drinkService.CreateDrink(drink);
-         * 
-         * MessageBox.Show($"Successfully added: {drink.Name});
-         * 
-         */
-
-        /*UpdateDrink click event
-         * 
-         * bool isAlcoholic = combobox for IsAlcocholic 
-         * 
-         * Drink drink = new Drink(txtDrinkPrice.Text, isAlcoholic, txtDrinkName.Text, txtDrinkStock.Text);
-         * DrinkService drinkService = new DrinkService();
-         * drinkService.UpdateDrink(drink);
-         * 
-         * MessageBox.Show($"Successfully updated: {drink.Name});
-         * 
-         */
-
-        /*Load txt
-         * 
-         * DrinkService drinkService = new DrinkService();
-         * Drink drink = drinkService.GetById(id);
-         * txtDrinkName.Text = drink.Name;
-         * txtDrinkPrice.Text = drink.Price;
-         * combox select isAlcoholic
-         * txtDrinkStock.Text = drink.Stock; 
-         * 
-         */
-
-        /*DeleteDrink click event
-         * 
-         * DrinkService drinkService = new DrinkService();
-         * Drink drink = (Drink)listViewDrinks.SelectedItem;
-         * drinkService.DeleteDrink((Drink)listViewDrinks.SelectedItem);
-         * 
-         * MessageBox.Show($"Successfully deleted: {drink.Name}");
-         * 
-         */
+        }        
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -334,6 +285,54 @@ namespace SomerenUI
         private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowActivitiesPanel();
+        }
+
+        private void btnCreateDrink_Click(object sender, EventArgs e)
+        {
+            EditDrinkForm createDrink = new EditDrinkForm();
+            createDrink.ShowDialog();
+            try
+            {
+                // get and display all rooms                
+                DisplayDrinks(GetDrinks());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the drinks: " + ex.Message);
+            }
+        }
+
+        private void btnDeleteDrink_Click(object sender, EventArgs e)
+        {
+            DrinkService drinkService = new DrinkService();
+            Drink drink = (Drink)listViewDrinks.SelectedItems[0].Tag;
+            drinkService.DeleteDrink(drink);
+            MessageBox.Show($"Successfully deleted: {drink.Name}");
+            try
+            {
+                // get and display all rooms                
+                DisplayDrinks(GetDrinks());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the drinks: " + ex.Message);
+            }
+        }
+
+        private void btnEditDrink_Click(object sender, EventArgs e)
+        {
+            Drink drink = (Drink)listViewDrinks.SelectedItems[0].Tag;
+            EditDrinkForm editDrink = new EditDrinkForm(drink);
+            editDrink.ShowDialog();
+            try
+            {
+                // get and display all rooms                
+                DisplayDrinks(GetDrinks());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the drinks: " + ex.Message);
+            }
         }
     }
 }
