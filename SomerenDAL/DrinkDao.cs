@@ -14,6 +14,44 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
+        public void CreateDrink(Drink drink)
+        {            
+            string query = "INSERT INTO Drinks VALUES (@Price, @IsAlcoholic, @Name, @Stock);" + "SELECT CAST(scope_identity() AS int)";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@Price", drink.Price),
+                new SqlParameter("@IsAlcoholic", drink.IsAlcholic),
+                new SqlParameter("@Name", drink.Name),
+                new SqlParameter("@Stock", drink.Stock)
+            };
+
+            int id = ExecuteInsertQuery(query, sqlParameters);            
+        }
+
+        public void UpdateDrink(Drink drink) 
+        {
+            string query = "UPDATE Drinks SET price=@Price, alcoholic=@IsAlcoholic, drink_name=@Name, current_stock=@Stock WHERE drinkId=@Id";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@Price", drink.Price),
+                new SqlParameter("@IsAlcoholic", drink.IsAlcholic),
+                new SqlParameter("@Name", drink.Name),
+                new SqlParameter("@Stock", drink.Stock),
+                new SqlParameter("@Id", drink.Id)
+            };
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void DeleteDrink(Drink drink) 
+        {
+            string query = "DELETE FROM Drinks WHERE drinkId=@Id";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@Id", drink.Id)
+            };
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
         private List<Drink> ReadTables(DataTable dataTable)
         {
             List<Drink> drinks = new List<Drink>();
