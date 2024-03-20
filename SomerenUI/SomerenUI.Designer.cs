@@ -80,6 +80,9 @@
             chActivityName = new System.Windows.Forms.ColumnHeader();
             chStartTime = new System.Windows.Forms.ColumnHeader();
             chEndTime = new System.Windows.Forms.ColumnHeader();
+            btnCreateDrink = new System.Windows.Forms.Button();
+            btnDeleteDrink = new System.Windows.Forms.Button();
+            btnEditDrink = new System.Windows.Forms.Button();
             menuStrip.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -307,6 +310,9 @@
             // 
             // pnlDrinks
             // 
+            pnlDrinks.Controls.Add(btnEditDrink);
+            pnlDrinks.Controls.Add(btnDeleteDrink);
+            pnlDrinks.Controls.Add(btnCreateDrink);
             pnlDrinks.Controls.Add(lblDrinks);
             pnlDrinks.Controls.Add(picBoxDrinks);
             pnlDrinks.Controls.Add(listViewDrinks);
@@ -495,6 +501,36 @@
             chEndTime.Text = "End Time";
             chEndTime.Width = 225;
             // 
+            // btnCreateDrink
+            // 
+            btnCreateDrink.Location = new System.Drawing.Point(179, 400);
+            btnCreateDrink.Name = "btnCreateDrink";
+            btnCreateDrink.Size = new System.Drawing.Size(158, 34);
+            btnCreateDrink.TabIndex = 3;
+            btnCreateDrink.Text = "Create new drink";
+            btnCreateDrink.UseVisualStyleBackColor = true;
+            btnCreateDrink.Click += btnCreateDrink_Click;
+            // 
+            // btnDeleteDrink
+            // 
+            btnDeleteDrink.Location = new System.Drawing.Point(369, 400);
+            btnDeleteDrink.Name = "btnDeleteDrink";
+            btnDeleteDrink.Size = new System.Drawing.Size(117, 34);
+            btnDeleteDrink.TabIndex = 4;
+            btnDeleteDrink.Text = "Delete drink";
+            btnDeleteDrink.UseVisualStyleBackColor = true;
+            btnDeleteDrink.Click += btnDeleteDrink_Click;
+            // 
+            // btnEditDrink
+            // 
+            btnEditDrink.Location = new System.Drawing.Point(520, 400);
+            btnEditDrink.Name = "btnEditDrink";
+            btnEditDrink.Size = new System.Drawing.Size(112, 34);
+            btnEditDrink.TabIndex = 5;
+            btnEditDrink.Text = "Edit drink";
+            btnEditDrink.UseVisualStyleBackColor = true;
+            btnEditDrink.Click += btnEditDrink_Click;
+            // 
             // SomerenUI
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -585,5 +621,8 @@
         private System.Windows.Forms.ColumnHeader chTypeDrinks;
         private System.Windows.Forms.ColumnHeader chStockDrinks;
         private System.Windows.Forms.ColumnHeader chStockStatusDrinks;
+        private System.Windows.Forms.Button btnEditDrink;
+        private System.Windows.Forms.Button btnDeleteDrink;
+        private System.Windows.Forms.Button btnCreateDrink;
     }
 }
