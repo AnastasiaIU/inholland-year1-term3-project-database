@@ -1,6 +1,6 @@
 ﻿namespace SomerenUI
 {
-    partial class purchaseDrinkForm
+    partial class PurchaseDrinkForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,54 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblChooseDrink = new System.Windows.Forms.Label();
-            cmbBoxChooseDrink = new System.Windows.Forms.ComboBox();
-            txtBoxDrinkQuantity = new System.Windows.Forms.TextBox();
-            lblDrinkQuantity = new System.Windows.Forms.Label();
+            lblBuyer = new System.Windows.Forms.Label();
+            cmbBoxChooseBuyer = new System.Windows.Forms.ComboBox();
             lblTotalPrice = new System.Windows.Forms.Label();
             lblTotalPriceValue = new System.Windows.Forms.Label();
-            lbllblTotalPriceWithVatValue = new System.Windows.Forms.Label();
-            lbllblTotalPriceWithVat = new System.Windows.Forms.Label();
             btnAddPurchaseDrink = new System.Windows.Forms.Button();
+            lblQuantity = new System.Windows.Forms.Label();
+            textBox1 = new System.Windows.Forms.TextBox();
+            cmbBoxChooseDrink = new System.Windows.Forms.ComboBox();
+            lblChooseDrink = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
-            // lblChooseDrink
+            // lblBuyer
             // 
-            lblChooseDrink.AutoSize = true;
-            lblChooseDrink.Location = new System.Drawing.Point(16, 24);
-            lblChooseDrink.Name = "lblChooseDrink";
-            lblChooseDrink.Size = new System.Drawing.Size(77, 15);
-            lblChooseDrink.TabIndex = 0;
-            lblChooseDrink.Text = "Choose drink";
+            lblBuyer.AutoSize = true;
+            lblBuyer.Location = new System.Drawing.Point(16, 69);
+            lblBuyer.Name = "lblBuyer";
+            lblBuyer.Size = new System.Drawing.Size(40, 15);
+            lblBuyer.TabIndex = 0;
+            lblBuyer.Text = "Buyer:";
             // 
-            // cmbBoxChooseDrink
+            // cmbBoxChooseBuyer
             // 
-            cmbBoxChooseDrink.FormattingEnabled = true;
-            cmbBoxChooseDrink.Location = new System.Drawing.Point(130, 21);
-            cmbBoxChooseDrink.Name = "cmbBoxChooseDrink";
-            cmbBoxChooseDrink.Size = new System.Drawing.Size(200, 23);
-            cmbBoxChooseDrink.TabIndex = 1;
-            // 
-            // txtBoxDrinkQuantity
-            // 
-            txtBoxDrinkQuantity.Location = new System.Drawing.Point(130, 60);
-            txtBoxDrinkQuantity.Name = "txtBoxDrinkQuantity";
-            txtBoxDrinkQuantity.Size = new System.Drawing.Size(100, 23);
-            txtBoxDrinkQuantity.TabIndex = 2;
-            // 
-            // lblDrinkQuantity
-            // 
-            lblDrinkQuantity.AutoSize = true;
-            lblDrinkQuantity.Location = new System.Drawing.Point(16, 63);
-            lblDrinkQuantity.Name = "lblDrinkQuantity";
-            lblDrinkQuantity.Size = new System.Drawing.Size(85, 15);
-            lblDrinkQuantity.TabIndex = 3;
-            lblDrinkQuantity.Text = "Drink quantity:";
+            cmbBoxChooseBuyer.FormattingEnabled = true;
+            cmbBoxChooseBuyer.Location = new System.Drawing.Point(115, 66);
+            cmbBoxChooseBuyer.Name = "cmbBoxChooseBuyer";
+            cmbBoxChooseBuyer.Size = new System.Drawing.Size(350, 23);
+            cmbBoxChooseBuyer.TabIndex = 1;
             // 
             // lblTotalPrice
             // 
             lblTotalPrice.AutoSize = true;
-            lblTotalPrice.Location = new System.Drawing.Point(130, 120);
+            lblTotalPrice.Location = new System.Drawing.Point(265, 162);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.Size = new System.Drawing.Size(64, 15);
             lblTotalPrice.TabIndex = 4;
@@ -83,55 +67,75 @@
             // 
             // lblTotalPriceValue
             // 
-            lblTotalPriceValue.Location = new System.Drawing.Point(260, 120);
+            lblTotalPriceValue.Location = new System.Drawing.Point(395, 162);
             lblTotalPriceValue.Name = "lblTotalPriceValue";
             lblTotalPriceValue.Size = new System.Drawing.Size(70, 15);
             lblTotalPriceValue.TabIndex = 5;
             lblTotalPriceValue.Text = "0.00";
             lblTotalPriceValue.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // lbllblTotalPriceWithVatValue
-            // 
-            lbllblTotalPriceWithVatValue.Location = new System.Drawing.Point(260, 150);
-            lbllblTotalPriceWithVatValue.Name = "lbllblTotalPriceWithVatValue";
-            lbllblTotalPriceWithVatValue.Size = new System.Drawing.Size(70, 15);
-            lbllblTotalPriceWithVatValue.TabIndex = 7;
-            lbllblTotalPriceWithVatValue.Text = "0.00";
-            lbllblTotalPriceWithVatValue.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lbllblTotalPriceWithVat
-            // 
-            lbllblTotalPriceWithVat.AutoSize = true;
-            lbllblTotalPriceWithVat.Location = new System.Drawing.Point(130, 150);
-            lbllblTotalPriceWithVat.Name = "lbllblTotalPriceWithVat";
-            lbllblTotalPriceWithVat.Size = new System.Drawing.Size(112, 15);
-            lbllblTotalPriceWithVat.TabIndex = 6;
-            lbllblTotalPriceWithVat.Text = "Total price with VAT:";
-            // 
             // btnAddPurchaseDrink
             // 
-            btnAddPurchaseDrink.Location = new System.Drawing.Point(255, 200);
+            btnAddPurchaseDrink.Anchor = System.Windows.Forms.AnchorStyles.None;
+            btnAddPurchaseDrink.AutoSize = true;
+            btnAddPurchaseDrink.Location = new System.Drawing.Point(375, 199);
             btnAddPurchaseDrink.Name = "btnAddPurchaseDrink";
-            btnAddPurchaseDrink.Size = new System.Drawing.Size(75, 23);
+            btnAddPurchaseDrink.Size = new System.Drawing.Size(90, 25);
             btnAddPurchaseDrink.TabIndex = 8;
-            btnAddPurchaseDrink.Text = "button1";
+            btnAddPurchaseDrink.Text = "Add purchase";
             btnAddPurchaseDrink.UseVisualStyleBackColor = true;
+            btnAddPurchaseDrink.Click += btnAddPurchaseDrink_Click;
             // 
-            // purchaseDrinkForm
+            // lblQuantity
+            // 
+            lblQuantity.AutoSize = true;
+            lblQuantity.Location = new System.Drawing.Point(16, 117);
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Size = new System.Drawing.Size(56, 15);
+            lblQuantity.TabIndex = 13;
+            lblQuantity.Text = "Quantity:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new System.Drawing.Point(115, 114);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new System.Drawing.Size(100, 23);
+            textBox1.TabIndex = 14;
+            textBox1.TextChanged += calculateTotalPrice_OnSelectedIndexChanged;
+            // 
+            // cmbBoxChooseDrink
+            // 
+            cmbBoxChooseDrink.FormattingEnabled = true;
+            cmbBoxChooseDrink.Location = new System.Drawing.Point(115, 26);
+            cmbBoxChooseDrink.Name = "cmbBoxChooseDrink";
+            cmbBoxChooseDrink.Size = new System.Drawing.Size(350, 23);
+            cmbBoxChooseDrink.TabIndex = 16;
+            cmbBoxChooseDrink.SelectedIndexChanged += calculateTotalPrice_OnSelectedIndexChanged;
+            // 
+            // lblChooseDrink
+            // 
+            lblChooseDrink.AutoSize = true;
+            lblChooseDrink.Location = new System.Drawing.Point(16, 29);
+            lblChooseDrink.Name = "lblChooseDrink";
+            lblChooseDrink.Size = new System.Drawing.Size(80, 15);
+            lblChooseDrink.TabIndex = 15;
+            lblChooseDrink.Text = "Choose drink:";
+            // 
+            // PurchaseDrinkForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(354, 251);
-            Controls.Add(btnAddPurchaseDrink);
-            Controls.Add(lbllblTotalPriceWithVatValue);
-            Controls.Add(lbllblTotalPriceWithVat);
-            Controls.Add(lblTotalPriceValue);
-            Controls.Add(lblTotalPrice);
-            Controls.Add(lblDrinkQuantity);
-            Controls.Add(txtBoxDrinkQuantity);
+            ClientSize = new System.Drawing.Size(484, 236);
             Controls.Add(cmbBoxChooseDrink);
             Controls.Add(lblChooseDrink);
-            Name = "purchaseDrinkForm";
+            Controls.Add(textBox1);
+            Controls.Add(lblQuantity);
+            Controls.Add(btnAddPurchaseDrink);
+            Controls.Add(lblTotalPriceValue);
+            Controls.Add(lblTotalPrice);
+            Controls.Add(cmbBoxChooseBuyer);
+            Controls.Add(lblBuyer);
+            Name = "PurchaseDrinkForm";
             Text = "Drink Purchase";
             ResumeLayout(false);
             PerformLayout();
@@ -139,14 +143,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblChooseDrink;
-        private System.Windows.Forms.ComboBox cmbBoxChooseDrink;
-        private System.Windows.Forms.TextBox txtBoxDrinkQuantity;
-        private System.Windows.Forms.Label lblDrinkQuantity;
+        private System.Windows.Forms.Label lblBuyer;
+        private System.Windows.Forms.ComboBox cmbBoxChooseBuyer;
         private System.Windows.Forms.Label lblTotalPrice;
         private System.Windows.Forms.Label lblTotalPriceValue;
-        private System.Windows.Forms.Label lbllblTotalPriceWithVatValue;
-        private System.Windows.Forms.Label lbllblTotalPriceWithVat;
         private System.Windows.Forms.Button btnAddPurchaseDrink;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbBoxChooseDrink;
+        private System.Windows.Forms.Label lblChooseDrink;
     }
 }

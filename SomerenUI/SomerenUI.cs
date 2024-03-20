@@ -216,7 +216,7 @@ namespace SomerenUI
 
         private ListViewItem CreateRoomListViewItem(Room room)
         {
-            string roomType = room.Type ? "Lecturer" : "Student";
+            string roomType = room.IsForLecturer ? "Lecturer" : "Student";
 
             ListViewItem item = new ListViewItem(room.Number);
             item.SubItems.Add(room.Capacity.ToString());
@@ -333,6 +333,13 @@ namespace SomerenUI
             {
                 MessageBox.Show("Something went wrong while loading the drinks: " + ex.Message);
             }
+        }
+
+        private void btnAddPurchase_Click(object sender, EventArgs e)
+        {
+            PurchaseDrinkForm purchaseDrinkForm = new PurchaseDrinkForm();
+            purchaseDrinkForm.ShowDialog();
+            DisplayDrinks(GetDrinks());
         }
     }
 }
