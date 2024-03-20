@@ -35,6 +35,11 @@
             Stock = stock;
         }
 
+        public double GetTotalPrice(int quantity)
+        {
+            return Price * quantity;
+        }
+
         public override string ToString()
         {
             return Name;

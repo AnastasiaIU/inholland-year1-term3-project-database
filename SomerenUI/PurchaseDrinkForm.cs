@@ -2,6 +2,7 @@
 using SomerenModel;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace SomerenUI
 {
@@ -48,9 +49,10 @@ namespace SomerenUI
         {
             try
             {
+                int quantity = int.Parse(txtBoxQuantity.Text);
                 Drink currentDrink = (Drink)cmbBoxChooseDrink.SelectedItem;
-                double totalPrice = currentDrink.Price * int.Parse(textBox1.Text);
-                lblTotalPriceValue.Text = totalPrice.ToString();
+                double totalPrice = currentDrink.GetTotalPrice(quantity);
+                lblTotalPriceValue.Text = totalPrice.ToString("C2");
             }
             catch
             {
@@ -64,9 +66,13 @@ namespace SomerenUI
             int fakeId = -1;
             int studentId = ((Student)cmbBoxChooseBuyer.SelectedItem).StudentNumber;
             int drinkId = currentDrink.Id;
-            int quantity = int.Parse(textBox1.Text);
+            int quantity = int.Parse(txtBoxQuantity.Text);
             Purchase purchase = new Purchase(fakeId, studentId, drinkId, quantity);
             purchaseService.CreatePurchase(purchase);
+            int updatedStock = currentDrink.Stock - quantity;
+            currentDrink.Stock = updatedStock;
+            drinkService.UpdateDrink(currentDrink);
+            MessageBox.Show($"The purchase successfully added!");
             Close();
         }
     }

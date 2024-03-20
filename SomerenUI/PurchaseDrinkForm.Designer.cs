@@ -34,7 +34,7 @@
             lblTotalPriceValue = new System.Windows.Forms.Label();
             btnAddPurchaseDrink = new System.Windows.Forms.Button();
             lblQuantity = new System.Windows.Forms.Label();
-            textBox1 = new System.Windows.Forms.TextBox();
+            txtBoxQuantity = new System.Windows.Forms.TextBox();
             cmbBoxChooseDrink = new System.Windows.Forms.ComboBox();
             lblChooseDrink = new System.Windows.Forms.Label();
             SuspendLayout();
@@ -97,11 +97,11 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(115, 114);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new System.Drawing.Size(100, 23);
-            textBox1.TabIndex = 14;
-            textBox1.TextChanged += calculateTotalPrice_OnSelectedIndexChanged;
+            txtBoxQuantity.Location = new System.Drawing.Point(115, 114);
+            txtBoxQuantity.Name = "textBox1";
+            txtBoxQuantity.Size = new System.Drawing.Size(100, 23);
+            txtBoxQuantity.TabIndex = 14;
+            txtBoxQuantity.TextChanged += calculateTotalPrice_OnSelectedIndexChanged;
             // 
             // cmbBoxChooseDrink
             // 
@@ -128,7 +128,7 @@
             ClientSize = new System.Drawing.Size(484, 236);
             Controls.Add(cmbBoxChooseDrink);
             Controls.Add(lblChooseDrink);
-            Controls.Add(textBox1);
+            Controls.Add(txtBoxQuantity);
             Controls.Add(lblQuantity);
             Controls.Add(btnAddPurchaseDrink);
             Controls.Add(lblTotalPriceValue);
@@ -149,7 +149,7 @@
         private System.Windows.Forms.Label lblTotalPriceValue;
         private System.Windows.Forms.Button btnAddPurchaseDrink;
         private System.Windows.Forms.Label lblQuantity;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBoxQuantity;
         private System.Windows.Forms.ComboBox cmbBoxChooseDrink;
         private System.Windows.Forms.Label lblChooseDrink;
     }
