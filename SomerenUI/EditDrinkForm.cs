@@ -8,6 +8,7 @@ namespace SomerenUI
     {        
         Drink drink;
         DrinkService drinkService;
+
         public EditDrinkForm()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace SomerenUI
             drinkService.CreateDrink(drink);
 
             MessageBox.Show($"Successfully added: {drink.Name}");
-            this.Close();
+            Close();
         }
 
         private void btnUpdateDrink_Click(object sender, System.EventArgs e)
@@ -41,7 +42,7 @@ namespace SomerenUI
             Drink drink = new Drink(this.drink.Id, double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
             drinkService.UpdateDrink(drink);         
             MessageBox.Show($"Successfully updated: {drink.Name}");
-            this.Close();            
+            Close();            
         }
 
         private void LoadText(Drink drink)
