@@ -102,7 +102,7 @@
             menuStrip.Location = new System.Drawing.Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            menuStrip.Size = new System.Drawing.Size(1000, 45);
+            menuStrip.Size = new System.Drawing.Size(1000, 35);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
             // 
@@ -110,55 +110,55 @@
             // 
             menuItemApplication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemDashboard, menuItemExit });
             menuItemApplication.Name = "menuItemApplication";
-            menuItemApplication.Size = new System.Drawing.Size(118, 29);
+            menuItemApplication.Size = new System.Drawing.Size(80, 19);
             menuItemApplication.Text = "Application";
             // 
             // menuItemDashboard
             // 
             menuItemDashboard.Name = "menuItemDashboard";
-            menuItemDashboard.Size = new System.Drawing.Size(202, 34);
+            menuItemDashboard.Size = new System.Drawing.Size(131, 22);
             menuItemDashboard.Text = "Dashboard";
             menuItemDashboard.Click += menuItemDashboard_Click;
             // 
             // menuItemExit
             // 
             menuItemExit.Name = "menuItemExit";
-            menuItemExit.Size = new System.Drawing.Size(202, 34);
+            menuItemExit.Size = new System.Drawing.Size(131, 22);
             menuItemExit.Text = "Exit";
             menuItemExit.Click += menuItemExit_Click;
             // 
             // menuItemStudents
             // 
             menuItemStudents.Name = "menuItemStudents";
-            menuItemStudents.Size = new System.Drawing.Size(97, 29);
+            menuItemStudents.Size = new System.Drawing.Size(65, 19);
             menuItemStudents.Text = "Students";
             menuItemStudents.Click += menuItemStudents_Click;
             // 
             // menuItemLecturers
             // 
             menuItemLecturers.Name = "menuItemLecturers";
-            menuItemLecturers.Size = new System.Drawing.Size(98, 29);
+            menuItemLecturers.Size = new System.Drawing.Size(67, 19);
             menuItemLecturers.Text = "Lecturers";
             menuItemLecturers.Click += menuItemLecturers_Click;
             // 
             // menuItemActivities
             // 
             menuItemActivities.Name = "menuItemActivities";
-            menuItemActivities.Size = new System.Drawing.Size(98, 29);
+            menuItemActivities.Size = new System.Drawing.Size(67, 19);
             menuItemActivities.Text = "Activities";
             menuItemActivities.Click += menuItemActivities_Click;
             // 
             // menuItemRooms
             // 
             menuItemRooms.Name = "menuItemRooms";
-            menuItemRooms.Size = new System.Drawing.Size(84, 29);
+            menuItemRooms.Size = new System.Drawing.Size(56, 19);
             menuItemRooms.Text = "Rooms";
             menuItemRooms.Click += menuItemRooms_Click;
             // 
             // menuItemDrinks
             // 
             menuItemDrinks.Name = "menuItemDrinks";
-            menuItemDrinks.Size = new System.Drawing.Size(78, 29);
+            menuItemDrinks.Size = new System.Drawing.Size(52, 19);
             menuItemDrinks.Text = "Drinks";
             menuItemDrinks.Click += menuItemDrinks_Click;
             // 
@@ -176,7 +176,7 @@
             lblDashboard.Location = new System.Drawing.Point(0, 0);
             lblDashboard.Name = "lblDashboard";
             lblDashboard.Padding = new System.Windows.Forms.Padding(16, 16, 8, 8);
-            lblDashboard.Size = new System.Drawing.Size(337, 49);
+            lblDashboard.Size = new System.Drawing.Size(232, 39);
             lblDashboard.TabIndex = 2;
             lblDashboard.Text = "Welcome to the Someren Application!";
             // 
@@ -244,7 +244,7 @@
             lblStudents.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblStudents.Location = new System.Drawing.Point(16, 8);
             lblStudents.Name = "lblStudents";
-            lblStudents.Size = new System.Drawing.Size(157, 48);
+            lblStudents.Size = new System.Drawing.Size(107, 32);
             lblStudents.TabIndex = 2;
             lblStudents.Text = "Students";
             // 
@@ -264,7 +264,7 @@
             lblRooms.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblRooms.Location = new System.Drawing.Point(16, 8);
             lblRooms.Name = "lblRooms";
-            lblRooms.Size = new System.Drawing.Size(129, 48);
+            lblRooms.Size = new System.Drawing.Size(86, 32);
             lblRooms.TabIndex = 2;
             lblRooms.Text = "Rooms";
             // 
@@ -323,7 +323,7 @@
             lblDrinks.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblDrinks.Location = new System.Drawing.Point(16, 8);
             lblDrinks.Name = "lblDrinks";
-            lblDrinks.Size = new System.Drawing.Size(120, 48);
+            lblDrinks.Size = new System.Drawing.Size(81, 32);
             lblDrinks.TabIndex = 2;
             lblDrinks.Text = "Drinks";
             // 
@@ -384,6 +384,7 @@
             btnAddPurchase.Size = new System.Drawing.Size(90, 25);
             btnAddPurchase.TabIndex = 3;
             btnAddPurchase.Text = "Add Purchase";
+            btnAddPurchase.Click += btnAddPurchase_Click;
             // 
             // pnlLecturers
             // 
@@ -401,7 +402,7 @@
             lblLecturers.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblLecturers.Location = new System.Drawing.Point(16, 8);
             lblLecturers.Name = "lblLecturers";
-            lblLecturers.Size = new System.Drawing.Size(165, 48);
+            lblLecturers.Size = new System.Drawing.Size(110, 32);
             lblLecturers.TabIndex = 2;
             lblLecturers.Text = "Lecturers";
             // 
@@ -465,7 +466,7 @@
             lblActivities.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblActivities.Location = new System.Drawing.Point(16, 8);
             lblActivities.Name = "lblActivities";
-            lblActivities.Size = new System.Drawing.Size(162, 48);
+            lblActivities.Size = new System.Drawing.Size(109, 32);
             lblActivities.TabIndex = 2;
             lblActivities.Text = "Activities";
             // 

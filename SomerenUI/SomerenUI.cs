@@ -220,7 +220,7 @@ namespace SomerenUI
 
         private ListViewItem CreateRoomListViewItem(Room room)
         {
-            string roomType = room.Type ? "Lecturer" : "Student";
+            string roomType = room.IsForLecturer ? "Lecturer" : "Student";
 
             ListViewItem item = new ListViewItem(room.Number);
             item.SubItems.Add(room.Capacity.ToString());
@@ -289,6 +289,13 @@ namespace SomerenUI
         private void menuItemDrinks_Click(object sender, EventArgs e)
         {
             ShowDrinksPanel();
+        }
+
+        private void btnAddPurchase_Click(object sender, EventArgs e)
+        {
+            PurchaseDrinkForm purchaseDrinkForm = new PurchaseDrinkForm();
+            purchaseDrinkForm.ShowDialog();
+            DisplayDrinks(GetDrinks());
         }
     }
 }
