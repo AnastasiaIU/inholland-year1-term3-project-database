@@ -6,16 +6,16 @@ namespace SomerenService
 {
     public class LecturerService
     {
-        private LecturerDao lecturerdb;
+        private LecturerDao lecturerDao;
 
         public LecturerService()
         {
-            lecturerdb = new LecturerDao();
+            lecturerDao = new LecturerDao();
         }
 
         public List<Lecturer> GetLecturers()
         {            
-            return lecturerdb.GetAllLecturers();
+            return lecturerDao.GetAllLecturers();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SomerenModel
+﻿namespace SomerenModel
 {
     public class Student : Person
     {

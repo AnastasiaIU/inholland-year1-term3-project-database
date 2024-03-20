@@ -120,42 +120,42 @@
             menuItemDashboard.Name = "menuItemDashboard";
             menuItemDashboard.Size = new System.Drawing.Size(202, 34);
             menuItemDashboard.Text = "Dashboard";
-            menuItemDashboard.Click += dashboardToolStripMenuItem_Click;
+            menuItemDashboard.Click += menuItemDashboard_Click;
             // 
             // menuItemExit
             // 
             menuItemExit.Name = "menuItemExit";
             menuItemExit.Size = new System.Drawing.Size(202, 34);
             menuItemExit.Text = "Exit";
-            menuItemExit.Click += exitToolStripMenuItem_Click;
+            menuItemExit.Click += menuItemExit_Click;
             // 
             // menuItemStudents
             // 
             menuItemStudents.Name = "menuItemStudents";
             menuItemStudents.Size = new System.Drawing.Size(97, 29);
             menuItemStudents.Text = "Students";
-            menuItemStudents.Click += studentsToolStripMenuItem_Click;
+            menuItemStudents.Click += menuItemStudents_Click;
             // 
             // menuItemLecturers
             // 
             menuItemLecturers.Name = "menuItemLecturers";
             menuItemLecturers.Size = new System.Drawing.Size(98, 29);
             menuItemLecturers.Text = "Lecturers";
-            menuItemLecturers.Click += lecturersToolStripMenuItem_Click;
+            menuItemLecturers.Click += menuItemLecturers_Click;
             // 
             // menuItemActivities
             // 
             menuItemActivities.Name = "menuItemActivities";
             menuItemActivities.Size = new System.Drawing.Size(98, 29);
             menuItemActivities.Text = "Activities";
-            menuItemActivities.Click += activitiesToolStripMenuItem_Click;
+            menuItemActivities.Click += menuItemActivities_Click;
             // 
             // menuItemRooms
             // 
             menuItemRooms.Name = "menuItemRooms";
             menuItemRooms.Size = new System.Drawing.Size(84, 29);
             menuItemRooms.Text = "Rooms";
-            menuItemRooms.Click += roomsToolStripMenuItem_Click;
+            menuItemRooms.Click += menuItemRooms_Click;
             // 
             // menuItemDrinks
             // 

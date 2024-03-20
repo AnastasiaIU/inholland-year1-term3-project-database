@@ -6,16 +6,16 @@ namespace SomerenService
 {
     public class DrinkService
     {
-        private DrinkDao drinkdb;
+        private DrinkDao drinkDao;
 
         public DrinkService()
         {
-            drinkdb = new DrinkDao();
+            drinkDao = new DrinkDao();
         }
 
         public List<Drink> GetDrinks()
         {
-            return drinkdb.GetAllDrinks();
+            return drinkDao.GetAllDrinks();
         }
 
         public void CreateDrink(Drink drink)
