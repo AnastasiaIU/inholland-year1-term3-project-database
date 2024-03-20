@@ -70,7 +70,7 @@ namespace SomerenDAL
                 command.Connection = OpenConnection();
                 command.CommandText = query;
                 command.Parameters.AddRange(sqlParameters);
-                adapter.InsertCommand = command;
+                adapter.InsertCommand = command;                
                 return (int)command.ExecuteScalar();
             }
             catch (SqlException e)
@@ -84,7 +84,8 @@ namespace SomerenDAL
             }
         }
 
-        /* For Insert/Update/Delete Queries */
+
+        /* For Update/Delete Queries */
         protected void ExecuteEditQuery(string query, SqlParameter[] sqlParameters)
         {
             SqlCommand command = new SqlCommand();
