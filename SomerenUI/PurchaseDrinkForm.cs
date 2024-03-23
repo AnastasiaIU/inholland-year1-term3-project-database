@@ -1,79 +1,89 @@
-﻿using SomerenService;
-using SomerenModel;
+﻿using SomerenModel;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using static System.Windows.Forms.LinkLabel;
 
 namespace SomerenUI
 {
-    public partial class PurchaseDrinkForm : Form
+    public partial class PurchaseDrinkForm : BaseForm
     {
-        private DrinkService drinkService = new DrinkService();
-        private StudentService studentService = new StudentService();
-        private PurchaseService purchaseService = new PurchaseService();
-
         public PurchaseDrinkForm()
         {
             InitializeComponent();
-            FillChooseDrinkCmbBox();
-            FillBuyerCmbBox();
+            FillComboBox(cmbBoxChooseDrink, GetDrinks);
+            FillComboBox(cmbBoxChooseBuyer, GetStudents);
         }
 
-        void FillChooseDrinkCmbBox()
+        private void DisplayDataInComboBox<T>(ComboBox comboBox, List<T> data)
         {
-            cmbBoxChooseDrink.Items.Clear();
-            List<Drink> drinks = drinkService.GetDrinks();
+            // clear the comboBox before filling it
+            comboBox.Items.Clear();
 
-            foreach (Drink drink in drinks)
+            foreach (T t in data)
             {
-                cmbBoxChooseDrink.Items.Add(drink);
+                comboBox.Items.Add(t);
             }
 
-            cmbBoxChooseDrink.SelectedIndex = 0;
+            comboBox.SelectedIndex = int.Parse(Properties.Resources.Zero);
         }
 
-        void FillBuyerCmbBox()
+        void FillComboBox<T>(ComboBox comboBox, Func<List<T>> fetchData)
         {
-            cmbBoxChooseBuyer.Items.Clear();
-            List<Student> students = studentService.GetStudents();
+            List<T> data = fetchData();
 
-            foreach (Student student in students)
-            {
-                cmbBoxChooseBuyer.Items.Add(student);
-            }
-
-            cmbBoxChooseBuyer.SelectedIndex = 0;
+            if (data != null)
+                DisplayDataInComboBox(comboBox, data);
         }
 
-        private void calculateTotalPrice_OnSelectedIndexChanged(object sender, System.EventArgs e)
+        private void CreatePurchase(Drink currentDrink, int quantity)
         {
-            try
-            {
-                int quantity = int.Parse(txtBoxQuantity.Text);
-                Drink currentDrink = (Drink)cmbBoxChooseDrink.SelectedItem;
-                double totalPrice = currentDrink.GetTotalPrice(quantity);
-                lblTotalPriceValue.Text = totalPrice.ToString("C2");
-            }
-            catch
-            {
-                lblTotalPriceValue.Text = "0";
-            }
-        }
-
-        private void btnAddPurchaseDrink_Click(object sender, System.EventArgs e)
-        {
-            Drink currentDrink = (Drink)cmbBoxChooseDrink.SelectedItem;
-            int fakeId = -1;
             int studentId = ((Student)cmbBoxChooseBuyer.SelectedItem).StudentNumber;
             int drinkId = currentDrink.Id;
-            int quantity = int.Parse(txtBoxQuantity.Text);
-            Purchase purchase = new Purchase(fakeId, studentId, drinkId, quantity);
+
+            Purchase purchase = new Purchase(studentId, drinkId, quantity);
             purchaseService.CreatePurchase(purchase);
+        }
+
+        private void UpdateStock(Drink currentDrink, int quantity)
+        {
             int updatedStock = currentDrink.Stock - quantity;
             currentDrink.Stock = updatedStock;
             drinkService.UpdateDrink(currentDrink);
-            MessageBox.Show($"The purchase successfully added!");
-            Close();
+        }
+
+        private void calculateTotalPrice_Event(object sender, EventArgs e)
+        {
+            try
+            {
+                Drink currentDrink = (Drink)cmbBoxChooseDrink.SelectedItem;
+                int quantity = int.Parse(txtBoxQuantity.Text);
+                double totalPrice = drinkService.GetTotalPrice(currentDrink, quantity);
+                lblTotalPriceValue.Text = totalPrice.ToString(Properties.Resources.MoneyFormat);
+            }
+            catch
+            {
+                lblTotalPriceValue.Text = Properties.Resources.Zero;
+            }
+        }
+
+        private void btnAddPurchaseDrink_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Drink currentDrink = (Drink)cmbBoxChooseDrink.SelectedItem;
+                int quantity = int.Parse(txtBoxQuantity.Text);
+
+                CreatePurchase(currentDrink, quantity);
+                UpdateStock(currentDrink, quantity);
+
+                ShowMessage(Properties.Resources.SuccessfullyAdded, Properties.Resources.NewPurchase);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongQuantityFormat : Properties.Resources.ErrorMessage;
+                ShowError(errorMessage, ex);
+            }
         }
     }
 }

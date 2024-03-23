@@ -1,63 +1,82 @@
-﻿using System.Windows.Forms;
+﻿using Microsoft.IdentityModel.Tokens;
 using SomerenModel;
-using SomerenService;
+using System;
+using System.Windows.Forms;
 
 namespace SomerenUI
 {
-    public partial class EditDrinkForm : Form
-    {        
-        Drink drink;
-        DrinkService drinkService;
+    // Use string resources
+    // Unify exeptions handling
+    public partial class EditDrinkForm : BaseForm
+    {
+        Drink currentDrink;
 
         public EditDrinkForm()
         {
             InitializeComponent();
             btnUpdateDrink.Hide();
-            drinkService = new DrinkService();
+            Text = "Edit";
         }
 
-        public EditDrinkForm(Drink drink) 
+        public EditDrinkForm(Drink drink)
         {
             InitializeComponent();
             btnCreateDrink.Hide();
-            this.drink = drink;
-            LoadText(drink);
-            drinkService = new DrinkService();
+            currentDrink = drink;
+            LoadText();
         }
 
-        private void btnCreateDrink_Click(object sender, System.EventArgs e)
+        private void btnCreateDrink_Click(object sender, EventArgs e)
         {
             bool isAlcoholic = rdoTrue.Checked;
-            int fakeId = -1;
-            Drink drink = new Drink(fakeId, double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
-            drinkService.CreateDrink(drink);
-
-            MessageBox.Show($"Successfully added: {drink.Name}");
-            Close();
-        }
-
-        private void btnUpdateDrink_Click(object sender, System.EventArgs e)
-        {
-            bool isAlcoholic = rdoTrue.Checked;
-            Drink drink = new Drink(this.drink.Id, double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
-            drinkService.UpdateDrink(drink);         
-            MessageBox.Show($"Successfully updated: {drink.Name}");
-            Close();            
-        }
-
-        private void LoadText(Drink drink)
-        {
-            txtDrinkName.Text = drink.Name;
-            txtDrinkPrice.Text = drink.Price.ToString();
-            if (drink.IsAlcholic)
+            try
             {
+                if (txtDrinkName.Text.IsNullOrEmpty())
+                {
+                    throw new Exception("Please input a name for the drink!");
+                }
+
+                Drink drink = new Drink(double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
+                drinkService.CreateDrink(drink);
+                MessageBox.Show($"Successfully added: {drink.Name}");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while creating the drink: " + ex.Message);
+            }
+        }
+
+        private void btnUpdateDrink_Click(object sender, EventArgs e)
+        {
+            bool isAlcoholic = rdoTrue.Checked;
+            try
+            {
+                if (txtDrinkName.Text.IsNullOrEmpty())
+                {
+                    throw new Exception("Please input a name for the drink!");
+                }
+
+                Drink drink = new Drink(currentDrink.Id, double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
+                drinkService.UpdateDrink(drink);
+                MessageBox.Show($"Successfully updated: {drink.Name}");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while updating the drink: " + ex.Message);
+            }
+        }
+
+        private void LoadText()
+        {
+            txtDrinkName.Text = currentDrink.Name;
+            txtDrinkPrice.Text = currentDrink.Price.ToString();
+            txtDrinkStock.Text = currentDrink.Stock.ToString();
+            if (currentDrink.IsAlcoholic)
                 rdoTrue.Checked = true;
-            }
             else
-            {
                 rdoFalse.Checked = true;
-            }
-            txtDrinkStock.Text = drink.Stock.ToString();
         }
     }
 }

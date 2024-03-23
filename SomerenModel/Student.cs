@@ -2,9 +2,8 @@
 {
     public class Student : Person
     {
-        public int StudentNumber { get; set; }      //student_number, database primary key
-        public string RoomNumber { get; set; }
-        public string ClassNumber { get; set; }     //class_numer, IT1A-IT1F
+        public int StudentNumber { get; set; }      // student_number, database primary key
+        public string ClassNumber { get; set; }     // class_number, e.g. IT1A
 
         public Student(int studentNumber, string roomNumber, string firstName, string lastName, string phoneNumber, string classNumber)
             : base(firstName, lastName, phoneNumber)
@@ -16,7 +15,7 @@
 
         public override string ToString()
         {
-            return $"{FullName} - {StudentNumber}";
+            return $"{FullName} ({StudentNumber})";
         }
     }
 }

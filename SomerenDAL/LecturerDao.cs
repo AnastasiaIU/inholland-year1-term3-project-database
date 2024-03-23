@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using SomerenModel;
+﻿using SomerenModel;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SomerenDAL
 {
@@ -10,7 +10,7 @@ namespace SomerenDAL
     {
         public List<Lecturer> GetAllLecturers()
         {
-            string query = "SELECT * FROM Lecturers";
+            string query = "SELECT [lecturerId], [age], [room_number], [first_name], [last_name], [phone_number] FROM Lecturers";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -26,19 +26,12 @@ namespace SomerenDAL
                 string roomNumber = (string)dr["room_number"];
                 string firstName = (string)dr["first_name"];
                 string lastName = (string)dr["last_name"];
-                string phoneNumber;
-                if (dr["phone_number"] == DBNull.Value)
-                {
-                    phoneNumber = null;
-                }
-                else
-                {
-                    phoneNumber = (string)dr["phone_number"];
-                }
+                string phoneNumber = dr["phone_number"] == DBNull.Value ? null : (string)dr["phone_number"];
 
                 Lecturer lecturer = new Lecturer(id, age, roomNumber, firstName, lastName, phoneNumber);
                 lecturers.Add(lecturer);
             };
+
             return lecturers;
         }
     }

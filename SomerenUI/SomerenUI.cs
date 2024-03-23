@@ -1,12 +1,13 @@
-using SomerenService;
 using SomerenModel;
-using System.Windows.Forms;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SomerenUI
 {
-    public partial class SomerenUI : Form
+    // MAKE RESEARCH ON PROPER BASE CLASS FOR FORMS
+    // ADD COMMENTS
+    public partial class SomerenUI : BaseForm
     {
         public SomerenUI()
         {
@@ -16,10 +17,45 @@ namespace SomerenUI
 
         private void ShowPanel(Panel panel)
         {
-            foreach (Control control in this.Controls)
-                if (control.Name.StartsWith("pnl")) control.Hide();
+            string panelName = Properties.Resources.PanelName;
+
+            foreach (Control control in Controls)
+                if (control.Name.StartsWith(panelName)) control.Hide();
 
             panel.Show();
+        }
+
+        /// <summary>
+        /// Calculates the total price for a given drink and quantity.
+        /// </summary>
+        /// <param name="price">The drink for which to calculate the total price.</param>
+        /// <param name="isAlcholic">The quantity of the drink.</param>
+        /// <returns>The total price for the given drink and quantity.</returns>
+        private void DisplayDataInListView<T>(ListView listView, List<T> data, Func<T, ListViewItem> createListViewItem)
+        {
+            // clear the listview before filling it
+            listView.Items.Clear();
+
+            foreach (T t in data)
+            {
+                ListViewItem item = createListViewItem(t);
+                listView.Items.Add(item);
+            }
+        }
+
+        private void ShowPanelWithList<T>
+            (
+            Panel panel,
+            ListView listView,
+            List<T> data,
+            Func<T, ListViewItem> createListViewItem,
+            Action<ListView, List<T>, Func<T, ListViewItem>> displayData
+            )
+        {
+            ShowPanel(panel);
+
+            if (data != null)
+                displayData(listView, data, createListViewItem);
         }
 
         private void ShowDashboardPanel()
@@ -29,120 +65,32 @@ namespace SomerenUI
 
         private void ShowStudentsPanel()
         {
-            ShowPanel(pnlStudents);
-
-            try
-            {
-                // get and display all students                
-                DisplayStudents(GetStudents());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the students: " + e.Message);
-            }
+            List<Student> data = FetchData(GetStudents);
+            ShowPanelWithList(pnlStudents, listViewStudents, data, CreateStudentListViewItem, DisplayDataInListView);
         }
 
         private void ShowLecturersPanel()
         {
-            ShowPanel(pnlLecturers);
-
-            try
-            {
-                // get and display all students                
-                DisplayLecturers(GetLecturers());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the lecturers: " + e.Message);
-            }
+            List<Lecturer> data = FetchData(GetLecturers);
+            ShowPanelWithList(pnlLecturers, listViewLecturers, data, CreateLecturerListViewItem, DisplayDataInListView);
         }
 
         private void ShowActivitiesPanel()
         {
-            ShowPanel(pnlActivities);
-
-            try
-            {
-                // get and display all activities
-                List<Activity> activities = GetActivities();
-                DisplayActivities(activities);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the activities: " + e.Message);
-            }
+            List<Activity> data = FetchData(GetActivities);
+            ShowPanelWithList(pnlActivities, listViewActivities, data, CreateActivityListViewItem, DisplayDataInListView);
         }
 
         private void ShowRoomsPanel()
         {
-            ShowPanel(pnlRooms);
-
-            try
-            {
-                // get and display all rooms                
-                DisplayRooms(GetRooms());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
-            }
+            List<Room> data = FetchData(GetRooms);
+            ShowPanelWithList(pnlRooms, listViewRooms, data, CreateRoomListViewItem, DisplayDataInListView);
         }
 
         private void ShowDrinksPanel()
         {
-            ShowPanel(pnlDrinks);
-
-            try
-            {
-                // get and display all rooms                
-                DisplayDrinks(GetDrinks());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
-            }
-        }
-
-        private List<Student> GetStudents()
-        {
-            StudentService studentService = new StudentService();
-            return studentService.GetStudents();
-        }
-
-        private List<Lecturer> GetLecturers()
-        {
-            LecturerService lecturerService = new LecturerService();
-            return lecturerService.GetLecturers();
-        }
-
-        private List<Activity> GetActivities()
-        {
-            ActivityService activityService = new ActivityService();
-            return activityService.GetActivities();
-        }
-
-        private List<Room> GetRooms()
-        {
-            RoomService roomService = new RoomService();
-            return roomService.GetRooms();
-        }
-
-        private List<Drink> GetDrinks()
-        {
-            DrinkService drinkService = new DrinkService();
-            return drinkService.GetDrinks();
-        }
-
-        private void DisplayStudents(List<Student> students)
-        {
-            // clear the listview before filling it
-            listViewStudents.Items.Clear();
-
-            foreach (Student student in students)
-            {
-                ListViewItem item = CreateStudentListViewItem(student);
-                listViewStudents.Items.Add(item);
-            }
+            List<Drink> data = FetchData(GetDrinks);
+            ShowPanelWithList(pnlDrinks, listViewDrinks, data, CreateDrinkListViewItem, DisplayDataInListView);
         }
 
         private ListViewItem CreateStudentListViewItem(Student student)
@@ -157,18 +105,6 @@ namespace SomerenUI
             return item;
         }
 
-        private void DisplayLecturers(List<Lecturer> lecturers)
-        {
-            // clear the listview before filling it
-            listViewLecturers.Items.Clear();
-
-            foreach (Lecturer lecturer in lecturers)
-            {
-                ListViewItem item = CreateLecturerListViewItem(lecturer);
-                listViewLecturers.Items.Add(item);
-            }
-        }
-
         private ListViewItem CreateLecturerListViewItem(Lecturer lecturer)
         {
             ListViewItem item = new ListViewItem(lecturer.FirstName);
@@ -180,43 +116,19 @@ namespace SomerenUI
             return item;
         }
 
-        private void DisplayActivities(List<Activity> activities)
-        {
-            // clear the listview before filling it
-            listViewActivities.Items.Clear();
-
-            foreach (Activity activity in activities)
-            {
-                ListViewItem item = CreateActivityListViewItem(activity);
-                listViewActivities.Items.Add(item);
-            }
-        }
-
         private ListViewItem CreateActivityListViewItem(Activity activity)
         {
-            ListViewItem item = new ListViewItem(activity.ActivityName);
+            ListViewItem item = new ListViewItem(activity.Name);
             item.SubItems.Add(activity.StartTime.ToString());
             item.SubItems.Add(activity.EndTime.ToString());
-            item.Tag = activity;     // link room object to listview item
+            item.Tag = activity;     // link activity object to listview item
 
             return item;
         }
 
-        private void DisplayRooms(List<Room> rooms)
-        {
-            // clear the listview before filling it
-            listViewRooms.Items.Clear();
-
-            foreach (Room room in rooms)
-            {
-                ListViewItem item = CreateRoomListViewItem(room);
-                listViewRooms.Items.Add(item);
-            }
-        }
-
         private ListViewItem CreateRoomListViewItem(Room room)
         {
-            string roomType = room.IsForLecturer ? "Lecturer" : "Student";
+            string roomType = room.IsForLecturer ? Properties.Resources.Lecturer : Properties.Resources.Student;
 
             ListViewItem item = new ListViewItem(room.Number);
             item.SubItems.Add(room.Capacity.ToString());
@@ -226,31 +138,41 @@ namespace SomerenUI
             return item;
         }
 
-        public void DisplayDrinks(List<Drink> drinks)
-        {
-            // clear the listview before filling it
-            listViewDrinks.Items.Clear();
-
-            foreach (Drink drink in drinks)
-            {
-                ListViewItem item = CreateDrinkListViewItem(drink);
-                listViewDrinks.Items.Add(item);
-            }
-        }
-
         private ListViewItem CreateDrinkListViewItem(Drink drink)
         {
-            string isAlcoholic = drink.IsAlcholic ? "Yes" : "No";
+            string isAlcoholic = drink.IsAlcoholic ? Properties.Resources.Yes : Properties.Resources.No;
+            string stockLevel = GetStockLevelString(drink.StockLevel);
 
             ListViewItem item = new ListViewItem(drink.Name);
-            item.SubItems.Add(drink.Price.ToString("0.00"));
+            item.SubItems.Add(drink.Price.ToString(Properties.Resources.MoneyFormat));
             item.SubItems.Add(isAlcoholic);
             item.SubItems.Add(drink.Stock.ToString());
-            item.SubItems.Add(drink.StockLevel);
-            item.Tag = drink;     // link room object to listview item
+            item.SubItems.Add(stockLevel);
+            item.Tag = drink;     // link drink object to listview item
 
             return item;
-        }        
+        }
+
+        private string GetStockLevelString(StockLevel stockLevel)
+        {
+            string stockLevelString;
+
+            switch (stockLevel)
+            {
+                case StockLevel.Empty:
+                    stockLevelString = Properties.Resources.Empty;
+                    break;
+                case StockLevel.NearlyDepleted:
+                    stockLevelString = Properties.Resources.NearlyDepleted;
+                    break;
+                default:
+                    stockLevelString = Properties.Resources.Sufficient;
+                    break;
+
+            }
+
+            return stockLevelString;
+        }
 
         private void menuItemDashboard_Click(object sender, EventArgs e)
         {
@@ -287,59 +209,44 @@ namespace SomerenUI
             ShowDrinksPanel();
         }
 
+        private void btnAddPurchase_Click(object sender, EventArgs e)
+        {
+            OpenNewFormAndUpdateParentOnClose(new PurchaseDrinkForm(), ShowDrinksPanel);
+        }
+
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
-            EditDrinkForm createDrink = new EditDrinkForm();
-            createDrink.ShowDialog();
-            try
-            {
-                // get and display all rooms                
-                DisplayDrinks(GetDrinks());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something went wrong while loading the drinks: " + ex.Message);
-            }
+            OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(), ShowDrinksPanel);
         }
 
         private void btnDeleteDrink_Click(object sender, EventArgs e)
         {
-            DrinkService drinkService = new DrinkService();
-            Drink drink = (Drink)listViewDrinks.SelectedItems[0].Tag;
-            drinkService.DeleteDrink(drink);
-            MessageBox.Show($"Successfully deleted: {drink.Name}");
             try
             {
-                // get and display all rooms                
-                DisplayDrinks(GetDrinks());
+                Drink currentDrink = (Drink)listViewDrinks.SelectedItems[0].Tag;
+                drinkService.DeleteDrink(currentDrink);
+                ShowMessage(Properties.Resources.SuccessfullyDeleted, currentDrink.Name);
+                ShowDrinksPanel();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while loading the drinks: " + ex.Message);
+                string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
+                ShowError(errorMessage, ex);
             }
         }
 
         private void btnEditDrink_Click(object sender, EventArgs e)
         {
-            Drink drink = (Drink)listViewDrinks.SelectedItems[0].Tag;
-            EditDrinkForm editDrink = new EditDrinkForm(drink);
-            editDrink.ShowDialog();
             try
             {
-                // get and display all rooms                
-                DisplayDrinks(GetDrinks());
+                Drink currentDrink = (Drink)listViewDrinks.SelectedItems[0].Tag;
+                OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(currentDrink), ShowDrinksPanel);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while loading the drinks: " + ex.Message);
+                string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
+                ShowError(errorMessage, ex);
             }
-        }
-
-        private void btnAddPurchase_Click(object sender, EventArgs e)
-        {
-            PurchaseDrinkForm purchaseDrinkForm = new PurchaseDrinkForm();
-            purchaseDrinkForm.ShowDialog();
-            DisplayDrinks(GetDrinks());
         }
     }
 }

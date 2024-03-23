@@ -121,10 +121,11 @@
             lblDrinkName.Text = "Name:";
             // 
             // btnCreateDrink
-            // 
+            //
+            btnCreateDrink.AutoSize = true;
             btnCreateDrink.Location = new System.Drawing.Point(113, 292);
             btnCreateDrink.Name = "btnCreateDrink";
-            btnCreateDrink.Size = new System.Drawing.Size(128, 34);
+            btnCreateDrink.Size = new System.Drawing.Size(150, 45);
             btnCreateDrink.TabIndex = 9;
             btnCreateDrink.Text = "Create drink";
             btnCreateDrink.UseVisualStyleBackColor = true;
@@ -132,9 +133,10 @@
             // 
             // btnUpdateDrink
             // 
+            btnCreateDrink.AutoSize = true;
             btnUpdateDrink.Location = new System.Drawing.Point(113, 292);
             btnUpdateDrink.Name = "btnUpdateDrink";
-            btnUpdateDrink.Size = new System.Drawing.Size(128, 34);
+            btnUpdateDrink.Size = new System.Drawing.Size(150, 45);
             btnUpdateDrink.TabIndex = 10;
             btnUpdateDrink.Text = "Update drink";
             btnUpdateDrink.UseVisualStyleBackColor = true;

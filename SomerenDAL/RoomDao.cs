@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using SomerenModel;
+using System.Collections.Generic;
 using System.Data;
-using SomerenModel;
+using System.Data.SqlClient;
 
 namespace SomerenDAL
 {
@@ -9,7 +9,7 @@ namespace SomerenDAL
     {
         public List<Room> GetAllRooms()
         {
-            string query = "SELECT * FROM Rooms";
+            string query = "SELECT [room_number], [building_number], [floor], [number_of_beds] FROM Rooms";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -28,6 +28,7 @@ namespace SomerenDAL
                 Room room = new Room(number, buildingNumber, floor, capacity);
                 rooms.Add(room);
             }
+
             return rooms;
         }
     }

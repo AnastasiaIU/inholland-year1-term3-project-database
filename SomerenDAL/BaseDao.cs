@@ -1,142 +1,106 @@
-﻿using System.Data.SqlClient;
+﻿using System;
 using System.Configuration;
 using System.Data;
-using System;
+using System.Data.SqlClient;
 
 namespace SomerenDAL
 {
     public abstract class BaseDao
     {
-        private SqlDataAdapter adapter;
-        private SqlConnection conn;
-
-        public BaseDao()
-        {
-            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SomerenDatabase"].ConnectionString);
-            adapter = new SqlDataAdapter();
-        }
+        const string ConnectionStringName = "SomerenDatabase";
+        const string DatabaseErrorMessage = "Database operation failed";
 
         protected SqlConnection OpenConnection()
         {
-            try
-            {
-                if (conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
-                {
-                    conn.Open();
-                }
-            }
-            catch (Exception e)
-            {
-                //Print.ErrorLog(e);
-                throw;
-            }
-            return conn;
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString);
+            connection.Open();
+            return connection;
         }
-
-        private void CloseConnection()
-        {
-            conn.Close();
-        }
-
-        /* For Insert/Update/Delete Queries with transaction */
-        protected void ExecuteEditTranQuery(string query, SqlParameter[] sqlParameters, SqlTransaction sqlTransaction)
-        {
-            SqlCommand command = new SqlCommand(query, conn, sqlTransaction);
-
-            try
-            {
-                command.Parameters.AddRange(sqlParameters);
-                adapter.InsertCommand = command;
-                command.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                //Print.ErrorLog(e);
-                throw;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-
-        /* For Insert Queries */
-        protected int ExecuteInsertQuery(string query, SqlParameter[] sqlParameters)
-        {
-            SqlCommand command = new SqlCommand();
-
-            try
-            {
-                command.Connection = OpenConnection();
-                command.CommandText = query;
-                command.Parameters.AddRange(sqlParameters);
-                adapter.InsertCommand = command;                
-                return (int)command.ExecuteScalar();
-            }
-            catch (SqlException e)
-            {
-                // Print.ErrorLog(e);
-                throw;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-
 
         /* For Update/Delete Queries */
         protected void ExecuteEditQuery(string query, SqlParameter[] sqlParameters)
         {
-            SqlCommand command = new SqlCommand();
+            try
+            {
+                using (SqlConnection connection = OpenConnection())
+                {
+                    using (SqlCommand command = CreateCommand(connection, query, sqlParameters))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                HandleSqlException(ex);
+            }
+        }
+
+        /* We don't use this method currently but we want to keep it till the end of the project in case we will need it. */
+        /* For Insert Queries with Scalar */
+        /*protected int ExecuteInsertQueryWithScalar(string query, SqlParameter[] sqlParameters)
+        {
+            int newId = -1;
 
             try
             {
-                command.Connection = OpenConnection();
-                command.CommandText = query;
-                command.Parameters.AddRange(sqlParameters);
-                adapter.InsertCommand = command;
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = OpenConnection())
+                {
+                    using (SqlCommand command = CreateCommand(connection, query, sqlParameters))
+                    {
+                        newId = (int)command.ExecuteScalar();
+                    }
+                }
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                // Print.ErrorLog(e);
-                throw;
+                HandleSqlException(ex);
             }
-            finally
-            {
-                CloseConnection();
-            }
-        }
+
+            return newId;
+        }*/
 
         /* For Select Queries */
         protected DataTable ExecuteSelectQuery(string query, params SqlParameter[] sqlParameters)
         {
-            SqlCommand command = new SqlCommand();
-            DataTable dataTable;
+            DataTable dataTable = new DataTable();
             DataSet dataSet = new DataSet();
 
             try
             {
-                command.Connection = OpenConnection();
-                command.CommandText = query;
-                command.Parameters.AddRange(sqlParameters);
-                command.ExecuteNonQuery();
-                adapter.SelectCommand = command;
-                adapter.Fill(dataSet);
-                dataTable = dataSet.Tables[0];
+                using (SqlConnection connection = OpenConnection())
+                {
+                    using (SqlCommand command = CreateCommand(connection, query, sqlParameters))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter())
+                        {
+
+                            adapter.SelectCommand = command;
+                            adapter.Fill(dataSet);
+                            dataTable = dataSet.Tables[0];
+                        }
+                    }
+                }
             }
             catch (SqlException e)
             {
-                // Print.ErrorLog(e);
-                throw;
-            }
-            finally
-            {
-                CloseConnection();
+                HandleSqlException(e);
             }
 
             return dataTable;
+        }
+
+        private void HandleSqlException(SqlException ex)
+        {
+            // Preserve the original exception as an inner exception
+            throw new Exception(DatabaseErrorMessage, ex);
+        }
+
+        private SqlCommand CreateCommand(SqlConnection connection, string query, SqlParameter[] parameters)
+        {
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddRange(parameters);
+            return command;
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using SomerenModel;
+﻿using SomerenModel;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SomerenDAL
 {
@@ -10,9 +10,10 @@ namespace SomerenDAL
     {
         public List<Activity> GetAllActivities()
         {
-            string query = "SELECT * FROM Activities";
+            string query = "SELECT [activityId], [start_time], [end_time], [activity_name] FROM Activities";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            return ReadTables(dataTable);
         }
 
         private List<Activity> ReadTables(DataTable dataTable)
