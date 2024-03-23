@@ -2,42 +2,48 @@
 {
     public class Drink
     {
-        public int Id { get; set; }
-        public double Price {  get; set; }
-        public bool IsAlcholic { get; set; }
+        public int Id { get; set; }             // drinkId, database primary key
+        public double Price { get; set; }
+        public bool IsAlcoholic { get; set; }
         public string Name { get; set; }
         public int Stock { get; set; }
-        public string StockLevel 
+        public StockLevel StockLevel
         {
-            get 
+            get
             {
-                if (Stock == 0)
+                switch (Stock)
                 {
-                    return "stock empty";
+                    case <= (int)StockLevel.Empty:
+                        return StockLevel.Empty;
+                    case <= (int)StockLevel.NearlyDepleted:
+                        return StockLevel.NearlyDepleted;
+                    default:
+                        return StockLevel.Sufficient;
                 }
-                else if (Stock < 50)
-                {
-                    return "stock nearly depleted";
-                }
-                else
-                {
-                    return "stock sufficient";
-                }
-            } 
+            }
         }
 
         public Drink(int id, double price, bool isAlcholic, string name, int stock)
         {
             Id = id;
             Price = price;
-            IsAlcholic = isAlcholic;
+            IsAlcoholic = isAlcholic;
             Name = name;
             Stock = stock;
         }
 
-        public double GetTotalPrice(int quantity)
+        /// <summary>
+        /// Calculates the total price for a given drink and quantity.
+        /// </summary>
+        /// <param name="price">The drink for which to calculate the total price.</param>
+        /// <param name="isAlcholic">The quantity of the drink.</param>
+        /// <returns>The total price for the given drink and quantity.</returns>
+        public Drink(double price, bool isAlcholic, string name, int stock)
         {
-            return Price * quantity;
+            Price = price;
+            IsAlcoholic = isAlcholic;
+            Name = name;
+            Stock = stock;
         }
 
         public override string ToString()

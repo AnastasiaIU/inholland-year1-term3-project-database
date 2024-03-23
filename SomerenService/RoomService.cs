@@ -14,7 +14,7 @@ namespace SomerenService
         }
 
         public List<Room> GetRooms()
-        {            
+        {
             return roomDao.GetAllRooms();
         }
     }

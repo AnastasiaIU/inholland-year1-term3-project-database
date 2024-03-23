@@ -14,7 +14,7 @@ namespace SomerenService
         }
 
         public List<Student> GetStudents()
-        {            
+        {
             return studentDao.GetAllStudents();
         }
     }

@@ -297,17 +297,17 @@
             // chRoomNumber
             // 
             chRoomNumber.Text = "Room Number";
-            chRoomNumber.Width = 200;
+            chRoomNumber.Width = 150;
             // 
             // chRoomSize
             // 
             chRoomSize.Text = "Room Size";
-            chRoomSize.Width = 200;
+            chRoomSize.Width = 150;
             // 
             // chTypeOfRoom
             // 
             chTypeOfRoom.Text = "Type Of Room";
-            chTypeOfRoom.Width = 200;
+            chTypeOfRoom.Width = 150;
             // 
             // pnlDrinks
             // 
@@ -384,13 +384,50 @@
             // btnAddPurchase
             // 
             btnAddPurchase.AutoSize = true;
-            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            btnAddPurchase.Location = new System.Drawing.Point(16, 372);
+            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            btnAddPurchase.Location = new System.Drawing.Point(16, 380);
             btnAddPurchase.Name = "btnAddPurchase";
-            btnAddPurchase.Size = new System.Drawing.Size(90, 25);
+            btnAddPurchase.Size = new System.Drawing.Size(120, 34);
             btnAddPurchase.TabIndex = 3;
             btnAddPurchase.Text = "Add Purchase";
+            btnCreateDrink.UseVisualStyleBackColor = true;
             btnAddPurchase.Click += btnAddPurchase_Click;
+            // 
+            // btnCreateDrink
+            // 
+            btnAddPurchase.AutoSize = true;
+            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            btnCreateDrink.Location = new System.Drawing.Point(168, 380);
+            btnCreateDrink.Name = "btnCreateDrink";
+            btnCreateDrink.Size = new System.Drawing.Size(120, 34);
+            btnCreateDrink.TabIndex = 4;
+            btnCreateDrink.Text = "Create new drink";
+            btnCreateDrink.UseVisualStyleBackColor = true;
+            btnCreateDrink.Click += btnCreateDrink_Click;
+            // 
+            // btnDeleteDrink
+            // 
+            btnAddPurchase.AutoSize = true;
+            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            btnDeleteDrink.Location = new System.Drawing.Point(320, 380);
+            btnDeleteDrink.Name = "btnDeleteDrink";
+            btnDeleteDrink.Size = new System.Drawing.Size(120, 34);
+            btnDeleteDrink.TabIndex = 5;
+            btnDeleteDrink.Text = "Delete drink";
+            btnDeleteDrink.UseVisualStyleBackColor = true;
+            btnDeleteDrink.Click += btnDeleteDrink_Click;
+            // 
+            // btnEditDrink
+            // 
+            btnAddPurchase.AutoSize = true;
+            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            btnEditDrink.Location = new System.Drawing.Point(472, 380);
+            btnEditDrink.Name = "btnEditDrink";
+            btnEditDrink.Size = new System.Drawing.Size(120, 34);
+            btnEditDrink.TabIndex = 6;
+            btnEditDrink.Text = "Edit drink";
+            btnEditDrink.UseVisualStyleBackColor = true;
+            btnEditDrink.Click += btnEditDrink_Click;
             // 
             // pnlLecturers
             // 
@@ -513,36 +550,6 @@
             // 
             chEndTime.Text = "End Time";
             chEndTime.Width = 225;
-            // 
-            // btnCreateDrink
-            // 
-            btnCreateDrink.Location = new System.Drawing.Point(179, 400);
-            btnCreateDrink.Name = "btnCreateDrink";
-            btnCreateDrink.Size = new System.Drawing.Size(158, 34);
-            btnCreateDrink.TabIndex = 3;
-            btnCreateDrink.Text = "Create new drink";
-            btnCreateDrink.UseVisualStyleBackColor = true;
-            btnCreateDrink.Click += btnCreateDrink_Click;
-            // 
-            // btnDeleteDrink
-            // 
-            btnDeleteDrink.Location = new System.Drawing.Point(369, 400);
-            btnDeleteDrink.Name = "btnDeleteDrink";
-            btnDeleteDrink.Size = new System.Drawing.Size(117, 34);
-            btnDeleteDrink.TabIndex = 4;
-            btnDeleteDrink.Text = "Delete drink";
-            btnDeleteDrink.UseVisualStyleBackColor = true;
-            btnDeleteDrink.Click += btnDeleteDrink_Click;
-            // 
-            // btnEditDrink
-            // 
-            btnEditDrink.Location = new System.Drawing.Point(520, 400);
-            btnEditDrink.Name = "btnEditDrink";
-            btnEditDrink.Size = new System.Drawing.Size(112, 34);
-            btnEditDrink.TabIndex = 5;
-            btnEditDrink.Text = "Edit drink";
-            btnEditDrink.UseVisualStyleBackColor = true;
-            btnEditDrink.Click += btnEditDrink_Click;
             // 
             // SomerenUI
             // 

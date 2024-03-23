@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using SomerenModel;
+using System.Collections.Generic;
 using System.Data;
-using SomerenModel;
+using System.Data.SqlClient;
 
 namespace SomerenDAL
 {
@@ -9,14 +9,14 @@ namespace SomerenDAL
     {
         public List<Purchase> GetAllPurchases()
         {
-            string query = "SELECT * FROM Purchases";
+            string query = "SELECT [purchaseId], [student_number], [drinkId], [quantity] FROM Purchases";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
         public void CreatePurchase(Purchase purchase)
         {
-            string query = "INSERT INTO Purchases VALUES (@StudentId, @DrinkId, @Quantity);" + "SELECT CAST(scope_identity() AS int)";
+            string query = "INSERT INTO Purchases VALUES (@StudentId, @DrinkId, @Quantity); SELECT CAST(scope_identity() AS int)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("@StudentId", purchase.StudentId),
@@ -24,7 +24,7 @@ namespace SomerenDAL
                 new SqlParameter("@Quantity", purchase.Quantity)
             };
 
-            int id = ExecuteInsertQuery(query, sqlParameters);
+            ExecuteEditQuery(query, sqlParameters);
         }
 
         private List<Purchase> ReadTables(DataTable dataTable)
@@ -36,11 +36,12 @@ namespace SomerenDAL
                 int id = (int)dr["purchaseId"];
                 int studentId = (int)dr["student_number"];
                 int drinkId = (int)dr["drinkId"];
-                int quantity = (int)dr["amount"];
+                int quantity = (int)dr["quantity"];
 
                 Purchase purchase = new Purchase(id, studentId, drinkId, quantity);
                 purchases.Add(purchase);
             }
+
             return purchases;
         }
     }

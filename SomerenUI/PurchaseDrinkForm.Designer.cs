@@ -101,7 +101,7 @@
             txtBoxQuantity.Name = "textBox1";
             txtBoxQuantity.Size = new System.Drawing.Size(100, 23);
             txtBoxQuantity.TabIndex = 14;
-            txtBoxQuantity.TextChanged += calculateTotalPrice_OnSelectedIndexChanged;
+            txtBoxQuantity.TextChanged += calculateTotalPrice_Event;
             // 
             // cmbBoxChooseDrink
             // 
@@ -110,7 +110,7 @@
             cmbBoxChooseDrink.Name = "cmbBoxChooseDrink";
             cmbBoxChooseDrink.Size = new System.Drawing.Size(350, 23);
             cmbBoxChooseDrink.TabIndex = 16;
-            cmbBoxChooseDrink.SelectedIndexChanged += calculateTotalPrice_OnSelectedIndexChanged;
+            cmbBoxChooseDrink.SelectedIndexChanged += calculateTotalPrice_Event;
             // 
             // lblChooseDrink
             // 
