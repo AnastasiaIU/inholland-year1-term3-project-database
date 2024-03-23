@@ -168,7 +168,6 @@ namespace SomerenUI
                 default:
                     stockLevelString = Properties.Resources.Sufficient;
                     break;
-
             }
 
             return stockLevelString;

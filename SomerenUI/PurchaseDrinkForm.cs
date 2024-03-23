@@ -20,9 +20,7 @@ namespace SomerenUI
             comboBox.Items.Clear();
 
             foreach (T t in data)
-            {
-                comboBox.Items.Add(t);
-            }
+                comboBox.Items.Add(t);            
 
             comboBox.SelectedIndex = int.Parse(Properties.Resources.Zero);
         }
@@ -45,9 +43,8 @@ namespace SomerenUI
         }
 
         private void UpdateStock(Drink currentDrink, int quantity)
-        {
-            int updatedStock = currentDrink.Stock - quantity;
-            currentDrink.Stock = updatedStock;
+        {            
+            currentDrink.Stock -= quantity;
             drinkService.UpdateDrink(currentDrink);
         }
 

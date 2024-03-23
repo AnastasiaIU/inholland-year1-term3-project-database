@@ -1,12 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using SomerenModel;
 using System;
-using System.Windows.Forms;
 
 namespace SomerenUI
 {
-    // Use string resources
-    // Unify exeptions handling
     public partial class EditDrinkForm : BaseForm
     {
         Drink currentDrink;
@@ -14,13 +11,14 @@ namespace SomerenUI
         public EditDrinkForm()
         {
             InitializeComponent();
-            btnUpdateDrink.Hide();
-            Text = "Edit";
+            Text = "Create Drink";
+            btnUpdateDrink.Hide();            
         }
 
         public EditDrinkForm(Drink drink)
         {
             InitializeComponent();
+            Text = "Edit Drink";
             btnCreateDrink.Hide();
             currentDrink = drink;
             LoadText();
@@ -31,40 +29,38 @@ namespace SomerenUI
             bool isAlcoholic = rdoTrue.Checked;
             try
             {
-                if (txtDrinkName.Text.IsNullOrEmpty())
-                {
-                    throw new Exception("Please input a name for the drink!");
-                }
+                if (txtDrinkName.Text.IsNullOrEmpty())                
+                    throw new ArgumentNullException();                
 
                 Drink drink = new Drink(double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
                 drinkService.CreateDrink(drink);
-                MessageBox.Show($"Successfully added: {drink.Name}");
+                ShowMessage(Properties.Resources.SuccessfullyAdded, drink.Name);
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while creating the drink: " + ex.Message);
+                string errorMessage = ex is ArgumentNullException ? Properties.Resources.NullField : Properties.Resources.ErrorMessage;
+                ShowError(errorMessage, ex);
             }
-        }
+        }        
 
         private void btnUpdateDrink_Click(object sender, EventArgs e)
         {
             bool isAlcoholic = rdoTrue.Checked;
             try
             {
-                if (txtDrinkName.Text.IsNullOrEmpty())
-                {
-                    throw new Exception("Please input a name for the drink!");
-                }
+                if (txtDrinkName.Text.IsNullOrEmpty())                
+                    throw new ArgumentNullException();
 
                 Drink drink = new Drink(currentDrink.Id, double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
                 drinkService.UpdateDrink(drink);
-                MessageBox.Show($"Successfully updated: {drink.Name}");
+                ShowMessage(Properties.Resources.SuccessfullyEdited, drink.Name);
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while updating the drink: " + ex.Message);
+                string errorMessage = ex is ArgumentNullException ? Properties.Resources.NullField : Properties.Resources.ErrorMessage;
+                ShowError(errorMessage, ex);
             }
         }
 

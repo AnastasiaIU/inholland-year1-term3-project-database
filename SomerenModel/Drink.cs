@@ -23,14 +23,6 @@
             }
         }
 
-        public Drink(int id, double price, bool isAlcholic, string name, int stock)
-        {
-            Id = id;
-            Price = price;
-            IsAlcoholic = isAlcholic;
-            Name = name;
-            Stock = stock;
-        }
 
         /// <summary>
         /// Calculates the total price for a given drink and quantity.
@@ -38,12 +30,18 @@
         /// <param name="price">The drink for which to calculate the total price.</param>
         /// <param name="isAlcholic">The quantity of the drink.</param>
         /// <returns>The total price for the given drink and quantity.</returns>
-        public Drink(double price, bool isAlcholic, string name, int stock)
+        public Drink(double price, bool isAlcoholic, string name, int stock)
         {
             Price = price;
-            IsAlcoholic = isAlcholic;
+            IsAlcoholic = isAlcoholic;
             Name = name;
             Stock = stock;
+        }
+
+        public Drink(int id, double price, bool isAlcoholic, string name, int stock)
+            : this(price, isAlcoholic, name, stock)
+        {
+            Id = id;
         }
 
         public override string ToString()

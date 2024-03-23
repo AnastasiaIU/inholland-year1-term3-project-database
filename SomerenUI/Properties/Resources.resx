@@ -146,6 +146,10 @@ Error: </value>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="NullField" xml:space="preserve">
+    <value>Need to input a name.
+Error: </value>
+  </data>
   <data name="PanelName" xml:space="preserve">
     <value>pnl</value>
   </data>
@@ -161,6 +165,9 @@ Error: </value>
   </data>
   <data name="SuccessfullyDeleted" xml:space="preserve">
     <value>Successfully deleted: </value>
+  </data>
+  <data name="SuccessfullyEdited" xml:space="preserve">
+    <value>Successfully edited:</value>
   </data>
   <data name="Sufficient" xml:space="preserve">
     <value>stock sufficient</value>

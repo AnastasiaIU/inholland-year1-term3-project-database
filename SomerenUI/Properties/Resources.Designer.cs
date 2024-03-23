@@ -144,6 +144,16 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need to input a name.
+        ///Error: .
+        /// </summary>
+        internal static string NullField {
+            get {
+                return ResourceManager.GetString("NullField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to pnl.
         /// </summary>
         internal static string PanelName {
@@ -186,6 +196,15 @@ namespace SomerenUI.Properties {
         internal static string SuccessfullyDeleted {
             get {
                 return ResourceManager.GetString("SuccessfullyDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully edited:.
+        /// </summary>
+        internal static string SuccessfullyEdited {
+            get {
+                return ResourceManager.GetString("SuccessfullyEdited", resourceCulture);
             }
         }
         
