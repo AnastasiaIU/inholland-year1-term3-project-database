@@ -29,20 +29,22 @@ namespace SomerenUI
             bool isAlcoholic = rdoTrue.Checked;
             try
             {
-                if (txtDrinkName.Text.IsNullOrEmpty())                
-                    throw new ArgumentNullException();                
+                if (txtDrinkName.Text.IsNullOrEmpty())
+                    throw new ArgumentNullException();
 
-                Drink drink = new Drink(double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
+                double price = double.Parse(txtDrinkPrice.Text);
+                int stock = int.Parse(txtDrinkStock.Text);
+
+                Drink drink = new Drink(price, isAlcoholic, txtDrinkName.Text, stock);
                 drinkService.CreateDrink(drink);
-                ShowMessage(Properties.Resources.SuccessfullyAdded, drink.Name);
-                Close();
+                ShowMessage(Properties.Resources.SuccessfullyAdded, drink.Name, this);
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentNullException ? Properties.Resources.NullField : Properties.Resources.ErrorMessage;
+                string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
                 ShowError(errorMessage, ex);
             }
-        }        
+        }
 
         private void btnUpdateDrink_Click(object sender, EventArgs e)
         {
@@ -52,14 +54,16 @@ namespace SomerenUI
                 if (txtDrinkName.Text.IsNullOrEmpty())                
                     throw new ArgumentNullException();
 
-                Drink drink = new Drink(currentDrink.Id, double.Parse(txtDrinkPrice.Text), isAlcoholic, txtDrinkName.Text, int.Parse(txtDrinkStock.Text));
+                double price = double.Parse(txtDrinkPrice.Text);
+                int stock = int.Parse(txtDrinkStock.Text);
+
+                Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, txtDrinkName.Text, stock);
                 drinkService.UpdateDrink(drink);
-                ShowMessage(Properties.Resources.SuccessfullyEdited, drink.Name);
-                Close();
+                ShowMessage(Properties.Resources.SuccessfullyEdited, drink.Name, this);
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentNullException ? Properties.Resources.NullField : Properties.Resources.ErrorMessage;
+                string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
                 ShowError(errorMessage, ex);
             }
         }

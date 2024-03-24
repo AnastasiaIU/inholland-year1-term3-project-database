@@ -47,7 +47,7 @@
             rdoTrue.Location = new System.Drawing.Point(153, 162);
             rdoTrue.Name = "rdoTrue";
             rdoTrue.Size = new System.Drawing.Size(62, 29);
-            rdoTrue.TabIndex = 0;
+            rdoTrue.TabIndex = 2;
             rdoTrue.TabStop = true;
             rdoTrue.Text = "Yes";
             rdoTrue.UseVisualStyleBackColor = true;
@@ -58,7 +58,7 @@
             rdoFalse.Location = new System.Drawing.Point(228, 162);
             rdoFalse.Name = "rdoFalse";
             rdoFalse.Size = new System.Drawing.Size(61, 29);
-            rdoFalse.TabIndex = 1;
+            rdoFalse.TabIndex = 3;
             rdoFalse.TabStop = true;
             rdoFalse.Text = "No";
             rdoFalse.UseVisualStyleBackColor = true;
@@ -77,21 +77,21 @@
             txtDrinkPrice.Location = new System.Drawing.Point(153, 105);
             txtDrinkPrice.Name = "txtDrinkPrice";
             txtDrinkPrice.Size = new System.Drawing.Size(150, 31);
-            txtDrinkPrice.TabIndex = 3;
+            txtDrinkPrice.TabIndex = 1;
             // 
             // txtDrinkName
             // 
             txtDrinkName.Location = new System.Drawing.Point(153, 47);
             txtDrinkName.Name = "txtDrinkName";
             txtDrinkName.Size = new System.Drawing.Size(150, 31);
-            txtDrinkName.TabIndex = 4;
+            txtDrinkName.TabIndex = 0;
             // 
             // txtDrinkStock
             // 
             txtDrinkStock.Location = new System.Drawing.Point(153, 215);
             txtDrinkStock.Name = "txtDrinkStock";
             txtDrinkStock.Size = new System.Drawing.Size(150, 31);
-            txtDrinkStock.TabIndex = 5;
+            txtDrinkStock.TabIndex = 4;
             // 
             // lblDrinkStock
             // 
@@ -126,7 +126,7 @@
             btnCreateDrink.Location = new System.Drawing.Point(113, 292);
             btnCreateDrink.Name = "btnCreateDrink";
             btnCreateDrink.Size = new System.Drawing.Size(150, 45);
-            btnCreateDrink.TabIndex = 9;
+            btnCreateDrink.TabIndex = 5;
             btnCreateDrink.Text = "Create drink";
             btnCreateDrink.UseVisualStyleBackColor = true;
             btnCreateDrink.Click += btnCreateDrink_Click;
@@ -137,7 +137,7 @@
             btnUpdateDrink.Location = new System.Drawing.Point(113, 292);
             btnUpdateDrink.Name = "btnUpdateDrink";
             btnUpdateDrink.Size = new System.Drawing.Size(150, 45);
-            btnUpdateDrink.TabIndex = 10;
+            btnUpdateDrink.TabIndex = 5;
             btnUpdateDrink.Text = "Update drink";
             btnUpdateDrink.UseVisualStyleBackColor = true;
             btnUpdateDrink.Click += btnUpdateDrink_Click;

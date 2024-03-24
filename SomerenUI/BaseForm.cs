@@ -72,9 +72,11 @@ namespace SomerenUI
             MessageBox.Show(errorMessage + ex.Message);
         }
 
-        protected void ShowMessage(string message, string arg = null)
+        protected void ShowMessage(string message, string arg = null, Form form = null)
         {
             MessageBox.Show(message + arg);
+            if (form != null)
+                form.Close();
         }
     }
 }

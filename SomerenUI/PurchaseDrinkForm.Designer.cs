@@ -81,7 +81,7 @@
             btnAddPurchaseDrink.Location = new System.Drawing.Point(375, 199);
             btnAddPurchaseDrink.Name = "btnAddPurchaseDrink";
             btnAddPurchaseDrink.Size = new System.Drawing.Size(90, 25);
-            btnAddPurchaseDrink.TabIndex = 8;
+            btnAddPurchaseDrink.TabIndex = 3;
             btnAddPurchaseDrink.Text = "Add purchase";
             btnAddPurchaseDrink.UseVisualStyleBackColor = true;
             btnAddPurchaseDrink.Click += btnAddPurchaseDrink_Click;
@@ -98,9 +98,9 @@
             // textBox1
             // 
             txtBoxQuantity.Location = new System.Drawing.Point(115, 114);
-            txtBoxQuantity.Name = "textBox1";
+            txtBoxQuantity.Name = "txtQuantity";
             txtBoxQuantity.Size = new System.Drawing.Size(100, 23);
-            txtBoxQuantity.TabIndex = 14;
+            txtBoxQuantity.TabIndex = 2;
             txtBoxQuantity.TextChanged += calculateTotalPrice_Event;
             // 
             // cmbBoxChooseDrink
@@ -109,7 +109,7 @@
             cmbBoxChooseDrink.Location = new System.Drawing.Point(115, 26);
             cmbBoxChooseDrink.Name = "cmbBoxChooseDrink";
             cmbBoxChooseDrink.Size = new System.Drawing.Size(350, 23);
-            cmbBoxChooseDrink.TabIndex = 16;
+            cmbBoxChooseDrink.TabIndex = 0;
             cmbBoxChooseDrink.SelectedIndexChanged += calculateTotalPrice_Event;
             // 
             // lblChooseDrink

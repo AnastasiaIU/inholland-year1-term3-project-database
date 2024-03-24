@@ -12,7 +12,8 @@ namespace SomerenDAL
         {
             string query = "SELECT [activityId], [start_time], [end_time], [activity_name] FROM Activities";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            return ReadTables(dataTable);
         }
 
         private List<Activity> ReadTables(DataTable dataTable)

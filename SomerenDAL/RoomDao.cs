@@ -11,7 +11,8 @@ namespace SomerenDAL
         {
             string query = "SELECT [room_number], [building_number], [floor], [number_of_beds] FROM Rooms";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            return ReadTables(dataTable);
         }
 
         private List<Room> ReadTables(DataTable dataTable)

@@ -89,6 +89,16 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need to input a name.
+        ///Error: .
+        /// </summary>
+        internal static string ErrorMessageNullField {
+            get {
+                return ResourceManager.GetString("ErrorMessageNullField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong input for quantity. Needs to be a whole number.
         ///Error: .
         /// </summary>
@@ -144,16 +154,6 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to input a name.
-        ///Error: .
-        /// </summary>
-        internal static string NullField {
-            get {
-                return ResourceManager.GetString("NullField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to pnl.
         /// </summary>
         internal static string PanelName {
@@ -200,7 +200,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully edited:.
+        ///   Looks up a localized string similar to Successfully edited: .
         /// </summary>
         internal static string SuccessfullyEdited {
             get {
