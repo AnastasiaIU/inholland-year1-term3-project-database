@@ -383,8 +383,6 @@
             // 
             // btnAddPurchase
             // 
-            btnAddPurchase.AutoSize = true;
-            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
             btnAddPurchase.Location = new System.Drawing.Point(16, 380);
             btnAddPurchase.Name = "btnAddPurchase";
             btnAddPurchase.Size = new System.Drawing.Size(120, 34);
@@ -395,21 +393,17 @@
             // 
             // btnCreateDrink
             // 
-            btnAddPurchase.AutoSize = true;
-            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
-            btnCreateDrink.Location = new System.Drawing.Point(168, 380);
+            btnCreateDrink.Location = new System.Drawing.Point(166, 380);
             btnCreateDrink.Name = "btnCreateDrink";
             btnCreateDrink.Size = new System.Drawing.Size(120, 34);
             btnCreateDrink.TabIndex = 4;
-            btnCreateDrink.Text = "Create new drink";
+            btnCreateDrink.Text = "Create drink";
             btnCreateDrink.UseVisualStyleBackColor = true;
             btnCreateDrink.Click += btnCreateDrink_Click;
             // 
             // btnDeleteDrink
             // 
-            btnAddPurchase.AutoSize = true;
-            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
-            btnDeleteDrink.Location = new System.Drawing.Point(320, 380);
+            btnDeleteDrink.Location = new System.Drawing.Point(316, 380);
             btnDeleteDrink.Name = "btnDeleteDrink";
             btnDeleteDrink.Size = new System.Drawing.Size(120, 34);
             btnDeleteDrink.TabIndex = 5;
@@ -419,9 +413,7 @@
             // 
             // btnEditDrink
             // 
-            btnAddPurchase.AutoSize = true;
-            btnAddPurchase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
-            btnEditDrink.Location = new System.Drawing.Point(472, 380);
+            btnEditDrink.Location = new System.Drawing.Point(466, 380);
             btnEditDrink.Name = "btnEditDrink";
             btnEditDrink.Size = new System.Drawing.Size(120, 34);
             btnEditDrink.TabIndex = 6;

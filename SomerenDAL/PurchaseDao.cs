@@ -11,7 +11,8 @@ namespace SomerenDAL
         {
             string query = "SELECT [purchaseId], [student_number], [drinkId], [quantity] FROM Purchases";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            return ReadTables(dataTable);
         }
 
         public void CreatePurchase(Purchase purchase)

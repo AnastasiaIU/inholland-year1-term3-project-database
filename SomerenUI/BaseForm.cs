@@ -2,6 +2,7 @@
 using SomerenService;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SomerenUI
@@ -75,6 +76,17 @@ namespace SomerenUI
         protected void ShowMessage(string message, string arg = null)
         {
             MessageBox.Show(message + arg);
+        }
+
+        protected void ShowMessageAndCloseForm(string message, Form form, string arg = null) 
+        {
+            ShowMessage(message, arg);
+            form.Close();
+        }
+
+        protected double GetDoubleFromString(string number)
+        {
+            return double.Parse(number.Replace(',', '.'), CultureInfo.InvariantCulture);
         }
     }
 }

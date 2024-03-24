@@ -127,6 +127,10 @@
     <value>Need to select a drink.
 Error: </value>
   </data>
+  <data name="ErrorMessageNullField" xml:space="preserve">
+    <value>Need to input a name.
+Error: </value>
+  </data>
   <data name="ErrorMessageWrongQuantityFormat" xml:space="preserve">
     <value>Wrong input for quantity. Needs to be a whole number.
 Error: </value>
@@ -161,6 +165,9 @@ Error: </value>
   </data>
   <data name="SuccessfullyDeleted" xml:space="preserve">
     <value>Successfully deleted: </value>
+  </data>
+  <data name="SuccessfullyEdited" xml:space="preserve">
+    <value>Successfully edited: </value>
   </data>
   <data name="Sufficient" xml:space="preserve">
     <value>stock sufficient</value>

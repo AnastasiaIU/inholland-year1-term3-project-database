@@ -9,9 +9,10 @@ namespace SomerenDAL
     {
         public List<Drink> GetAllDrinks()
         {
-            string query = "SELECT [drinkId], [price], [alcoholic], [drink_name], [current_stock] FROM Drinks";
+            string query = "SELECT [drinkId], [price], [alcoholic], [drink_name], [current_stock] FROM Drinks ORDER BY [drink_name]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            return ReadTables(dataTable);
         }
 
         public void CreateDrink(Drink drink)

@@ -89,6 +89,16 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need to input a name.
+        ///Error: .
+        /// </summary>
+        internal static string ErrorMessageNullField {
+            get {
+                return ResourceManager.GetString("ErrorMessageNullField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong input for quantity. Needs to be a whole number.
         ///Error: .
         /// </summary>
@@ -186,6 +196,15 @@ namespace SomerenUI.Properties {
         internal static string SuccessfullyDeleted {
             get {
                 return ResourceManager.GetString("SuccessfullyDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully edited: .
+        /// </summary>
+        internal static string SuccessfullyEdited {
+            get {
+                return ResourceManager.GetString("SuccessfullyEdited", resourceCulture);
             }
         }
         
