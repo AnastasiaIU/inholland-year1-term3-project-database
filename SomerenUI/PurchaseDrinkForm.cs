@@ -73,7 +73,7 @@ namespace SomerenUI
                 CreatePurchase(currentDrink, quantity);
                 UpdateStock(currentDrink, quantity);
 
-                ShowMessage(Properties.Resources.SuccessfullyAdded, Properties.Resources.NewPurchase, this);
+                ShowMessageAndCloseForm(Properties.Resources.SuccessfullyAdded, this, Properties.Resources.NewPurchase);
             }
             catch (Exception ex)
             {

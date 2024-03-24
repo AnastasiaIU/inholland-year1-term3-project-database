@@ -12,7 +12,8 @@ namespace SomerenUI
         {
             InitializeComponent();
             Text = "Create Drink";
-            btnUpdateDrink.Hide();            
+            btnUpdateDrink.Hide();
+            rdoTrue.Checked = true;
         }
 
         public EditDrinkForm(Drink drink)
@@ -22,22 +23,25 @@ namespace SomerenUI
             btnCreateDrink.Hide();
             currentDrink = drink;
             LoadText();
+            if (drink.IsAlcoholic)
+                rdoTrue.Checked = true;
+            else 
+                rdoFalse.Checked = false;
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
-            bool isAlcoholic = rdoTrue.Checked;
             try
-            {
+            {                
                 if (txtDrinkName.Text.IsNullOrEmpty())
                     throw new ArgumentNullException();
 
-                double price = double.Parse(txtDrinkPrice.Text);
+                double price = GetDoubleFromString(txtDrinkPrice.Text);
                 int stock = int.Parse(txtDrinkStock.Text);
 
-                Drink drink = new Drink(price, isAlcoholic, txtDrinkName.Text, stock);
+                Drink drink = new Drink(price, currentDrink.IsAlcoholic, txtDrinkName.Text, stock);
                 drinkService.CreateDrink(drink);
-                ShowMessage(Properties.Resources.SuccessfullyAdded, drink.Name, this);
+                ShowMessageAndCloseForm(Properties.Resources.SuccessfullyAdded, this, drink.Name);
             }
             catch (Exception ex)
             {
@@ -48,18 +52,17 @@ namespace SomerenUI
 
         private void btnUpdateDrink_Click(object sender, EventArgs e)
         {
-            bool isAlcoholic = rdoTrue.Checked;
             try
-            {
+            {                
                 if (txtDrinkName.Text.IsNullOrEmpty())                
                     throw new ArgumentNullException();
 
-                double price = double.Parse(txtDrinkPrice.Text);
+                double price = GetDoubleFromString(txtDrinkPrice.Text);
                 int stock = int.Parse(txtDrinkStock.Text);
 
-                Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, txtDrinkName.Text, stock);
+                Drink drink = new Drink(currentDrink.Id, price, currentDrink.IsAlcoholic, txtDrinkName.Text, stock);
                 drinkService.UpdateDrink(drink);
-                ShowMessage(Properties.Resources.SuccessfullyEdited, drink.Name, this);
+                ShowMessageAndCloseForm(Properties.Resources.SuccessfullyEdited, this, drink.Name);
             }
             catch (Exception ex)
             {
