@@ -17,7 +17,9 @@ namespace SomerenDAL
             return connection;
         }
 
-        /* For Update/Delete Queries */
+        /// <summary>
+        /// For Create/Update/Delete Queries.
+        /// </summary>
         protected void ExecuteEditQuery(string query, SqlParameter[] sqlParameters)
         {
             try
@@ -37,7 +39,9 @@ namespace SomerenDAL
         }
 
         /* We don't use this method currently but we want to keep it till the end of the project in case we will need it. */
-        /* For Insert Queries with Scalar */
+        /// <summary>
+        /// For Insert Queries with Scalar.
+        /// </summary>
         /*protected int ExecuteInsertQueryWithScalar(string query, SqlParameter[] sqlParameters)
         {
             int newId = -1;
@@ -60,7 +64,9 @@ namespace SomerenDAL
             return newId;
         }*/
 
-        /* For Select Queries */
+        /// <summary>
+        /// For Select Queries.
+        /// </summary>
         protected DataTable ExecuteSelectQuery(string query, params SqlParameter[] sqlParameters)
         {
             DataTable dataTable = new DataTable();

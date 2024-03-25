@@ -51,6 +51,7 @@ namespace SomerenDAL
             {
                 new SqlParameter("@Id", drink.Id)
             };
+
             ExecuteEditQuery(query, sqlParameters);
         }
 
