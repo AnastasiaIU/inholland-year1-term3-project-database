@@ -24,16 +24,19 @@ namespace SomerenUI
         }
 
         /// <summary>
-        /// Calculates the total price for a given drink and quantity.
+        /// Populates the specified ListView with items generated from a list of data.
         /// </summary>
-        /// <param name="price">The drink for which to calculate the total price.</param>
-        /// <param name="isAlcholic">The quantity of the drink.</param>
-        /// <returns>The total price for the given drink and quantity.</returns>
+        /// <typeparam name="T">The type of data items in the list. Each data item will be used to generate a ListViewItem via the <paramref name="createListViewItem"/> function.</typeparam>
+        /// <param name="listView">The ListView control to be populated with items.</param>
+        /// <param name="data">A list of data items of type <typeparamref name="T"/>. This list is used to generate the ListView items. If this parameter is null, a message indicating no data is available will be shown.</param>
+        /// <param name="createListViewItem">A function that takes a single data item of type <typeparamref name="T"/> and returns a ListViewItem. This function defines how each data item is represented as a ListViewItem in the ListView.</param>
+        /// <remarks>
+        /// This method first clears any existing items in the <paramref name="listView"/>. It then iterates over the <paramref name="data"/> list, using the <paramref name="createListViewItem"/> function to create a ListViewItem for each data item, which is then added to the ListView. If the data list is null, an error message is displayed to the user indicating that no data is available to show.
+        /// </remarks>
         private void DisplayDataInListView<T>(ListView listView, List<T> data, Func<T, ListViewItem> createListViewItem)
         {
             if (data != null)
             {
-                // clear the listview before filling it
                 listView.Items.Clear();
 
                 foreach (T t in data)
@@ -44,7 +47,7 @@ namespace SomerenUI
             }
             else
             {
-                ShowMessage(Properties.Resources.ErrorMessageNoDataToShow);
+                ShowMessage(Properties.Resources.ErrorMessage, Properties.Resources.ErrorMessageNoDataToShow);
             }
         }
 
@@ -92,8 +95,8 @@ namespace SomerenUI
         {
             ShowPanel(pnlPlaceOrder);
             List<Student> dataStudents = FetchData(GetStudents);
-            List<Drink> dataDrinks = FetchData(GetDrinks);
             DisplayDataInListView(listViewPlaceOrderStudents, dataStudents, CreatePlaceOrderStudentListViewItem);
+            List<Drink> dataDrinks = FetchData(GetDrinks);
             DisplayDataInListView(listViewPlaceOrderDrinks, dataDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
@@ -320,14 +323,8 @@ namespace SomerenUI
         {
             try
             {
-                Drink currentDrink =
-                    listViewPlaceOrderDrinks.SelectedItems.Count != 0 ?
-                    (Drink)listViewPlaceOrderDrinks.SelectedItems[0].Tag :
-                    throw new Exception(Properties.Resources.ErrorMessageDrinkNotSelected);
-                Student currentStudent =
-                    listViewPlaceOrderStudents.SelectedItems.Count != 0 ?
-                    (Student)listViewPlaceOrderStudents.SelectedItems[0].Tag :
-                    throw new Exception(Properties.Resources.ErrorMessageStudentNotSelected);
+                Student currentStudent = GetSelectedItemFromListView<Student>(listViewPlaceOrderStudents, Properties.Resources.ErrorMessageStudentNotSelected);
+                Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewPlaceOrderDrinks, Properties.Resources.ErrorMessageDrinkNotSelected);
                 int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
 
                 CreatePurchase(currentStudent, currentDrink, quantity);
@@ -338,8 +335,8 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongQuantityFormat : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongQuantityFormat : ex.Message;
+                ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
             }
         }
 

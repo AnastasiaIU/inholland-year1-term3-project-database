@@ -111,5 +111,26 @@ namespace SomerenUI
         {
             return double.Parse(number.Replace(',', '.'), CultureInfo.InvariantCulture);
         }
+
+        /// <summary>
+        /// Retrieves the selected item of type <typeparamref name="T"/> from the provided ListView.
+        /// </summary>
+        /// <typeparam name="T">The type of the object associated with the ListView item. It is expected that the Tag property of each ListViewItem contains an object of this type.</typeparam>
+        /// <param name="listView">The ListView control from which the selected item should be retrieved.</param>
+        /// <param name="errorMessage">The error message to be included in the exception if no item is selected in the ListView.</param>
+        /// <returns>The object of type <typeparamref name="T"/> associated with the selected ListViewItem's Tag property.</returns>
+        /// <exception cref="Exception">Throws an exception with the provided <paramref name="errorMessage"/> if no item is selected in the ListView.</exception>
+        /// <remarks>
+        /// This method assumes that the Tag property of each ListViewItem in the ListView contains an object of type <typeparamref name="T"/>. It is designed to be used in scenarios where the ListView selection is expected to always contain exactly one selected item. If no item is selected, the method throws an exception with a custom error message.
+        /// </remarks>
+        protected T GetSelectedItemFromListView<T>(ListView listView, string errorMessage)
+        {
+            T selectedItem =
+                listView.SelectedItems.Count != 0 ?
+                (T)listView.SelectedItems[0].Tag :
+                throw new Exception(errorMessage);
+
+            return selectedItem;
+        }
     }
 }

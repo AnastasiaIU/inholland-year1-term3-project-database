@@ -124,11 +124,10 @@
     <value>Something went wrong: </value>
   </data>
   <data name="ErrorMessageDrinkNotSelected" xml:space="preserve">
-    <value>Need to select a drink.
-Error: </value>
+    <value>Need to select a drink.</value>
   </data>
   <data name="ErrorMessageNoDataToShow" xml:space="preserve">
-    <value>Something went wrong: There is no data to show.</value>
+    <value>There is no data to show.</value>
   </data>
   <data name="ErrorMessageNullField" xml:space="preserve">
     <value>Need to input a name.
@@ -138,8 +137,7 @@ Error: </value>
     <value>Need to select a student.</value>
   </data>
   <data name="ErrorMessageWrongQuantityFormat" xml:space="preserve">
-    <value>Wrong input for quantity. Needs to be a whole number.
-Error: </value>
+    <value>Wrong input for quantity. Needs to be a whole number.</value>
   </data>
   <data name="Lecturer" xml:space="preserve">
     <value>Lecturer</value>
@@ -151,7 +149,7 @@ Error: </value>
     <value>stock nearly depleted</value>
   </data>
   <data name="NewPurchase" xml:space="preserve">
-    <value>new purchase</value>
+    <value>New purchase.</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>

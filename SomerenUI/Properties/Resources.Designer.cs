@@ -79,8 +79,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to select a drink.
-        ///Error: .
+        ///   Looks up a localized string similar to Need to select a drink..
         /// </summary>
         internal static string ErrorMessageDrinkNotSelected {
             get {
@@ -89,7 +88,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Something went wrong: There is no data to show..
+        ///   Looks up a localized string similar to There is no data to show..
         /// </summary>
         internal static string ErrorMessageNoDataToShow {
             get {
@@ -117,8 +116,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrong input for quantity. Needs to be a whole number.
-        ///Error: .
+        ///   Looks up a localized string similar to Wrong input for quantity. Needs to be a whole number..
         /// </summary>
         internal static string ErrorMessageWrongQuantityFormat {
             get {
@@ -154,7 +152,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to new purchase.
+        ///   Looks up a localized string similar to New purchase..
         /// </summary>
         internal static string NewPurchase {
             get {
