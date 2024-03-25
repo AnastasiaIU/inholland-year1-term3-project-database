@@ -46,7 +46,7 @@ namespace SomerenUI
             catch (Exception ex)
             {
                 string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
-                ShowError(errorMessage, ex);
+                ShowMessage(errorMessage, ex.Message);
             }
         }
 
@@ -67,7 +67,7 @@ namespace SomerenUI
             catch (Exception ex)
             {
                 string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
-                ShowError(errorMessage, ex);
+                ShowMessage(errorMessage, ex.Message);
             }
         }
 

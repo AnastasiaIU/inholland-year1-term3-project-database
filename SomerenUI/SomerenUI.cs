@@ -299,7 +299,7 @@ namespace SomerenUI
             catch (Exception ex)
             {
                 string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowError(errorMessage, ex);
+                ShowMessage(errorMessage, ex.Message);
             }
         }
 
@@ -313,7 +313,7 @@ namespace SomerenUI
             catch (Exception ex)
             {
                 string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowError(errorMessage, ex);
+                ShowMessage(errorMessage, ex.Message);
             }
         }
         private void btnPlaceOrder_Click(object sender, EventArgs e)
@@ -339,7 +339,7 @@ namespace SomerenUI
             catch (Exception ex)
             {
                 string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongQuantityFormat : Properties.Resources.ErrorMessage;
-                ShowError(errorMessage, ex);
+                ShowMessage(errorMessage, ex.Message);
             }
         }
 
