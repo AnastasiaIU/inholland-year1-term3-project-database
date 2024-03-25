@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace SomerenUI
 {
-    public abstract partial class BaseForm : Form
+    public partial class BaseForm : Form
     {
         protected ActivityService activityService = new ActivityService();
         protected DrinkService drinkService = new DrinkService();
@@ -78,7 +78,7 @@ namespace SomerenUI
             MessageBox.Show(message + arg);
         }
 
-        protected void ShowMessageAndCloseForm(string message, Form form, string arg = null) 
+        protected void ShowMessageAndCloseForm(string message, Form form, string arg = null)
         {
             ShowMessage(message, arg);
             form.Close();

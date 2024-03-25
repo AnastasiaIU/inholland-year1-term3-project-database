@@ -89,12 +89,30 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something went wrong: There is no data to show..
+        /// </summary>
+        internal static string ErrorMessageNoDataToShow {
+            get {
+                return ResourceManager.GetString("ErrorMessageNoDataToShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need to input a name.
         ///Error: .
         /// </summary>
         internal static string ErrorMessageNullField {
             get {
                 return ResourceManager.GetString("ErrorMessageNullField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to select a student..
+        /// </summary>
+        internal static string ErrorMessageStudentNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageStudentNotSelected", resourceCulture);
             }
         }
         

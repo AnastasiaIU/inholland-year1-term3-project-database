@@ -25,14 +25,14 @@ namespace SomerenUI
             LoadText();
             if (drink.IsAlcoholic)
                 rdoTrue.Checked = true;
-            else 
+            else
                 rdoFalse.Checked = false;
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 if (txtDrinkName.Text.IsNullOrEmpty())
                     throw new ArgumentNullException();
 
@@ -53,8 +53,8 @@ namespace SomerenUI
         private void btnUpdateDrink_Click(object sender, EventArgs e)
         {
             try
-            {                
-                if (txtDrinkName.Text.IsNullOrEmpty())                
+            {
+                if (txtDrinkName.Text.IsNullOrEmpty())
                     throw new ArgumentNullException();
 
                 double price = GetDoubleFromString(txtDrinkPrice.Text);

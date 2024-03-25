@@ -44,9 +44,11 @@
             // rdoTrue
             // 
             rdoTrue.AutoSize = true;
-            rdoTrue.Location = new System.Drawing.Point(153, 162);
+            rdoTrue.Checked = true;
+            rdoTrue.Location = new System.Drawing.Point(107, 97);
+            rdoTrue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             rdoTrue.Name = "rdoTrue";
-            rdoTrue.Size = new System.Drawing.Size(62, 29);
+            rdoTrue.Size = new System.Drawing.Size(42, 19);
             rdoTrue.TabIndex = 2;
             rdoTrue.TabStop = true;
             rdoTrue.Text = "Yes";
@@ -55,77 +57,85 @@
             // rdoFalse
             // 
             rdoFalse.AutoSize = true;
-            rdoFalse.Location = new System.Drawing.Point(228, 162);
+            rdoFalse.Location = new System.Drawing.Point(160, 97);
+            rdoFalse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             rdoFalse.Name = "rdoFalse";
-            rdoFalse.Size = new System.Drawing.Size(61, 29);
+            rdoFalse.Size = new System.Drawing.Size(41, 19);
             rdoFalse.TabIndex = 3;
-            rdoFalse.TabStop = true;
             rdoFalse.Text = "No";
             rdoFalse.UseVisualStyleBackColor = true;
             // 
             // lblAlcoholic
             // 
             lblAlcoholic.AutoSize = true;
-            lblAlcoholic.Location = new System.Drawing.Point(59, 162);
+            lblAlcoholic.Location = new System.Drawing.Point(41, 97);
+            lblAlcoholic.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblAlcoholic.Name = "lblAlcoholic";
-            lblAlcoholic.Size = new System.Drawing.Size(88, 25);
+            lblAlcoholic.Size = new System.Drawing.Size(60, 15);
             lblAlcoholic.TabIndex = 2;
             lblAlcoholic.Text = "Alcoholic:";
             // 
             // txtDrinkPrice
             // 
-            txtDrinkPrice.Location = new System.Drawing.Point(153, 105);
+            txtDrinkPrice.Location = new System.Drawing.Point(107, 63);
+            txtDrinkPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             txtDrinkPrice.Name = "txtDrinkPrice";
-            txtDrinkPrice.Size = new System.Drawing.Size(150, 31);
+            txtDrinkPrice.Size = new System.Drawing.Size(106, 23);
             txtDrinkPrice.TabIndex = 1;
             // 
             // txtDrinkName
             // 
-            txtDrinkName.Location = new System.Drawing.Point(153, 47);
+            txtDrinkName.Location = new System.Drawing.Point(107, 28);
+            txtDrinkName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             txtDrinkName.Name = "txtDrinkName";
-            txtDrinkName.Size = new System.Drawing.Size(150, 31);
+            txtDrinkName.Size = new System.Drawing.Size(106, 23);
             txtDrinkName.TabIndex = 0;
             // 
             // txtDrinkStock
             // 
-            txtDrinkStock.Location = new System.Drawing.Point(153, 215);
+            txtDrinkStock.Location = new System.Drawing.Point(107, 129);
+            txtDrinkStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             txtDrinkStock.Name = "txtDrinkStock";
-            txtDrinkStock.Size = new System.Drawing.Size(150, 31);
+            txtDrinkStock.Size = new System.Drawing.Size(106, 23);
             txtDrinkStock.TabIndex = 4;
             // 
             // lblDrinkStock
             // 
             lblDrinkStock.AutoSize = true;
-            lblDrinkStock.Location = new System.Drawing.Point(88, 218);
+            lblDrinkStock.Location = new System.Drawing.Point(62, 131);
+            lblDrinkStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblDrinkStock.Name = "lblDrinkStock";
-            lblDrinkStock.Size = new System.Drawing.Size(59, 25);
+            lblDrinkStock.Size = new System.Drawing.Size(39, 15);
             lblDrinkStock.TabIndex = 6;
             lblDrinkStock.Text = "Stock:";
             // 
             // lblDrinkPrice
             // 
             lblDrinkPrice.AutoSize = true;
-            lblDrinkPrice.Location = new System.Drawing.Point(94, 111);
+            lblDrinkPrice.Location = new System.Drawing.Point(66, 67);
+            lblDrinkPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblDrinkPrice.Name = "lblDrinkPrice";
-            lblDrinkPrice.Size = new System.Drawing.Size(53, 25);
+            lblDrinkPrice.Size = new System.Drawing.Size(36, 15);
             lblDrinkPrice.TabIndex = 7;
             lblDrinkPrice.Text = "Price:";
             // 
             // lblDrinkName
             // 
             lblDrinkName.AutoSize = true;
-            lblDrinkName.Location = new System.Drawing.Point(84, 50);
+            lblDrinkName.Location = new System.Drawing.Point(59, 30);
+            lblDrinkName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblDrinkName.Name = "lblDrinkName";
-            lblDrinkName.Size = new System.Drawing.Size(63, 25);
+            lblDrinkName.Size = new System.Drawing.Size(42, 15);
             lblDrinkName.TabIndex = 8;
             lblDrinkName.Text = "Name:";
             // 
             // btnCreateDrink
-            //
+            // 
             btnCreateDrink.AutoSize = true;
-            btnCreateDrink.Location = new System.Drawing.Point(113, 292);
+            btnCreateDrink.Location = new System.Drawing.Point(79, 175);
+            btnCreateDrink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             btnCreateDrink.Name = "btnCreateDrink";
-            btnCreateDrink.Size = new System.Drawing.Size(150, 45);
+            btnCreateDrink.Size = new System.Drawing.Size(105, 27);
             btnCreateDrink.TabIndex = 5;
             btnCreateDrink.Text = "Create drink";
             btnCreateDrink.UseVisualStyleBackColor = true;
@@ -133,10 +143,10 @@
             // 
             // btnUpdateDrink
             // 
-            btnCreateDrink.AutoSize = true;
-            btnUpdateDrink.Location = new System.Drawing.Point(113, 292);
+            btnUpdateDrink.Location = new System.Drawing.Point(79, 175);
+            btnUpdateDrink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             btnUpdateDrink.Name = "btnUpdateDrink";
-            btnUpdateDrink.Size = new System.Drawing.Size(150, 45);
+            btnUpdateDrink.Size = new System.Drawing.Size(105, 27);
             btnUpdateDrink.TabIndex = 5;
             btnUpdateDrink.Text = "Update drink";
             btnUpdateDrink.UseVisualStyleBackColor = true;
@@ -144,9 +154,9 @@
             // 
             // EditDrinkForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(389, 381);
+            ClientSize = new System.Drawing.Size(272, 229);
             Controls.Add(btnUpdateDrink);
             Controls.Add(btnCreateDrink);
             Controls.Add(lblDrinkName);
@@ -158,6 +168,7 @@
             Controls.Add(lblAlcoholic);
             Controls.Add(rdoFalse);
             Controls.Add(rdoTrue);
+            Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             Name = "EditDrinkForm";
             Text = "Form1";
             ResumeLayout(false);

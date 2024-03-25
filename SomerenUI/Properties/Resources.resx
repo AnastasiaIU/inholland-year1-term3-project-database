@@ -127,9 +127,15 @@
     <value>Need to select a drink.
 Error: </value>
   </data>
+  <data name="ErrorMessageNoDataToShow" xml:space="preserve">
+    <value>Something went wrong: There is no data to show.</value>
+  </data>
   <data name="ErrorMessageNullField" xml:space="preserve">
     <value>Need to input a name.
 Error: </value>
+  </data>
+  <data name="ErrorMessageStudentNotSelected" xml:space="preserve">
+    <value>Need to select a student.</value>
   </data>
   <data name="ErrorMessageWrongQuantityFormat" xml:space="preserve">
     <value>Wrong input for quantity. Needs to be a whole number.
