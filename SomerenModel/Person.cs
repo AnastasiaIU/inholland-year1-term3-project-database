@@ -5,8 +5,10 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
-        public string RoomNumber { get; set; }                                 // room_number, foreign key referencing Rooms table
-        public string FullName { get { return $"{FirstName} {LastName}"; } }   // calculated property to combine FirstName and LastName
+        /// <value>Property <c>RoomNumber</c> represents the room number and the foreign key reference in rooms.</value>
+        public string RoomNumber { get; set; }
+        /// <value>Calculated property <c>FullName</c> combines FirstName and LastName.</value>
+        public string FullName { get { return $"{FirstName} {LastName}"; } }
 
         protected Person(string firstName, string lastName, string phoneNumber)
         {
