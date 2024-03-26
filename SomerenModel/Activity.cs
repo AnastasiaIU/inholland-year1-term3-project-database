@@ -4,7 +4,8 @@ namespace SomerenModel
 {
     public class Activity
     {
-        public int Id { get; set; }                // activityId, database primary key
+        /// <value>Property <c>Id</c> represents the ID of the activity and matches the database primary key in activities.</value>
+        public int Id { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Name { get; set; }

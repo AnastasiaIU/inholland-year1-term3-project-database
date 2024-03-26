@@ -4,10 +4,15 @@
     {
         const int RoomCapacityForLecturer = 1;
 
-        public string Number { get; set; }           // room_number, database primary key
-        public char BuildingNumber { get; set; }     // building_number, either 'A' or 'B'
-        public int Floor { get; set; }               // floor, either 0 or 1
-        public int Capacity { get; set; }            // number_of_beds, either 1 or 8
+        /// <value>Property <c>Number</c> represents the number of the room and matches the database primary key in rooms.</value>
+        public string Number { get; set; }
+        /// <value>Property <c>BuildingNumber</c> represents the number of the building. Can be either 'A' or 'B'.</value>
+        public char BuildingNumber { get; set; }
+        /// <value>Property <c>Floor</c> represents the floor of the building for the room. Can be either 0 or 1.</value>
+        public int Floor { get; set; }
+        /// <value>Property <c>Capacity</c> represents the number of beds in the room. Can be either 1 or 8.</value>
+        public int Capacity { get; set; }
+        /// <value>Calculated property <c>IsForLecturer</c> indicates whether the room is for lecturer or not. Depends on <see cref="RoomCapacityForLecturer"/></value>
         public bool IsForLecturer
         {
             get { return Capacity == RoomCapacityForLecturer; }

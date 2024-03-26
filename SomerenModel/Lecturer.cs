@@ -2,7 +2,8 @@
 {
     public class Lecturer : Person
     {
-        public int Id { get; set; }                 // lecturerId, database primary key
+        /// <value>Property <c>Id</c> represents the ID of the lecturer and matches the database primary key in lecturers.</value>
+        public int Id { get; set; }
         public int Age { get; set; }
 
         public Lecturer(int id, int age, string roomNumber, string firstName, string lastName, string phoneNumber)

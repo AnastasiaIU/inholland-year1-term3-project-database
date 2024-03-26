@@ -5,8 +5,6 @@ using System.Windows.Forms;
 
 namespace SomerenUI
 {
-    // MAKE RESEARCH ON PROPER BASE CLASS FOR FORMS
-    // ADD COMMENTS
     public partial class SomerenUI : BaseForm
     {
         public SomerenUI()
@@ -26,36 +24,31 @@ namespace SomerenUI
         }
 
         /// <summary>
-        /// Calculates the total price for a given drink and quantity.
+        /// Populates the specified ListView with items generated from a list of data.
         /// </summary>
-        /// <param name="price">The drink for which to calculate the total price.</param>
-        /// <param name="isAlcholic">The quantity of the drink.</param>
-        /// <returns>The total price for the given drink and quantity.</returns>
+        /// <typeparam name="T">The type of data items in the list. Each data item will be used to generate a ListViewItem via the <paramref name="createListViewItem"/> function.</typeparam>
+        /// <param name="listView">The ListView control to be populated with items.</param>
+        /// <param name="data">A list of data items of type <typeparamref name="T"/>. This list is used to generate the ListView items. If this parameter is null, a message indicating no data is available will be shown.</param>
+        /// <param name="createListViewItem">A function that takes a single data item of type <typeparamref name="T"/> and returns a ListViewItem. This function defines how each data item is represented as a ListViewItem in the ListView.</param>
+        /// <remarks>
+        /// This method first clears any existing items in the <paramref name="listView"/>. It then iterates over the <paramref name="data"/> list, using the <paramref name="createListViewItem"/> function to create a ListViewItem for each data item, which is then added to the ListView. If the data list is null, an error message is displayed to the user indicating that no data is available to show.
+        /// </remarks>
         private void DisplayDataInListView<T>(ListView listView, List<T> data, Func<T, ListViewItem> createListViewItem)
         {
-            // clear the listview before filling it
-            listView.Items.Clear();
-
-            foreach (T t in data)
-            {
-                ListViewItem item = createListViewItem(t);
-                listView.Items.Add(item);
-            }
-        }
-
-        private void ShowPanelWithList<T>
-            (
-            Panel panel,
-            ListView listView,
-            List<T> data,
-            Func<T, ListViewItem> createListViewItem,
-            Action<ListView, List<T>, Func<T, ListViewItem>> displayData
-            )
-        {
-            ShowPanel(panel);
-
             if (data != null)
-                displayData(listView, data, createListViewItem);
+            {
+                listView.Items.Clear();
+
+                foreach (T t in data)
+                {
+                    ListViewItem item = createListViewItem(t);
+                    listView.Items.Add(item);
+                }
+            }
+            else
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, Properties.Resources.ErrorMessageNoDataToShow);
+            }
         }
 
         private void ShowDashboardPanel()
@@ -65,32 +58,46 @@ namespace SomerenUI
 
         private void ShowStudentsPanel()
         {
+            ShowPanel(pnlStudents);
             List<Student> data = FetchData(GetStudents);
-            ShowPanelWithList(pnlStudents, listViewStudents, data, CreateStudentListViewItem, DisplayDataInListView);
+            DisplayDataInListView(listViewStudents, data, CreateStudentListViewItem);
         }
 
         private void ShowLecturersPanel()
         {
+            ShowPanel(pnlLecturers);
             List<Lecturer> data = FetchData(GetLecturers);
-            ShowPanelWithList(pnlLecturers, listViewLecturers, data, CreateLecturerListViewItem, DisplayDataInListView);
+            DisplayDataInListView(listViewLecturers, data, CreateLecturerListViewItem);
         }
 
         private void ShowActivitiesPanel()
         {
+            ShowPanel(pnlActivities);
             List<Activity> data = FetchData(GetActivities);
-            ShowPanelWithList(pnlActivities, listViewActivities, data, CreateActivityListViewItem, DisplayDataInListView);
+            DisplayDataInListView(listViewActivities, data, CreateActivityListViewItem);
         }
 
         private void ShowRoomsPanel()
         {
+            ShowPanel(pnlRooms);
             List<Room> data = FetchData(GetRooms);
-            ShowPanelWithList(pnlRooms, listViewRooms, data, CreateRoomListViewItem, DisplayDataInListView);
+            DisplayDataInListView(listViewRooms, data, CreateRoomListViewItem);
         }
 
         private void ShowDrinksPanel()
         {
+            ShowPanel(pnlDrinks);
             List<Drink> data = FetchData(GetDrinks);
-            ShowPanelWithList(pnlDrinks, listViewDrinks, data, CreateDrinkListViewItem, DisplayDataInListView);
+            DisplayDataInListView(listViewDrinks, data, CreateDrinkListViewItem);
+        }
+
+        private void ShowPlaceOrderPanel()
+        {
+            ShowPanel(pnlPlaceOrder);
+            List<Student> dataStudents = FetchData(GetStudents);
+            DisplayDataInListView(listViewPlaceOrderStudents, dataStudents, CreatePlaceOrderStudentListViewItem);
+            List<Drink> dataDrinks = FetchData(GetDrinks);
+            DisplayDataInListView(listViewPlaceOrderDrinks, dataDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
         private ListViewItem CreateStudentListViewItem(Student student)
@@ -153,6 +160,29 @@ namespace SomerenUI
             return item;
         }
 
+        private ListViewItem CreatePlaceOrderStudentListViewItem(Student student)
+        {
+            ListViewItem item = new ListViewItem(student.FirstName);
+            item.SubItems.Add(student.LastName);
+            item.SubItems.Add(student.StudentNumber.ToString());
+            item.Tag = student;     // link students object to listview item
+
+            return item;
+        }
+
+        private ListViewItem CreatePlaceOrderDrinkListViewItem(Drink drink)
+        {
+            string isAlcoholic = drink.IsAlcoholic ? Properties.Resources.Yes : Properties.Resources.No;
+
+            ListViewItem item = new ListViewItem(drink.Name);
+            item.SubItems.Add(drink.Price.ToString(Properties.Resources.MoneyFormat));
+            item.SubItems.Add(drink.Stock.ToString());
+            item.SubItems.Add(isAlcoholic);
+            item.Tag = drink;     // link drink object to listview item
+
+            return item;
+        }
+
         private string GetStockLevelString(StockLevel stockLevel)
         {
             string stockLevelString;
@@ -171,6 +201,43 @@ namespace SomerenUI
             }
 
             return stockLevelString;
+        }
+
+        private void CreatePurchase(Student currentStudent, Drink currentDrink, int quantity)
+        {
+            int studentId = currentStudent.StudentNumber;
+            int drinkId = currentDrink.Id;
+
+            Purchase purchase = new Purchase(studentId, drinkId, quantity);
+            purchaseService.CreatePurchase(purchase);
+        }
+
+        private void UpdateStock(Drink currentDrink, int quantity)
+        {
+            currentDrink.Stock -= quantity;
+            drinkService.UpdateDrink(currentDrink);
+        }
+
+        private void calculateTotalPrice()
+        {
+            try
+            {
+                Drink currentDrink = (Drink)listViewPlaceOrderDrinks.SelectedItems[0].Tag;
+                int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
+                double totalPrice = drinkService.GetTotalPrice(currentDrink, quantity);
+                lblPlaceOrderTotalPriceValue.Text = totalPrice.ToString(Properties.Resources.MoneyFormat);
+            }
+            catch
+            {
+                lblPlaceOrderTotalPriceValue.Text = Properties.Resources.Zero;
+            }
+        }
+
+        private void ResetPlaceOrderForm()
+        {
+            listViewPlaceOrderStudents.SelectedIndices.Clear();
+            listViewPlaceOrderDrinks.SelectedIndices.Clear();
+            txtBoxPlaceOrderQuantity.Clear();
         }
 
         private void menuItemDashboard_Click(object sender, EventArgs e)
@@ -208,9 +275,14 @@ namespace SomerenUI
             ShowDrinksPanel();
         }
 
-        private void btnAddPurchase_Click(object sender, EventArgs e)
+        private void menuItemDrinksSupplies_Click(object sender, EventArgs e)
         {
-            OpenNewFormAndUpdateParentOnClose(new PurchaseDrinkForm(), ShowDrinksPanel);
+            ShowDrinksPanel();
+        }
+
+        private void menuItemPlaceOrder_Click(object sender, EventArgs e)
+        {
+            ShowPlaceOrderPanel();
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
@@ -230,7 +302,7 @@ namespace SomerenUI
             catch (Exception ex)
             {
                 string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowError(errorMessage, ex);
+                ShowMessage(errorMessage, ex.Message);
             }
         }
 
@@ -244,8 +316,38 @@ namespace SomerenUI
             catch (Exception ex)
             {
                 string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowError(errorMessage, ex);
+                ShowMessage(errorMessage, ex.Message);
             }
+        }
+        private void btnPlaceOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Student currentStudent = GetSelectedItemFromListView<Student>(listViewPlaceOrderStudents, Properties.Resources.ErrorMessageStudentNotSelected);
+                Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewPlaceOrderDrinks, Properties.Resources.ErrorMessageDrinkNotSelected);
+                int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
+
+                CreatePurchase(currentStudent, currentDrink, quantity);
+                UpdateStock(currentDrink, quantity);
+
+                ShowMessage(Properties.Resources.SuccessfullyAdded, Properties.Resources.NewPurchase);
+                ResetPlaceOrderForm();
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongQuantityFormat : ex.Message;
+                ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
+            }
+        }
+
+        private void calculateTotalPricePlaceOrder_Event(object sender, EventArgs e)
+        {
+            calculateTotalPrice();
+        }
+
+        private void calculateTotalPricePlaceOrder_Event(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            calculateTotalPrice();
         }
     }
 }

@@ -2,7 +2,8 @@
 {
     public class Drink
     {
-        public int Id { get; set; }             // drinkId, database primary key
+        /// <value>Property <c>Id</c> represents the ID of the drink and matches the database primary key in drinks.</value>
+        public int Id { get; set; }
         public double Price { get; set; }
         public bool IsAlcoholic { get; set; }
         public string Name { get; set; }
@@ -25,11 +26,12 @@
 
 
         /// <summary>
-        /// Calculates the total price for a given drink and quantity.
+        /// A Drink constructor without an ID.
         /// </summary>
-        /// <param name="price">The drink for which to calculate the total price.</param>
-        /// <param name="isAlcholic">The quantity of the drink.</param>
-        /// <returns>The total price for the given drink and quantity.</returns>
+        /// <param name="price">The price of the drink.</param>
+        /// <param name="isAlcoholic">Indicates whether the drink contains alcohol.</param>
+        /// <param name="name">The name of the drink.</param>
+        /// <param name="stock">The quantity of the drink.</param>
         public Drink(double price, bool isAlcoholic, string name, int stock)
         {
             Price = price;
@@ -38,6 +40,14 @@
             Stock = stock;
         }
 
+        /// <summary>
+        /// A Drink constructor with an ID.
+        /// </summary>
+        /// <param name="id">The ID of the drink.</param>
+        /// <param name="price">The price of the drink.</param>
+        /// <param name="isAlcoholic">Indicates whether the drink contains alcohol.</param>
+        /// <param name="name">The name of the drink.</param>
+        /// <param name="stock">The quantity of the drink.</param>
         public Drink(int id, double price, bool isAlcoholic, string name, int stock)
             : this(price, isAlcoholic, name, stock)
         {
