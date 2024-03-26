@@ -439,7 +439,7 @@
             // 
             // btnEditDrink
             // 
-            btnEditDrink.Location = new System.Drawing.Point(466, 380);
+            btnEditDrink.Location = new System.Drawing.Point(316, 380);
             btnEditDrink.Name = "btnEditDrink";
             btnEditDrink.Size = new System.Drawing.Size(120, 34);
             btnEditDrink.TabIndex = 6;
@@ -449,7 +449,7 @@
             // 
             // btnDeleteDrink
             // 
-            btnDeleteDrink.Location = new System.Drawing.Point(316, 380);
+            btnDeleteDrink.Location = new System.Drawing.Point(166, 380);
             btnDeleteDrink.Name = "btnDeleteDrink";
             btnDeleteDrink.Size = new System.Drawing.Size(120, 34);
             btnDeleteDrink.TabIndex = 5;
@@ -459,7 +459,7 @@
             // 
             // btnCreateDrink
             // 
-            btnCreateDrink.Location = new System.Drawing.Point(166, 380);
+            btnCreateDrink.Location = new System.Drawing.Point(16, 380);
             btnCreateDrink.Name = "btnCreateDrink";
             btnCreateDrink.Size = new System.Drawing.Size(120, 34);
             btnCreateDrink.TabIndex = 4;

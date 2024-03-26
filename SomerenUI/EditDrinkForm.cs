@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using SomerenModel;
 using System;
+using System.Globalization;
 
 namespace SomerenUI
 {
@@ -45,7 +46,7 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
-                string errorMessage = ex.Message;
+                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongPrice : ex.Message;
                 ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
             }
         }
@@ -66,7 +67,7 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
-                string errorMessage = ex.Message;
+                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongPrice : ex.Message;
                 ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
             }
         }
@@ -76,13 +77,11 @@ namespace SomerenUI
             if (txtDrinkName.Text.IsNullOrEmpty())
                 throw new FormatException(Properties.Resources.ErrorMessageNoName);
 
-            if (!double.TryParse(txtDrinkPrice.Text.Replace(',', '.'), out double tryGetDouble))
-                throw new FormatException(Properties.Resources.ErrorMessageWrongPrice);
+            tryGetPrice = double.Parse(txtDrinkPrice.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
 
             if (!int.TryParse(txtDrinkStock.Text, out int tryGetInt))
                 throw new FormatException(Properties.Resources.ErrorMessageWrongStock);
 
-            tryGetPrice = tryGetDouble;
             tryGetStock = tryGetInt;
         }
 

@@ -327,7 +327,7 @@ namespace SomerenUI
                 }
             }
             catch (Exception ex)
-            {                
+            {
                 ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
             }
         }
