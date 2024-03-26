@@ -60,9 +60,6 @@
             chRoomSize = new System.Windows.Forms.ColumnHeader();
             chTypeOfRoom = new System.Windows.Forms.ColumnHeader();
             pnlDrinks = new System.Windows.Forms.Panel();
-            btnEditDrink = new System.Windows.Forms.Button();
-            btnDeleteDrink = new System.Windows.Forms.Button();
-            btnCreateDrink = new System.Windows.Forms.Button();
             lblDrinks = new System.Windows.Forms.Label();
             picBoxDrinks = new System.Windows.Forms.PictureBox();
             listViewDrinks = new System.Windows.Forms.ListView();
@@ -71,6 +68,9 @@
             chTypeDrinks = new System.Windows.Forms.ColumnHeader();
             chStockDrinks = new System.Windows.Forms.ColumnHeader();
             chStockStatusDrinks = new System.Windows.Forms.ColumnHeader();
+            btnEditDrink = new System.Windows.Forms.Button();
+            btnDeleteDrink = new System.Windows.Forms.Button();
+            btnCreateDrink = new System.Windows.Forms.Button();
             pnlLecturers = new System.Windows.Forms.Panel();
             lblLecturers = new System.Windows.Forms.Label();
             picBoxLecturers = new System.Windows.Forms.PictureBox();
@@ -105,6 +105,17 @@
             lblPlaceOrderTotalPrice = new System.Windows.Forms.Label();
             lblPlaceOrderTotalPriceValue = new System.Windows.Forms.Label();
             btnPlaceOrder = new System.Windows.Forms.Button();
+            pnlDrinkSupplies = new System.Windows.Forms.Panel();
+            lblDrinkSupplies = new System.Windows.Forms.Label();
+            picBoxDrinkSupplies = new System.Windows.Forms.PictureBox();
+            listViewDrinkSupplies = new System.Windows.Forms.ListView();
+            chNameDrinkSupplies = new System.Windows.Forms.ColumnHeader();
+            chPriceDrinkSupplies = new System.Windows.Forms.ColumnHeader();
+            chTypeDrinkSupplies = new System.Windows.Forms.ColumnHeader();
+            chStockDrinkSupplies = new System.Windows.Forms.ColumnHeader();
+            chStockStatusDrinkSupplies = new System.Windows.Forms.ColumnHeader();
+            chNumberOfPurchaseSupplies = new System.Windows.Forms.ColumnHeader();
+            chNumberOfPurchases = new System.Windows.Forms.ColumnHeader();
             menuStrip.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -119,6 +130,8 @@
             ((System.ComponentModel.ISupportInitialize)picBoxActivities).BeginInit();
             pnlPlaceOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxPlaceOrder).BeginInit();
+            pnlDrinkSupplies.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxDrinkSupplies).BeginInit();
             SuspendLayout();
             // 
             // menuStrip
@@ -128,7 +141,7 @@
             menuStrip.Location = new System.Drawing.Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            menuStrip.Size = new System.Drawing.Size(1000, 35);
+            menuStrip.Size = new System.Drawing.Size(1000, 45);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
             // 
@@ -136,48 +149,48 @@
             // 
             menuItemApplication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemDashboard, menuItemExit });
             menuItemApplication.Name = "menuItemApplication";
-            menuItemApplication.Size = new System.Drawing.Size(80, 19);
+            menuItemApplication.Size = new System.Drawing.Size(118, 29);
             menuItemApplication.Text = "Application";
             // 
             // menuItemDashboard
             // 
             menuItemDashboard.Name = "menuItemDashboard";
-            menuItemDashboard.Size = new System.Drawing.Size(131, 22);
+            menuItemDashboard.Size = new System.Drawing.Size(202, 34);
             menuItemDashboard.Text = "Dashboard";
             menuItemDashboard.Click += menuItemDashboard_Click;
             // 
             // menuItemExit
             // 
             menuItemExit.Name = "menuItemExit";
-            menuItemExit.Size = new System.Drawing.Size(131, 22);
+            menuItemExit.Size = new System.Drawing.Size(202, 34);
             menuItemExit.Text = "Exit";
             menuItemExit.Click += menuItemExit_Click;
             // 
             // menuItemStudents
             // 
             menuItemStudents.Name = "menuItemStudents";
-            menuItemStudents.Size = new System.Drawing.Size(65, 19);
+            menuItemStudents.Size = new System.Drawing.Size(97, 29);
             menuItemStudents.Text = "Students";
             menuItemStudents.Click += menuItemStudents_Click;
             // 
             // menuItemLecturers
             // 
             menuItemLecturers.Name = "menuItemLecturers";
-            menuItemLecturers.Size = new System.Drawing.Size(67, 19);
+            menuItemLecturers.Size = new System.Drawing.Size(98, 29);
             menuItemLecturers.Text = "Lecturers";
             menuItemLecturers.Click += menuItemLecturers_Click;
             // 
             // menuItemActivities
             // 
             menuItemActivities.Name = "menuItemActivities";
-            menuItemActivities.Size = new System.Drawing.Size(67, 19);
+            menuItemActivities.Size = new System.Drawing.Size(98, 29);
             menuItemActivities.Text = "Activities";
             menuItemActivities.Click += menuItemActivities_Click;
             // 
             // menuItemRooms
             // 
             menuItemRooms.Name = "menuItemRooms";
-            menuItemRooms.Size = new System.Drawing.Size(56, 19);
+            menuItemRooms.Size = new System.Drawing.Size(84, 29);
             menuItemRooms.Text = "Rooms";
             menuItemRooms.Click += menuItemRooms_Click;
             // 
@@ -185,27 +198,27 @@
             // 
             menuItemDrinksMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemDrinks, menuItemDrinksSupplies, menuItemPlaceOrder });
             menuItemDrinksMenu.Name = "menuItemDrinksMenu";
-            menuItemDrinksMenu.Size = new System.Drawing.Size(52, 19);
+            menuItemDrinksMenu.Size = new System.Drawing.Size(78, 29);
             menuItemDrinksMenu.Text = "Drinks";
             // 
             // menuItemDrinks
             // 
             menuItemDrinks.Name = "menuItemDrinks";
-            menuItemDrinks.Size = new System.Drawing.Size(154, 22);
+            menuItemDrinks.Size = new System.Drawing.Size(236, 34);
             menuItemDrinks.Text = "Drinks";
             menuItemDrinks.Click += menuItemDrinks_Click;
             // 
             // menuItemDrinksSupplies
             // 
             menuItemDrinksSupplies.Name = "menuItemDrinksSupplies";
-            menuItemDrinksSupplies.Size = new System.Drawing.Size(154, 22);
+            menuItemDrinksSupplies.Size = new System.Drawing.Size(236, 34);
             menuItemDrinksSupplies.Text = "Drinks Supplies";
             menuItemDrinksSupplies.Click += menuItemDrinksSupplies_Click;
             // 
             // menuItemPlaceOrder
             // 
             menuItemPlaceOrder.Name = "menuItemPlaceOrder";
-            menuItemPlaceOrder.Size = new System.Drawing.Size(154, 22);
+            menuItemPlaceOrder.Size = new System.Drawing.Size(236, 34);
             menuItemPlaceOrder.Text = "Place Order";
             menuItemPlaceOrder.Click += menuItemPlaceOrder_Click;
             // 
@@ -223,7 +236,7 @@
             lblDashboard.Location = new System.Drawing.Point(0, 0);
             lblDashboard.Name = "lblDashboard";
             lblDashboard.Padding = new System.Windows.Forms.Padding(16, 16, 8, 8);
-            lblDashboard.Size = new System.Drawing.Size(232, 39);
+            lblDashboard.Size = new System.Drawing.Size(337, 49);
             lblDashboard.TabIndex = 2;
             lblDashboard.Text = "Welcome to the Someren Application!";
             // 
@@ -240,7 +253,7 @@
             // picBoxStudents
             // 
             picBoxStudents.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxStudents.Image = (System.Drawing.Image)resources.GetObject("picBoxStudents.Image");
+            picBoxStudents.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxStudents.Location = new System.Drawing.Point(732, 56);
             picBoxStudents.Name = "picBoxStudents";
             picBoxStudents.Size = new System.Drawing.Size(127, 116);
@@ -292,7 +305,7 @@
             lblStudents.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblStudents.Location = new System.Drawing.Point(16, 8);
             lblStudents.Name = "lblStudents";
-            lblStudents.Size = new System.Drawing.Size(107, 32);
+            lblStudents.Size = new System.Drawing.Size(157, 48);
             lblStudents.TabIndex = 2;
             lblStudents.Text = "Students";
             // 
@@ -312,14 +325,14 @@
             lblRooms.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblRooms.Location = new System.Drawing.Point(16, 8);
             lblRooms.Name = "lblRooms";
-            lblRooms.Size = new System.Drawing.Size(86, 32);
+            lblRooms.Size = new System.Drawing.Size(129, 48);
             lblRooms.TabIndex = 2;
             lblRooms.Text = "Rooms";
             // 
             // picBoxRooms
             // 
             picBoxRooms.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxRooms.Image = (System.Drawing.Image)resources.GetObject("picBoxRooms.Image");
+            picBoxRooms.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxRooms.Location = new System.Drawing.Point(732, 56);
             picBoxRooms.Name = "picBoxRooms";
             picBoxRooms.Size = new System.Drawing.Size(127, 116);
@@ -357,9 +370,6 @@
             // 
             // pnlDrinks
             // 
-            pnlDrinks.Controls.Add(btnEditDrink);
-            pnlDrinks.Controls.Add(btnDeleteDrink);
-            pnlDrinks.Controls.Add(btnCreateDrink);
             pnlDrinks.Controls.Add(lblDrinks);
             pnlDrinks.Controls.Add(picBoxDrinks);
             pnlDrinks.Controls.Add(listViewDrinks);
@@ -368,50 +378,20 @@
             pnlDrinks.Size = new System.Drawing.Size(1000, 565);
             pnlDrinks.TabIndex = 1;
             // 
-            // btnEditDrink
-            // 
-            btnEditDrink.Location = new System.Drawing.Point(466, 380);
-            btnEditDrink.Name = "btnEditDrink";
-            btnEditDrink.Size = new System.Drawing.Size(120, 34);
-            btnEditDrink.TabIndex = 6;
-            btnEditDrink.Text = "Edit drink";
-            btnEditDrink.UseVisualStyleBackColor = true;
-            btnEditDrink.Click += btnEditDrink_Click;
-            // 
-            // btnDeleteDrink
-            // 
-            btnDeleteDrink.Location = new System.Drawing.Point(316, 380);
-            btnDeleteDrink.Name = "btnDeleteDrink";
-            btnDeleteDrink.Size = new System.Drawing.Size(120, 34);
-            btnDeleteDrink.TabIndex = 5;
-            btnDeleteDrink.Text = "Delete drink";
-            btnDeleteDrink.UseVisualStyleBackColor = true;
-            btnDeleteDrink.Click += btnDeleteDrink_Click;
-            // 
-            // btnCreateDrink
-            // 
-            btnCreateDrink.Location = new System.Drawing.Point(166, 380);
-            btnCreateDrink.Name = "btnCreateDrink";
-            btnCreateDrink.Size = new System.Drawing.Size(120, 34);
-            btnCreateDrink.TabIndex = 4;
-            btnCreateDrink.Text = "Create drink";
-            btnCreateDrink.UseVisualStyleBackColor = true;
-            btnCreateDrink.Click += btnCreateDrink_Click;
-            // 
             // lblDrinks
             // 
             lblDrinks.AutoSize = true;
             lblDrinks.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblDrinks.Location = new System.Drawing.Point(16, 8);
             lblDrinks.Name = "lblDrinks";
-            lblDrinks.Size = new System.Drawing.Size(81, 32);
+            lblDrinks.Size = new System.Drawing.Size(120, 48);
             lblDrinks.TabIndex = 2;
             lblDrinks.Text = "Drinks";
             // 
             // picBoxDrinks
             // 
             picBoxDrinks.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinks.Image");
+            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxDrinks.Location = new System.Drawing.Point(732, 56);
             picBoxDrinks.Name = "picBoxDrinks";
             picBoxDrinks.Size = new System.Drawing.Size(127, 116);
@@ -445,7 +425,7 @@
             // chTypeDrinks
             // 
             chTypeDrinks.Text = "Alcoholic";
-            chTypeDrinks.Width = 75;
+            chTypeDrinks.Width = 100;
             // 
             // chStockDrinks
             // 
@@ -456,6 +436,36 @@
             // 
             chStockStatusDrinks.Text = "Stock Status";
             chStockStatusDrinks.Width = 200;
+            // 
+            // btnEditDrink
+            // 
+            btnEditDrink.Location = new System.Drawing.Point(316, 380);
+            btnEditDrink.Name = "btnEditDrink";
+            btnEditDrink.Size = new System.Drawing.Size(120, 34);
+            btnEditDrink.TabIndex = 6;
+            btnEditDrink.Text = "Edit drink";
+            btnEditDrink.UseVisualStyleBackColor = true;
+            btnEditDrink.Click += btnEditDrink_Click;
+            // 
+            // btnDeleteDrink
+            // 
+            btnDeleteDrink.Location = new System.Drawing.Point(166, 380);
+            btnDeleteDrink.Name = "btnDeleteDrink";
+            btnDeleteDrink.Size = new System.Drawing.Size(120, 34);
+            btnDeleteDrink.TabIndex = 5;
+            btnDeleteDrink.Text = "Delete drink";
+            btnDeleteDrink.UseVisualStyleBackColor = true;
+            btnDeleteDrink.Click += btnDeleteDrink_Click;
+            // 
+            // btnCreateDrink
+            // 
+            btnCreateDrink.Location = new System.Drawing.Point(16, 380);
+            btnCreateDrink.Name = "btnCreateDrink";
+            btnCreateDrink.Size = new System.Drawing.Size(120, 34);
+            btnCreateDrink.TabIndex = 4;
+            btnCreateDrink.Text = "Create drink";
+            btnCreateDrink.UseVisualStyleBackColor = true;
+            btnCreateDrink.Click += btnCreateDrink_Click;
             // 
             // pnlLecturers
             // 
@@ -473,14 +483,14 @@
             lblLecturers.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblLecturers.Location = new System.Drawing.Point(16, 8);
             lblLecturers.Name = "lblLecturers";
-            lblLecturers.Size = new System.Drawing.Size(110, 32);
+            lblLecturers.Size = new System.Drawing.Size(165, 48);
             lblLecturers.TabIndex = 2;
             lblLecturers.Text = "Lecturers";
             // 
             // picBoxLecturers
             // 
             picBoxLecturers.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxLecturers.Image = (System.Drawing.Image)resources.GetObject("picBoxLecturers.Image");
+            picBoxLecturers.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxLecturers.Location = new System.Drawing.Point(732, 56);
             picBoxLecturers.Name = "picBoxLecturers";
             picBoxLecturers.Size = new System.Drawing.Size(127, 116);
@@ -538,14 +548,14 @@
             lblActivities.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblActivities.Location = new System.Drawing.Point(16, 8);
             lblActivities.Name = "lblActivities";
-            lblActivities.Size = new System.Drawing.Size(109, 32);
+            lblActivities.Size = new System.Drawing.Size(162, 48);
             lblActivities.TabIndex = 2;
             lblActivities.Text = "Activities";
             // 
             // picBoxActivities
             // 
             picBoxActivities.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject("picBoxActivities.Image");
+            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxActivities.Location = new System.Drawing.Point(732, 56);
             picBoxActivities.Name = "picBoxActivities";
             picBoxActivities.Size = new System.Drawing.Size(127, 116);
@@ -605,14 +615,14 @@
             lblPlaceOrder.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPlaceOrder.Location = new System.Drawing.Point(16, 8);
             lblPlaceOrder.Name = "lblPlaceOrder";
-            lblPlaceOrder.Size = new System.Drawing.Size(137, 32);
+            lblPlaceOrder.Size = new System.Drawing.Size(206, 48);
             lblPlaceOrder.TabIndex = 2;
             lblPlaceOrder.Text = "Place Order";
             // 
             // picBoxPlaceOrder
             // 
             picBoxPlaceOrder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxPlaceOrder.Image = (System.Drawing.Image)resources.GetObject("picBoxPlaceOrder.Image");
+            picBoxPlaceOrder.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxPlaceOrder.Location = new System.Drawing.Point(732, 56);
             picBoxPlaceOrder.Name = "picBoxPlaceOrder";
             picBoxPlaceOrder.Size = new System.Drawing.Size(127, 116);
@@ -625,7 +635,7 @@
             lblPlaceOrderChooseStudent.AutoSize = true;
             lblPlaceOrderChooseStudent.Location = new System.Drawing.Point(16, 52);
             lblPlaceOrderChooseStudent.Name = "lblPlaceOrderChooseStudent";
-            lblPlaceOrderChooseStudent.Size = new System.Drawing.Size(93, 15);
+            lblPlaceOrderChooseStudent.Size = new System.Drawing.Size(141, 25);
             lblPlaceOrderChooseStudent.TabIndex = 2;
             lblPlaceOrderChooseStudent.Text = "Choose student:";
             // 
@@ -662,7 +672,7 @@
             lblPlaceOrderChooseDrink.AutoSize = true;
             lblPlaceOrderChooseDrink.Location = new System.Drawing.Point(16, 300);
             lblPlaceOrderChooseDrink.Name = "lblPlaceOrderChooseDrink";
-            lblPlaceOrderChooseDrink.Size = new System.Drawing.Size(80, 15);
+            lblPlaceOrderChooseDrink.Size = new System.Drawing.Size(121, 25);
             lblPlaceOrderChooseDrink.TabIndex = 2;
             lblPlaceOrderChooseDrink.Text = "Choose drink:";
             // 
@@ -705,7 +715,7 @@
             lblPlaceOrderQuantity.AutoSize = true;
             lblPlaceOrderQuantity.Location = new System.Drawing.Point(732, 326);
             lblPlaceOrderQuantity.Name = "lblPlaceOrderQuantity";
-            lblPlaceOrderQuantity.Size = new System.Drawing.Size(56, 15);
+            lblPlaceOrderQuantity.Size = new System.Drawing.Size(84, 25);
             lblPlaceOrderQuantity.TabIndex = 1;
             lblPlaceOrderQuantity.Text = "Quantity:";
             // 
@@ -713,7 +723,7 @@
             // 
             txtBoxPlaceOrderQuantity.Location = new System.Drawing.Point(810, 323);
             txtBoxPlaceOrderQuantity.Name = "txtBoxPlaceOrderQuantity";
-            txtBoxPlaceOrderQuantity.Size = new System.Drawing.Size(100, 23);
+            txtBoxPlaceOrderQuantity.Size = new System.Drawing.Size(100, 31);
             txtBoxPlaceOrderQuantity.TabIndex = 2;
             txtBoxPlaceOrderQuantity.TextChanged += calculateTotalPricePlaceOrder_Event;
             // 
@@ -722,7 +732,7 @@
             lblPlaceOrderTotalPrice.AutoSize = true;
             lblPlaceOrderTotalPrice.Location = new System.Drawing.Point(732, 365);
             lblPlaceOrderTotalPrice.Name = "lblPlaceOrderTotalPrice";
-            lblPlaceOrderTotalPrice.Size = new System.Drawing.Size(64, 15);
+            lblPlaceOrderTotalPrice.Size = new System.Drawing.Size(96, 25);
             lblPlaceOrderTotalPrice.TabIndex = 4;
             lblPlaceOrderTotalPrice.Text = "Total price:";
             // 
@@ -744,6 +754,83 @@
             btnPlaceOrder.UseVisualStyleBackColor = true;
             btnPlaceOrder.Click += btnPlaceOrder_Click;
             // 
+            // pnlDrinkSupplies
+            // 
+            pnlDrinkSupplies.Controls.Add(btnEditDrink);
+            pnlDrinkSupplies.Controls.Add(btnDeleteDrink);
+            pnlDrinkSupplies.Controls.Add(btnCreateDrink);
+            pnlDrinkSupplies.Controls.Add(lblDrinkSupplies);
+            pnlDrinkSupplies.Controls.Add(picBoxDrinkSupplies);
+            pnlDrinkSupplies.Controls.Add(listViewDrinkSupplies);
+            pnlDrinkSupplies.Location = new System.Drawing.Point(0, 35);
+            pnlDrinkSupplies.Name = "pnlDrinkSupplies";
+            pnlDrinkSupplies.Size = new System.Drawing.Size(1000, 565);
+            pnlDrinkSupplies.TabIndex = 1;
+            // 
+            // lblDrinkSupplies
+            // 
+            lblDrinkSupplies.AutoSize = true;
+            lblDrinkSupplies.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblDrinkSupplies.Location = new System.Drawing.Point(16, 8);
+            lblDrinkSupplies.Name = "lblDrinkSupplies";
+            lblDrinkSupplies.Size = new System.Drawing.Size(248, 48);
+            lblDrinkSupplies.TabIndex = 2;
+            lblDrinkSupplies.Text = "Drink Supplies";
+            // 
+            // picBoxDrinkSupplies
+            // 
+            picBoxDrinkSupplies.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            picBoxDrinkSupplies.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxDrinkSupplies.Location = new System.Drawing.Point(732, 56);
+            picBoxDrinkSupplies.Name = "picBoxDrinkSupplies";
+            picBoxDrinkSupplies.Size = new System.Drawing.Size(127, 116);
+            picBoxDrinkSupplies.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            picBoxDrinkSupplies.TabIndex = 2;
+            picBoxDrinkSupplies.TabStop = false;
+            // 
+            // listViewDrinkSupplies
+            // 
+            listViewDrinkSupplies.AutoArrange = false;
+            listViewDrinkSupplies.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chNameDrinkSupplies, chPriceDrinkSupplies, chTypeDrinkSupplies, chStockDrinkSupplies, chStockStatusDrinkSupplies, chNumberOfPurchaseSupplies });
+            listViewDrinkSupplies.FullRowSelect = true;
+            listViewDrinkSupplies.Location = new System.Drawing.Point(16, 56);
+            listViewDrinkSupplies.MultiSelect = false;
+            listViewDrinkSupplies.Name = "listViewDrinkSupplies";
+            listViewDrinkSupplies.Size = new System.Drawing.Size(700, 300);
+            listViewDrinkSupplies.TabIndex = 2;
+            listViewDrinkSupplies.UseCompatibleStateImageBehavior = false;
+            listViewDrinkSupplies.View = System.Windows.Forms.View.Details;
+            // 
+            // chNameDrinkSupplies
+            // 
+            chNameDrinkSupplies.Text = "Name";
+            chNameDrinkSupplies.Width = 200;
+            // 
+            // chPriceDrinkSupplies
+            // 
+            chPriceDrinkSupplies.Text = "Price";
+            chPriceDrinkSupplies.Width = 75;
+            // 
+            // chTypeDrinkSupplies
+            // 
+            chTypeDrinkSupplies.Text = "Alcoholic";
+            chTypeDrinkSupplies.Width = 100;
+            // 
+            // chStockDrinkSupplies
+            // 
+            chStockDrinkSupplies.Text = "Stock";
+            chStockDrinkSupplies.Width = 75;
+            // 
+            // chStockStatusDrinkSupplies
+            // 
+            chStockStatusDrinkSupplies.Text = "Status";
+            chStockStatusDrinkSupplies.Width = 200;
+            // 
+            // chNumberOfPurchaseSupplies
+            // 
+            chNumberOfPurchaseSupplies.Text = "Purchases";
+            chNumberOfPurchaseSupplies.Width = 100;
+            // 
             // SomerenUI
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -756,6 +843,7 @@
             Controls.Add(pnlLecturers);
             Controls.Add(pnlActivities);
             Controls.Add(pnlDrinks);
+            Controls.Add(pnlDrinkSupplies);
             Controls.Add(pnlPlaceOrder);
             MainMenuStrip = menuStrip;
             Name = "SomerenUI";
@@ -782,6 +870,9 @@
             pnlPlaceOrder.ResumeLayout(false);
             pnlPlaceOrder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxPlaceOrder).EndInit();
+            pnlDrinkSupplies.ResumeLayout(false);
+            pnlDrinkSupplies.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxDrinkSupplies).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -834,6 +925,7 @@
         private System.Windows.Forms.ColumnHeader chStartTime;
         private System.Windows.Forms.ColumnHeader chEndTime;
         private System.Windows.Forms.Panel pnlDrinks;
+        private System.Windows.Forms.Panel pnlDrinkSupplies;        
         private System.Windows.Forms.Label lblDrinks;
         private System.Windows.Forms.PictureBox picBoxDrinks;
         private System.Windows.Forms.ListView listViewDrinks;
@@ -864,5 +956,15 @@
         private System.Windows.Forms.Button btnEditDrink;
         private System.Windows.Forms.Button btnDeleteDrink;
         private System.Windows.Forms.Button btnCreateDrink;
+        private System.Windows.Forms.Label lblDrinkSupplies;
+        private System.Windows.Forms.ListView listViewDrinkSupplies;
+        private System.Windows.Forms.ColumnHeader chNumberOfPurchases;
+        private System.Windows.Forms.PictureBox picBoxDrinkSupplies;
+        private System.Windows.Forms.ColumnHeader chNameDrinkSupplies;
+        private System.Windows.Forms.ColumnHeader chPriceDrinkSupplies;
+        private System.Windows.Forms.ColumnHeader chTypeDrinkSupplies;
+        private System.Windows.Forms.ColumnHeader chStockDrinkSupplies;
+        private System.Windows.Forms.ColumnHeader chStockStatusDrinkSupplies;
+        private System.Windows.Forms.ColumnHeader chNumberOfPurchaseSupplies;
     }
 }

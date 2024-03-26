@@ -91,6 +91,13 @@ namespace SomerenUI
             DisplayDataInListView(listViewDrinks, data, CreateDrinkListViewItem);
         }
 
+        private void ShowDrinkSuppliesPanel()
+        {
+            ShowPanel(pnlDrinkSupplies);
+            List<Drink> data = FetchData(GetDrinks);
+            DisplayDataInListView(listViewDrinkSupplies, data, CreateDrinkSuppliesListViewItem);
+        }
+
         private void ShowPlaceOrderPanel()
         {
             ShowPanel(pnlPlaceOrder);
@@ -155,6 +162,22 @@ namespace SomerenUI
             item.SubItems.Add(isAlcoholic);
             item.SubItems.Add(drink.Stock.ToString());
             item.SubItems.Add(stockLevel);
+            item.Tag = drink;     // link drink object to listview item
+
+            return item;
+        }
+
+        private ListViewItem CreateDrinkSuppliesListViewItem(Drink drink)
+        {
+            string isAlcoholic = drink.IsAlcoholic ? Properties.Resources.Yes : Properties.Resources.No;
+            string stockLevel = GetStockLevelString(drink.StockLevel);
+
+            ListViewItem item = new ListViewItem(drink.Name);
+            item.SubItems.Add(drink.Price.ToString(Properties.Resources.MoneyFormat));
+            item.SubItems.Add(isAlcoholic);
+            item.SubItems.Add(drink.Stock.ToString());
+            item.SubItems.Add(stockLevel);
+            item.SubItems.Add(drink.NumberOfPurchases.ToString());
             item.Tag = drink;     // link drink object to listview item
 
             return item;
@@ -277,7 +300,7 @@ namespace SomerenUI
 
         private void menuItemDrinksSupplies_Click(object sender, EventArgs e)
         {
-            ShowDrinksPanel();
+            ShowDrinkSuppliesPanel();
         }
 
         private void menuItemPlaceOrder_Click(object sender, EventArgs e)
@@ -287,22 +310,25 @@ namespace SomerenUI
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
-            OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(), ShowDrinksPanel);
+            OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(), ShowDrinkSuppliesPanel);
         }
 
         private void btnDeleteDrink_Click(object sender, EventArgs e)
         {
             try
             {
-                Drink currentDrink = (Drink)listViewDrinks.SelectedItems[0].Tag;
-                drinkService.DeleteDrink(currentDrink);
-                ShowMessage(Properties.Resources.SuccessfullyDeleted, currentDrink.Name);
-                ShowDrinksPanel();
+                Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewDrinkSupplies, Properties.Resources.ErrorMessageDrinkNotSelected);
+                var confirmResult = MessageBox.Show($"Are you sure you want to delete {currentDrink.Name}?", Properties.Resources.ConfirmDeletion, MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    drinkService.DeleteDrink(currentDrink);
+                    ShowMessage(Properties.Resources.SuccessfullyDeleted, currentDrink.Name);
+                    ShowDrinkSuppliesPanel();
+                }
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
             }
         }
 
@@ -310,13 +336,12 @@ namespace SomerenUI
         {
             try
             {
-                Drink currentDrink = (Drink)listViewDrinks.SelectedItems[0].Tag;
-                OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(currentDrink), ShowDrinksPanel);
+                Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewDrinkSupplies, Properties.Resources.ErrorMessageDrinkNotSelected);
+                OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(currentDrink), ShowDrinkSuppliesPanel);
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
             }
         }
         private void btnPlaceOrder_Click(object sender, EventArgs e)
