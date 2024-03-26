@@ -31,6 +31,11 @@ namespace SomerenUI
             return lecturerService.GetLecturers();
         }
 
+        protected List<Lecturer> GetSupervisors()
+        {
+            return lecturerService.GetLecturers();
+        }
+
         protected List<Purchase> GetPurchases()
         {
             return purchaseService.GetPurchases();

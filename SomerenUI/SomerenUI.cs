@@ -77,6 +77,17 @@ namespace SomerenUI
             DisplayDataInListView(listViewActivities, data, CreateActivityListViewItem);
         }
 
+        private void ShowActivitiesSupervisorsPanel()
+        {
+            ShowPanel(pnlActivitiesSupervisors);
+            List<Activity> activities = FetchData(GetActivities);
+            DisplayDataInListView(listViewActivitiesSupervisors, activities, CreateActivityListViewItem);
+            List<Lecturer> supervisors = FetchData(GetSupervisors);
+            DisplayDataInListView(listViewSupervisors, supervisors, CreateLecturerListViewItem);
+            List<Lecturer> availableLecturers = FetchData(GetLecturers);
+            DisplayDataInListView(listViewActivitiesSupervisorsLecturers, availableLecturers, CreateLecturerListViewItem);
+        }
+
         private void ShowRoomsPanel()
         {
             ShowPanel(pnlRooms);
@@ -263,6 +274,11 @@ namespace SomerenUI
         private void menuItemActivities_Click(object sender, EventArgs e)
         {
             ShowActivitiesPanel();
+        }
+
+        private void menuItemActivitiesSupervisors_Click(object sender, EventArgs e)
+        {
+            ShowActivitiesSupervisorsPanel();
         }
 
         private void menuItemRooms_Click(object sender, EventArgs e)

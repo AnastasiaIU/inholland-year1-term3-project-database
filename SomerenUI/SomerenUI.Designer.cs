@@ -35,7 +35,9 @@
             menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             menuItemStudents = new System.Windows.Forms.ToolStripMenuItem();
             menuItemLecturers = new System.Windows.Forms.ToolStripMenuItem();
+            menuItemActivitiesMenu = new System.Windows.Forms.ToolStripMenuItem();
             menuItemActivities = new System.Windows.Forms.ToolStripMenuItem();
+            menuItemActivitiesSupervisors = new System.Windows.Forms.ToolStripMenuItem();
             menuItemRooms = new System.Windows.Forms.ToolStripMenuItem();
             menuItemDrinksMenu = new System.Windows.Forms.ToolStripMenuItem();
             menuItemDrinks = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +88,28 @@
             chActivityName = new System.Windows.Forms.ColumnHeader();
             chStartTime = new System.Windows.Forms.ColumnHeader();
             chEndTime = new System.Windows.Forms.ColumnHeader();
+            pnlActivitiesSupervisors = new System.Windows.Forms.Panel();
+            lblActivitiesSupervisors = new System.Windows.Forms.Label();
+            picBoxActivitiesSupervisors = new System.Windows.Forms.PictureBox();
+            lblActivitiesSupervisorsChooseActivity = new System.Windows.Forms.Label();
+            listViewActivitiesSupervisors = new System.Windows.Forms.ListView();
+            chActivitySupervisorsName = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsStartTime = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsEndTime = new System.Windows.Forms.ColumnHeader();
+            lblActivitySupervisors = new System.Windows.Forms.Label();
+            listViewSupervisors = new System.Windows.Forms.ListView();
+            chActivitySupervisorsFirstName = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsLastName = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsPhoneNumber = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsAge = new System.Windows.Forms.ColumnHeader();
+            btnDeleteSupervisor = new System.Windows.Forms.Button();
+            lblActivitiesSupervisorsLecturers = new System.Windows.Forms.Label();
+            listViewActivitiesSupervisorsLecturers = new System.Windows.Forms.ListView();
+            chActivitySupervisorsFirstNameLecturers = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsLastNameLecturers = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsPhoneNumberLecturers = new System.Windows.Forms.ColumnHeader();
+            chActivitySupervisorsAgeLecturers = new System.Windows.Forms.ColumnHeader();
+            btnAddSupervisor = new System.Windows.Forms.Button();
             pnlPlaceOrder = new System.Windows.Forms.Panel();
             lblPlaceOrder = new System.Windows.Forms.Label();
             picBoxPlaceOrder = new System.Windows.Forms.PictureBox();
@@ -117,6 +141,8 @@
             ((System.ComponentModel.ISupportInitialize)picBoxLecturers).BeginInit();
             pnlActivities.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxActivities).BeginInit();
+            pnlActivitiesSupervisors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxActivitiesSupervisors).BeginInit();
             pnlPlaceOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxPlaceOrder).BeginInit();
             SuspendLayout();
@@ -124,7 +150,7 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemApplication, menuItemStudents, menuItemLecturers, menuItemActivities, menuItemRooms, menuItemDrinksMenu });
+            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemApplication, menuItemStudents, menuItemLecturers, menuItemActivitiesMenu, menuItemRooms, menuItemDrinksMenu });
             menuStrip.Location = new System.Drawing.Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
@@ -167,12 +193,26 @@
             menuItemLecturers.Text = "Lecturers";
             menuItemLecturers.Click += menuItemLecturers_Click;
             // 
+            // menuItemActivitiesMenu
+            // 
+            menuItemActivitiesMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemActivities, menuItemActivitiesSupervisors });
+            menuItemActivitiesMenu.Name = "menuItemActivitiesMenu";
+            menuItemActivitiesMenu.Size = new System.Drawing.Size(67, 19);
+            menuItemActivitiesMenu.Text = "Activities";
+            // 
             // menuItemActivities
             // 
             menuItemActivities.Name = "menuItemActivities";
-            menuItemActivities.Size = new System.Drawing.Size(67, 19);
+            menuItemActivities.Size = new System.Drawing.Size(177, 22);
             menuItemActivities.Text = "Activities";
             menuItemActivities.Click += menuItemActivities_Click;
+            // 
+            // menuItemActivitiesSupervisors
+            // 
+            menuItemActivitiesSupervisors.Name = "menuItemActivitiesSupervisors";
+            menuItemActivitiesSupervisors.Size = new System.Drawing.Size(177, 22);
+            menuItemActivitiesSupervisors.Text = "Activity Supervisors";
+            menuItemActivitiesSupervisors.Click += menuItemActivitiesSupervisors_Click;
             // 
             // menuItemRooms
             // 
@@ -240,7 +280,7 @@
             // picBoxStudents
             // 
             picBoxStudents.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxStudents.Image = (System.Drawing.Image)resources.GetObject("picBoxStudents.Image");
+            picBoxStudents.Image = Properties.Resources.someren;
             picBoxStudents.Location = new System.Drawing.Point(732, 56);
             picBoxStudents.Name = "picBoxStudents";
             picBoxStudents.Size = new System.Drawing.Size(127, 116);
@@ -319,7 +359,7 @@
             // picBoxRooms
             // 
             picBoxRooms.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxRooms.Image = (System.Drawing.Image)resources.GetObject("picBoxRooms.Image");
+            picBoxRooms.Image = Properties.Resources.someren;
             picBoxRooms.Location = new System.Drawing.Point(732, 56);
             picBoxRooms.Name = "picBoxRooms";
             picBoxRooms.Size = new System.Drawing.Size(127, 116);
@@ -411,7 +451,7 @@
             // picBoxDrinks
             // 
             picBoxDrinks.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinks.Image");
+            picBoxDrinks.Image = Properties.Resources.someren;
             picBoxDrinks.Location = new System.Drawing.Point(732, 56);
             picBoxDrinks.Name = "picBoxDrinks";
             picBoxDrinks.Size = new System.Drawing.Size(127, 116);
@@ -480,7 +520,7 @@
             // picBoxLecturers
             // 
             picBoxLecturers.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxLecturers.Image = (System.Drawing.Image)resources.GetObject("picBoxLecturers.Image");
+            picBoxLecturers.Image = Properties.Resources.someren;
             picBoxLecturers.Location = new System.Drawing.Point(732, 56);
             picBoxLecturers.Name = "picBoxLecturers";
             picBoxLecturers.Size = new System.Drawing.Size(127, 116);
@@ -545,7 +585,7 @@
             // picBoxActivities
             // 
             picBoxActivities.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject("picBoxActivities.Image");
+            picBoxActivities.Image = Properties.Resources.someren;
             picBoxActivities.Location = new System.Drawing.Point(732, 56);
             picBoxActivities.Name = "picBoxActivities";
             picBoxActivities.Size = new System.Drawing.Size(127, 116);
@@ -581,6 +621,186 @@
             chEndTime.Text = "End Time";
             chEndTime.Width = 225;
             // 
+            // pnlActivitiesSupervisors
+            // 
+            pnlActivitiesSupervisors.Controls.Add(lblActivitiesSupervisors);
+            pnlActivitiesSupervisors.Controls.Add(picBoxActivitiesSupervisors);
+            pnlActivitiesSupervisors.Controls.Add(lblActivitiesSupervisorsChooseActivity);
+            pnlActivitiesSupervisors.Controls.Add(listViewActivitiesSupervisors);
+            pnlActivitiesSupervisors.Controls.Add(lblActivitySupervisors);
+            pnlActivitiesSupervisors.Controls.Add(listViewSupervisors);
+            pnlActivitiesSupervisors.Controls.Add(btnDeleteSupervisor);
+            pnlActivitiesSupervisors.Controls.Add(lblActivitiesSupervisorsLecturers);
+            pnlActivitiesSupervisors.Controls.Add(listViewActivitiesSupervisorsLecturers);
+            pnlActivitiesSupervisors.Controls.Add(btnAddSupervisor);
+            pnlActivitiesSupervisors.Location = new System.Drawing.Point(0, 35);
+            pnlActivitiesSupervisors.Name = "pnlActivitiesSupervisors";
+            pnlActivitiesSupervisors.Size = new System.Drawing.Size(1000, 565);
+            pnlActivitiesSupervisors.TabIndex = 0;
+            // 
+            // lblActivitiesSupervisors
+            // 
+            lblActivitiesSupervisors.AutoSize = true;
+            lblActivitiesSupervisors.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblActivitiesSupervisors.Location = new System.Drawing.Point(16, 8);
+            lblActivitiesSupervisors.Name = "lblActivitiesSupervisors";
+            lblActivitiesSupervisors.Size = new System.Drawing.Size(221, 32);
+            lblActivitiesSupervisors.TabIndex = 2;
+            lblActivitiesSupervisors.Text = "Activity Supervisors";
+            // 
+            // picBoxActivitiesSupervisors
+            // 
+            picBoxActivitiesSupervisors.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            picBoxActivitiesSupervisors.Image = Properties.Resources.someren;
+            picBoxActivitiesSupervisors.Location = new System.Drawing.Point(732, 56);
+            picBoxActivitiesSupervisors.Name = "picBoxActivitiesSupervisors";
+            picBoxActivitiesSupervisors.Size = new System.Drawing.Size(127, 116);
+            picBoxActivitiesSupervisors.TabIndex = 0;
+            picBoxActivitiesSupervisors.TabStop = false;
+            // 
+            // lblActivitiesSupervisorsChooseActivity
+            // 
+            lblActivitiesSupervisorsChooseActivity.AutoSize = true;
+            lblActivitiesSupervisorsChooseActivity.Location = new System.Drawing.Point(16, 52);
+            lblActivitiesSupervisorsChooseActivity.Name = "lblActivitiesSupervisorsChooseActivity";
+            lblActivitiesSupervisorsChooseActivity.Size = new System.Drawing.Size(91, 15);
+            lblActivitiesSupervisorsChooseActivity.TabIndex = 2;
+            lblActivitiesSupervisorsChooseActivity.Text = "Choose activity:";
+            // 
+            // listViewActivitiesSupervisors
+            // 
+            listViewActivitiesSupervisors.AutoArrange = false;
+            listViewActivitiesSupervisors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chActivitySupervisorsName, chActivitySupervisorsStartTime, chActivitySupervisorsEndTime });
+            listViewActivitiesSupervisors.FullRowSelect = true;
+            listViewActivitiesSupervisors.Location = new System.Drawing.Point(16, 75);
+            listViewActivitiesSupervisors.MultiSelect = false;
+            listViewActivitiesSupervisors.Name = "listViewActivitiesSupervisors";
+            listViewActivitiesSupervisors.Size = new System.Drawing.Size(700, 100);
+            listViewActivitiesSupervisors.TabIndex = 0;
+            listViewActivitiesSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewActivitiesSupervisors.View = System.Windows.Forms.View.Details;
+            // 
+            // chActivitySupervisorsName
+            // 
+            chActivitySupervisorsName.Text = "Name";
+            chActivitySupervisorsName.Width = 200;
+            // 
+            // chActivitySupervisorsStartTime
+            // 
+            chActivitySupervisorsStartTime.Text = "Start Time";
+            chActivitySupervisorsStartTime.Width = 225;
+            // 
+            // chActivitySupervisorsEndTime
+            // 
+            chActivitySupervisorsEndTime.Text = "End Time";
+            chActivitySupervisorsEndTime.Width = 225;
+            // 
+            // lblActivitySupervisors
+            // 
+            lblActivitySupervisors.AutoSize = true;
+            lblActivitySupervisors.Location = new System.Drawing.Point(16, 195);
+            lblActivitySupervisors.Name = "lblActivitySupervisors";
+            lblActivitySupervisors.Size = new System.Drawing.Size(91, 15);
+            lblActivitySupervisors.TabIndex = 2;
+            lblActivitySupervisors.Text = "Supervisors:";
+            // 
+            // listViewSupervisors
+            // 
+            listViewSupervisors.AutoArrange = false;
+            listViewSupervisors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chActivitySupervisorsFirstName, chActivitySupervisorsLastName, chActivitySupervisorsPhoneNumber, chActivitySupervisorsAge });
+            listViewSupervisors.FullRowSelect = true;
+            listViewSupervisors.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            listViewSupervisors.Location = new System.Drawing.Point(16, 215);
+            listViewSupervisors.MultiSelect = false;
+            listViewSupervisors.Name = "listViewSupervisors";
+            listViewSupervisors.Size = new System.Drawing.Size(700, 120);
+            listViewSupervisors.TabIndex = 2;
+            listViewSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewSupervisors.View = System.Windows.Forms.View.Details;
+            // 
+            // chActivitySupervisorsFirstName
+            // 
+            chActivitySupervisorsFirstName.Text = "First Name";
+            chActivitySupervisorsFirstName.Width = 150;
+            // 
+            // chActivitySupervisorsLastName
+            // 
+            chActivitySupervisorsLastName.Text = "Last Name";
+            chActivitySupervisorsLastName.Width = 150;
+            // 
+            // chActivitySupervisorsPhoneNumber
+            // 
+            chActivitySupervisorsPhoneNumber.Text = "Phone Number";
+            chActivitySupervisorsPhoneNumber.Width = 200;
+            // 
+            // chActivitySupervisorsAge
+            // 
+            chActivitySupervisorsAge.Text = "Age";
+            chActivitySupervisorsAge.Width = 75;
+            // 
+            // btnDeleteSupervisor
+            // 
+            btnDeleteSupervisor.Location = new System.Drawing.Point(732, 215);
+            btnDeleteSupervisor.Name = "btnDeleteSupervisor";
+            btnDeleteSupervisor.Size = new System.Drawing.Size(120, 34);
+            btnDeleteSupervisor.TabIndex = 5;
+            btnDeleteSupervisor.Text = "Delete supervisor";
+            btnDeleteSupervisor.UseVisualStyleBackColor = true;
+            btnDeleteSupervisor.Click += btnDeleteDrink_Click;
+            // 
+            // lblActivitiesSupervisorsLecturers
+            // 
+            lblActivitiesSupervisorsLecturers.AutoSize = true;
+            lblActivitiesSupervisorsLecturers.Location = new System.Drawing.Point(16, 355);
+            lblActivitiesSupervisorsLecturers.Name = "lblActivitiesSupervisorsLecturers";
+            lblActivitiesSupervisorsLecturers.Size = new System.Drawing.Size(91, 15);
+            lblActivitiesSupervisorsLecturers.TabIndex = 2;
+            lblActivitiesSupervisorsLecturers.Text = "Available lecturers:";
+            // 
+            // listViewActivitiesSupervisorsLecturers
+            // 
+            listViewActivitiesSupervisorsLecturers.AutoArrange = false;
+            listViewActivitiesSupervisorsLecturers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chActivitySupervisorsFirstNameLecturers, chActivitySupervisorsLastNameLecturers, chActivitySupervisorsPhoneNumberLecturers, chActivitySupervisorsAgeLecturers });
+            listViewActivitiesSupervisorsLecturers.FullRowSelect = true;
+            listViewActivitiesSupervisorsLecturers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            listViewActivitiesSupervisorsLecturers.Location = new System.Drawing.Point(16, 375);
+            listViewActivitiesSupervisorsLecturers.MultiSelect = false;
+            listViewActivitiesSupervisorsLecturers.Name = "listViewActivitiesSupervisorsLecturers";
+            listViewActivitiesSupervisorsLecturers.Size = new System.Drawing.Size(700, 120);
+            listViewActivitiesSupervisorsLecturers.TabIndex = 2;
+            listViewActivitiesSupervisorsLecturers.UseCompatibleStateImageBehavior = false;
+            listViewActivitiesSupervisorsLecturers.View = System.Windows.Forms.View.Details;
+            // 
+            // chActivitySupervisorsFirstNameLecturers
+            // 
+            chActivitySupervisorsFirstNameLecturers.Text = "First Name";
+            chActivitySupervisorsFirstNameLecturers.Width = 150;
+            // 
+            // chActivitySupervisorsLastNameLecturers
+            // 
+            chActivitySupervisorsLastNameLecturers.Text = "Last Name";
+            chActivitySupervisorsLastNameLecturers.Width = 150;
+            // 
+            // chActivitySupervisorsPhoneNumberLecturers
+            // 
+            chActivitySupervisorsPhoneNumberLecturers.Text = "Phone Number";
+            chActivitySupervisorsPhoneNumberLecturers.Width = 200;
+            // 
+            // chActivitySupervisorsAgeLecturers
+            // 
+            chActivitySupervisorsAgeLecturers.Text = "Age";
+            chActivitySupervisorsAgeLecturers.Width = 75;
+            // 
+            // btnAddSupervisor
+            // 
+            btnAddSupervisor.Location = new System.Drawing.Point(732, 375);
+            btnAddSupervisor.Name = "btnAddSupervisor";
+            btnAddSupervisor.Size = new System.Drawing.Size(120, 34);
+            btnAddSupervisor.TabIndex = 5;
+            btnAddSupervisor.Text = "Add supervisor";
+            btnAddSupervisor.UseVisualStyleBackColor = true;
+            btnAddSupervisor.Click += btnDeleteDrink_Click;
+            // 
             // pnlPlaceOrder
             // 
             pnlPlaceOrder.Controls.Add(lblPlaceOrder);
@@ -612,7 +832,7 @@
             // picBoxPlaceOrder
             // 
             picBoxPlaceOrder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxPlaceOrder.Image = (System.Drawing.Image)resources.GetObject("picBoxPlaceOrder.Image");
+            picBoxPlaceOrder.Image = Properties.Resources.someren;
             picBoxPlaceOrder.Location = new System.Drawing.Point(732, 56);
             picBoxPlaceOrder.Name = "picBoxPlaceOrder";
             picBoxPlaceOrder.Size = new System.Drawing.Size(127, 116);
@@ -755,6 +975,7 @@
             Controls.Add(pnlStudents);
             Controls.Add(pnlLecturers);
             Controls.Add(pnlActivities);
+            Controls.Add(pnlActivitiesSupervisors);
             Controls.Add(pnlDrinks);
             Controls.Add(pnlPlaceOrder);
             MainMenuStrip = menuStrip;
@@ -779,6 +1000,9 @@
             pnlActivities.ResumeLayout(false);
             pnlActivities.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxActivities).EndInit();
+            pnlActivitiesSupervisors.ResumeLayout(false);
+            pnlActivitiesSupervisors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxActivitiesSupervisors).EndInit();
             pnlPlaceOrder.ResumeLayout(false);
             pnlPlaceOrder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxPlaceOrder).EndInit();
@@ -794,7 +1018,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
         private System.Windows.Forms.ToolStripMenuItem menuItemStudents;
         private System.Windows.Forms.ToolStripMenuItem menuItemLecturers;
+        private System.Windows.Forms.ToolStripMenuItem menuItemActivitiesMenu;
         private System.Windows.Forms.ToolStripMenuItem menuItemActivities;
+        private System.Windows.Forms.ToolStripMenuItem menuItemActivitiesSupervisors;
         private System.Windows.Forms.ToolStripMenuItem menuItemRooms;
         private System.Windows.Forms.ToolStripMenuItem menuItemDrinksMenu;
         private System.Windows.Forms.ToolStripMenuItem menuItemDrinks;
@@ -833,6 +1059,28 @@
         private System.Windows.Forms.ColumnHeader chActivityName;
         private System.Windows.Forms.ColumnHeader chStartTime;
         private System.Windows.Forms.ColumnHeader chEndTime;
+        private System.Windows.Forms.Panel pnlActivitiesSupervisors;
+        private System.Windows.Forms.Label lblActivitiesSupervisors;
+        private System.Windows.Forms.PictureBox picBoxActivitiesSupervisors;
+        private System.Windows.Forms.Label lblActivitiesSupervisorsChooseActivity;
+        private System.Windows.Forms.ListView listViewActivitiesSupervisors;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsName;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsStartTime;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsEndTime;
+        private System.Windows.Forms.Label lblActivitySupervisors;
+        private System.Windows.Forms.ListView listViewSupervisors;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsFirstName;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsLastName;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsPhoneNumber;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsAge;
+        private System.Windows.Forms.Button btnDeleteSupervisor;
+        private System.Windows.Forms.Label lblActivitiesSupervisorsLecturers;
+        private System.Windows.Forms.ListView listViewActivitiesSupervisorsLecturers;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsFirstNameLecturers;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsLastNameLecturers;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsPhoneNumberLecturers;
+        private System.Windows.Forms.ColumnHeader chActivitySupervisorsAgeLecturers;
+        private System.Windows.Forms.Button btnAddSupervisor;
         private System.Windows.Forms.Panel pnlDrinks;
         private System.Windows.Forms.Label lblDrinks;
         private System.Windows.Forms.PictureBox picBoxDrinks;
