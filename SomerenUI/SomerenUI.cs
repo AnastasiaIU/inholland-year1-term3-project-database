@@ -82,8 +82,11 @@ namespace SomerenUI
             ShowPanel(pnlActivitiesSupervisors);
             List<Activity> activities = FetchData(GetActivities);
             DisplayDataInListView(listViewActivitiesSupervisors, activities, CreateActivityListViewItem);
-            List<Lecturer> supervisors = FetchData(GetSupervisors);
+
+            Activity activity = GetSelectedItemFromListView<Activity>(listViewActivities, Properties.Resources.ErrorMessage);
+            List<Lecturer> supervisors = FetchData(GetSupervisors, activity);
             DisplayDataInListView(listViewSupervisors, supervisors, CreateLecturerListViewItem);
+
             List<Lecturer> availableLecturers = FetchData(GetLecturers);
             DisplayDataInListView(listViewActivitiesSupervisorsLecturers, availableLecturers, CreateLecturerListViewItem);
         }

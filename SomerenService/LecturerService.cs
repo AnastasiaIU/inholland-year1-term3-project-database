@@ -17,5 +17,10 @@ namespace SomerenService
         {
             return lecturerDao.GetAllLecturers();
         }
+
+        public List<Lecturer> GetSupervisors(Activity activity)
+        {
+            return lecturerDao.GetSupervisors(activity);
+        }
     }
 }

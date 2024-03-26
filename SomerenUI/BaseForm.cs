@@ -31,9 +31,9 @@ namespace SomerenUI
             return lecturerService.GetLecturers();
         }
 
-        protected List<Lecturer> GetSupervisors()
+        protected List<Lecturer> GetSupervisors(Activity activity)
         {
-            return lecturerService.GetLecturers();
+            return lecturerService.GetSupervisors(activity);
         }
 
         protected List<Purchase> GetPurchases()
@@ -68,6 +68,22 @@ namespace SomerenUI
             try
             {
                 data = fetchData();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
+
+            return data;
+        }
+
+        protected List<T> FetchData<T, TParam>(Func<TParam, List<T>> fetchData, TParam param)
+        {
+            List<T> data = null;
+
+            try
+            {
+                data = fetchData(param);
             }
             catch (Exception ex)
             {
