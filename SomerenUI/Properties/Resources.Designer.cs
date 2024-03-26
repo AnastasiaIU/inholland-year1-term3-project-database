@@ -61,6 +61,15 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm deletion.
+        /// </summary>
+        internal static string ConfirmDeletion {
+            get {
+                return ResourceManager.GetString("ConfirmDeletion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to stock empty.
         /// </summary>
         internal static string Empty {
@@ -79,7 +88,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to select a drink..
+        ///   Looks up a localized string similar to Need to select a drink. .
         /// </summary>
         internal static string ErrorMessageDrinkNotSelected {
             get {
@@ -97,12 +106,11 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to input a name.
-        ///Error: .
+        ///   Looks up a localized string similar to Need to input a name. .
         /// </summary>
-        internal static string ErrorMessageNullField {
+        internal static string ErrorMessageNoName {
             get {
-                return ResourceManager.GetString("ErrorMessageNullField", resourceCulture);
+                return ResourceManager.GetString("ErrorMessageNoName", resourceCulture);
             }
         }
         
@@ -116,11 +124,29 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong input for price. Needs to be a number..
+        /// </summary>
+        internal static string ErrorMessageWrongPrice {
+            get {
+                return ResourceManager.GetString("ErrorMessageWrongPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong input for quantity. Needs to be a whole number..
         /// </summary>
         internal static string ErrorMessageWrongQuantityFormat {
             get {
                 return ResourceManager.GetString("ErrorMessageWrongQuantityFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong input for stock. Needs to be a number..
+        /// </summary>
+        internal static string ErrorMessageWrongStock {
+            get {
+                return ResourceManager.GetString("ErrorMessageWrongStock", resourceCulture);
             }
         }
         
@@ -185,6 +211,15 @@ namespace SomerenUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("someren", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to someren.Image.
+        /// </summary>
+        internal static string SomerenImage {
+            get {
+                return ResourceManager.GetString("SomerenImage", resourceCulture);
             }
         }
         

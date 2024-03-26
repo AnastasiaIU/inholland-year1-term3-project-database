@@ -107,9 +107,12 @@ namespace SomerenUI
         /// <remarks>
         /// This method uses <see cref="CultureInfo.InvariantCulture"/> to ensure consistent parsing of the number regardless of the current culture settings of the system. It is designed to handle input strings that may come from environments with different conventions for the decimal separator.
         /// </remarks>
-        protected double GetDoubleFromString(string number)
-        {
-            return double.Parse(number.Replace(',', '.'), CultureInfo.InvariantCulture);
+        protected double GetDoubleFromString(string number, string errorMessage)
+        {            
+            if(double.TryParse(number.Replace(',', '.'), out double tryGetDouble))            
+                return tryGetDouble;            
+            else            
+                throw new FormatException(errorMessage);
         }
 
         /// <summary>

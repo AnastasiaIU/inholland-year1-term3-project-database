@@ -317,15 +317,18 @@ namespace SomerenUI
         {
             try
             {
-                Drink currentDrink = (Drink)listViewDrinkSupplies.SelectedItems[0].Tag;
-                drinkService.DeleteDrink(currentDrink);
-                ShowMessage(Properties.Resources.SuccessfullyDeleted, currentDrink.Name);
-                ShowDrinkSuppliesPanel();
+                Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewDrinkSupplies, Properties.Resources.ErrorMessageDrinkNotSelected);
+                var confirmResult = MessageBox.Show($"Are you sure you want to delete {currentDrink.Name}?", Properties.Resources.ConfirmDeletion, MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    drinkService.DeleteDrink(currentDrink);
+                    ShowMessage(Properties.Resources.SuccessfullyDeleted, currentDrink.Name);
+                    ShowDrinkSuppliesPanel();
+                }
             }
             catch (Exception ex)
-            {
-                string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+            {                
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
             }
         }
 
@@ -333,13 +336,12 @@ namespace SomerenUI
         {
             try
             {
-                Drink currentDrink = (Drink)listViewDrinkSupplies.SelectedItems[0].Tag;
+                Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewDrinkSupplies, Properties.Resources.ErrorMessageDrinkNotSelected);
                 OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(currentDrink), ShowDrinkSuppliesPanel);
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentException ? Properties.Resources.ErrorMessageDrinkNotSelected : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
             }
         }
         private void btnPlaceOrder_Click(object sender, EventArgs e)

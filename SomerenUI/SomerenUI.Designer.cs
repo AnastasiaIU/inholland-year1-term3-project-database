@@ -253,7 +253,7 @@
             // picBoxStudents
             // 
             picBoxStudents.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxStudents.Image = (System.Drawing.Image)resources.GetObject("picBoxStudents.Image");
+            picBoxStudents.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxStudents.Location = new System.Drawing.Point(732, 56);
             picBoxStudents.Name = "picBoxStudents";
             picBoxStudents.Size = new System.Drawing.Size(127, 116);
@@ -332,7 +332,7 @@
             // picBoxRooms
             // 
             picBoxRooms.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxRooms.Image = (System.Drawing.Image)resources.GetObject("picBoxRooms.Image");
+            picBoxRooms.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxRooms.Location = new System.Drawing.Point(732, 56);
             picBoxRooms.Name = "picBoxRooms";
             picBoxRooms.Size = new System.Drawing.Size(127, 116);
@@ -391,7 +391,7 @@
             // picBoxDrinks
             // 
             picBoxDrinks.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinks.Image");
+            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxDrinks.Location = new System.Drawing.Point(732, 56);
             picBoxDrinks.Name = "picBoxDrinks";
             picBoxDrinks.Size = new System.Drawing.Size(127, 116);
@@ -490,7 +490,7 @@
             // picBoxLecturers
             // 
             picBoxLecturers.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxLecturers.Image = (System.Drawing.Image)resources.GetObject("picBoxLecturers.Image");
+            picBoxLecturers.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxLecturers.Location = new System.Drawing.Point(732, 56);
             picBoxLecturers.Name = "picBoxLecturers";
             picBoxLecturers.Size = new System.Drawing.Size(127, 116);
@@ -555,7 +555,7 @@
             // picBoxActivities
             // 
             picBoxActivities.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject("picBoxActivities.Image");
+            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxActivities.Location = new System.Drawing.Point(732, 56);
             picBoxActivities.Name = "picBoxActivities";
             picBoxActivities.Size = new System.Drawing.Size(127, 116);
@@ -622,7 +622,7 @@
             // picBoxPlaceOrder
             // 
             picBoxPlaceOrder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxPlaceOrder.Image = (System.Drawing.Image)resources.GetObject("picBoxPlaceOrder.Image");
+            picBoxPlaceOrder.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxPlaceOrder.Location = new System.Drawing.Point(732, 56);
             picBoxPlaceOrder.Name = "picBoxPlaceOrder";
             picBoxPlaceOrder.Size = new System.Drawing.Size(127, 116);
@@ -780,7 +780,7 @@
             // picBoxDrinkSupplies
             // 
             picBoxDrinkSupplies.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxDrinkSupplies.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinkSupplies.Image");
+            picBoxDrinkSupplies.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
             picBoxDrinkSupplies.Location = new System.Drawing.Point(732, 56);
             picBoxDrinkSupplies.Name = "picBoxDrinkSupplies";
             picBoxDrinkSupplies.Size = new System.Drawing.Size(127, 116);

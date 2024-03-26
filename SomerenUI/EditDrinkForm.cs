@@ -33,11 +33,10 @@ namespace SomerenUI
         {
             try
             {
-                if (txtDrinkName.Text.IsNullOrEmpty())
-                    throw new ArgumentNullException();
+                ValidateInputs(out double tryGetPrice, out int tryGetStock);
 
-                double price = GetDoubleFromString(txtDrinkPrice.Text);
-                int stock = int.Parse(txtDrinkStock.Text);
+                double price = tryGetPrice;
+                int stock = tryGetStock;
                 bool isAlcoholic = rdoTrue.Checked;
 
                 Drink drink = new Drink(price, isAlcoholic, txtDrinkName.Text, stock, 0);
@@ -46,8 +45,8 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                string errorMessage = ex.Message;
+                ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
             }
         }
 
@@ -55,11 +54,10 @@ namespace SomerenUI
         {
             try
             {
-                if (txtDrinkName.Text.IsNullOrEmpty())
-                    throw new ArgumentNullException();
+                ValidateInputs(out double tryGetPrice, out int tryGetStock);
 
-                double price = GetDoubleFromString(txtDrinkPrice.Text);
-                int stock = int.Parse(txtDrinkStock.Text);
+                double price = tryGetPrice;
+                int stock = tryGetStock;
                 bool isAlcoholic = rdoTrue.Checked;
 
                 Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, txtDrinkName.Text, stock, currentDrink.NumberOfPurchases);
@@ -68,9 +66,24 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                string errorMessage = ex.Message;
+                ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
             }
+        }
+
+        private void ValidateInputs(out double tryGetPrice, out int tryGetStock)
+        {
+            if (txtDrinkName.Text.IsNullOrEmpty())
+                throw new FormatException(Properties.Resources.ErrorMessageNoName);
+
+            if (!double.TryParse(txtDrinkPrice.Text.Replace(',', '.'), out double tryGetDouble))
+                throw new FormatException(Properties.Resources.ErrorMessageWrongPrice);
+
+            if (!int.TryParse(txtDrinkStock.Text, out int tryGetInt))
+                throw new FormatException(Properties.Resources.ErrorMessageWrongStock);
+
+            tryGetPrice = tryGetDouble;
+            tryGetStock = tryGetInt;
         }
 
         private void LoadText()
