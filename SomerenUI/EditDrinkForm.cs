@@ -75,12 +75,12 @@ namespace SomerenUI
         private void ValidateInputs(out double tryGetPrice, out int tryGetStock)
         {
             if (txtDrinkName.Text.IsNullOrEmpty())
-                throw new FormatException(Properties.Resources.ErrorMessageNoName);
+                throw new Exception(Properties.Resources.ErrorMessageNoName);
 
             tryGetPrice = double.Parse(txtDrinkPrice.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
 
             if (!int.TryParse(txtDrinkStock.Text, out int tryGetInt))
-                throw new FormatException(Properties.Resources.ErrorMessageWrongStock);
+                throw new Exception(Properties.Resources.ErrorMessageWrongStock);
 
             tryGetStock = tryGetInt;
         }
