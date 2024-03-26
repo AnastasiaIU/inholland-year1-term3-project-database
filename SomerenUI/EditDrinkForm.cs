@@ -26,7 +26,7 @@ namespace SomerenUI
             if (drink.IsAlcoholic)
                 rdoTrue.Checked = true;
             else
-                rdoFalse.Checked = false;
+                rdoFalse.Checked = true;
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
@@ -38,8 +38,9 @@ namespace SomerenUI
 
                 double price = GetDoubleFromString(txtDrinkPrice.Text);
                 int stock = int.Parse(txtDrinkStock.Text);
+                bool isAlcoholic = rdoTrue.Checked;
 
-                Drink drink = new Drink(price, currentDrink.IsAlcoholic, txtDrinkName.Text, stock);
+                Drink drink = new Drink(price, isAlcoholic, txtDrinkName.Text, stock, 0);
                 drinkService.CreateDrink(drink);
                 ShowMessageAndCloseForm(Properties.Resources.SuccessfullyAdded, this, drink.Name);
             }
@@ -59,8 +60,9 @@ namespace SomerenUI
 
                 double price = GetDoubleFromString(txtDrinkPrice.Text);
                 int stock = int.Parse(txtDrinkStock.Text);
+                bool isAlcoholic = rdoTrue.Checked;
 
-                Drink drink = new Drink(currentDrink.Id, price, currentDrink.IsAlcoholic, txtDrinkName.Text, stock);
+                Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, txtDrinkName.Text, stock, currentDrink.NumberOfPurchases);
                 drinkService.UpdateDrink(drink);
                 ShowMessageAndCloseForm(Properties.Resources.SuccessfullyEdited, this, drink.Name);
             }
