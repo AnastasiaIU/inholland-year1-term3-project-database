@@ -27,7 +27,7 @@ namespace SomerenUI
             LoadText();
         }
 
-        protected void ShowMessageAndCloseForm(string message, Form form, string arg = null)
+        private void ShowMessageAndCloseForm(string message, Form form, string arg = null)
         {
             ShowMessage(message, arg);
             form.Close();

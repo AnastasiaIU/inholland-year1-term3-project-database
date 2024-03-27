@@ -28,9 +28,9 @@ namespace SomerenService
             supervisorDao.AddSupervisorToActivity(lecturer, activity);
         }
 
-        public void DeleteSupervisorForActivity(Lecturer lecturer, Activity activity)
+        public void DeleteSupervisorFromActivity(Lecturer lecturer, Activity activity)
         {
-            supervisorDao.DeleteSupervisorForActivity(lecturer, activity);
+            supervisorDao.DeleteSupervisorFromActivity(lecturer, activity);
         }
     }
 }

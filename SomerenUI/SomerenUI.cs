@@ -132,13 +132,13 @@ namespace SomerenUI
             DisplayDataInListView(listViewActivities, data, CreateActivityListViewItem);
         }
 
-        private void ShowActivitiesSupervisorsPanel()
+        private void ShowActivitySupervisorsPanel()
         {
             listViewSupervisors.Items.Clear();
-            listViewActivitiesSupervisorsLecturers.Items.Clear();
-            ShowPanel(pnlActivitiesSupervisors);
+            listViewActivitySupervisorsLecturers.Items.Clear();
+            ShowPanel(pnlActivitySupervisors);
             List<Activity> activities = FetchData(activityService.GetAllActivities);
-            DisplayDataInListView(listViewActivitiesSupervisors, activities, CreateActivityListViewItem);
+            DisplayDataInListView(listViewActivitySupervisors, activities, CreateActivityListViewItem);
         }
 
         private void ShowRoomsPanel()
@@ -367,7 +367,7 @@ namespace SomerenUI
             List<Lecturer> supervisors = FetchData(supervisorService.GetAllSupervisorsForActivity, activity);
             DisplayDataInListView(listViewSupervisors, supervisors, CreateLecturerListViewItem);
             List<Lecturer> availableLecturers = FetchData(supervisorService.GetAllAvailableSupervisorsForActivity, activity);
-            DisplayDataInListView(listViewActivitiesSupervisorsLecturers, availableLecturers, CreateLecturerListViewItem);
+            DisplayDataInListView(listViewActivitySupervisorsLecturers, availableLecturers, CreateLecturerListViewItem);
         }
 
         private void menuItemDashboard_Click(object sender, EventArgs e)
@@ -390,9 +390,9 @@ namespace SomerenUI
             ShowActivitiesPanel();
         }
 
-        private void menuItemActivitiesSupervisors_Click(object sender, EventArgs e)
+        private void menuItemActivitySupervisors_Click(object sender, EventArgs e)
         {
-            ShowActivitiesSupervisorsPanel();
+            ShowActivitySupervisorsPanel();
         }
 
         private void menuItemRooms_Click(object sender, EventArgs e)
@@ -419,8 +419,8 @@ namespace SomerenUI
         {
             try
             {
-                Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitiesSupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
-                Lecturer currentLecturer = GetSelectedItemFromListView<Lecturer>(listViewActivitiesSupervisorsLecturers, Properties.Resources.ErrorMessageLecturerNotSelected);
+                Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitySupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
+                Lecturer currentLecturer = GetSelectedItemFromListView<Lecturer>(listViewActivitySupervisorsLecturers, Properties.Resources.ErrorMessageLecturerNotSelected);
                 supervisorService.AddSupervisorToActivity(currentLecturer, currentActivity);
                 ShowMessage(Properties.Resources.SuccessfullyAdded, currentLecturer.FullName);
                 DisplaySupervisorsForActivity(currentActivity);
@@ -435,13 +435,13 @@ namespace SomerenUI
         {
             try
             {
-                Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitiesSupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
+                Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitySupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
                 Lecturer currentSupervisor = GetSelectedItemFromListView<Lecturer>(listViewSupervisors, Properties.Resources.ErrorMessageSupervisorNotSelected);
 
                 DialogResult confirmResult = ShowConfirmDeletionMessageBox(currentSupervisor.FullName);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    supervisorService.DeleteSupervisorForActivity(currentSupervisor, currentActivity);
+                    supervisorService.DeleteSupervisorFromActivity(currentSupervisor, currentActivity);
                     ShowMessage(Properties.Resources.SuccessfullyDeleted, currentSupervisor.FullName);
                     DisplaySupervisorsForActivity(currentActivity);
                 }
@@ -526,13 +526,13 @@ namespace SomerenUI
             CalculateTotalPrice();
         }
 
-        private void listViewActivitiesSupervisors_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void listViewActivitySupervisors_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             try
             {
-                if (listViewActivitiesSupervisors.SelectedItems.Count != 0)
+                if (listViewActivitySupervisors.SelectedItems.Count != 0)
                 {
-                    Activity activity = (Activity)listViewActivitiesSupervisors.SelectedItems[0].Tag;
+                    Activity activity = (Activity)listViewActivitySupervisors.SelectedItems[0].Tag;
                     DisplaySupervisorsForActivity(activity);
                 }
             }
@@ -542,7 +542,7 @@ namespace SomerenUI
             }
         }
 
-        private void menuItemStudents_Click_1(object sender, EventArgs e)
+        private void menuItemStudents_Click(object sender, EventArgs e)
         {
             ShowStudentsPanel();
         }

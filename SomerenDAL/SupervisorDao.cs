@@ -41,7 +41,7 @@ namespace SomerenDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
-        public void DeleteSupervisorForActivity(Lecturer lecturer, Activity activity)
+        public void DeleteSupervisorFromActivity(Lecturer lecturer, Activity activity)
         {
             string query = "DELETE FROM Supervisions WHERE activityId=@ActivityId AND lecturerId=@LecturerId";
             SqlParameter[] sqlParameters = new SqlParameter[]
