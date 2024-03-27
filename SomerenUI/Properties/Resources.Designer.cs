@@ -70,6 +70,15 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete {0}?.
+        /// </summary>
+        internal static string DeletePrompt {
+            get {
+                return ResourceManager.GetString("DeletePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to stock empty.
         /// </summary>
         internal static string Empty {
@@ -88,7 +97,16 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to select a drink. .
+        ///   Looks up a localized string similar to Need to select an activity..
+        /// </summary>
+        internal static string ErrorMessageActivityNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageActivityNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to select a drink..
         /// </summary>
         internal static string ErrorMessageDrinkNotSelected {
             get {
@@ -102,6 +120,15 @@ namespace SomerenUI.Properties {
         internal static string ErrorMessageExistingStudentNumber {
             get {
                 return ResourceManager.GetString("ErrorMessageExistingStudentNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to select a lecturer..
+        /// </summary>
+        internal static string ErrorMessageLecturerNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageLecturerNotSelected", resourceCulture);
             }
         }
         
@@ -174,6 +201,15 @@ namespace SomerenUI.Properties {
         internal static string ErrorMessageWrongPrice {
             get {
                 return ResourceManager.GetString("ErrorMessageWrongPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to select a supervisor..
+        /// </summary>
+        internal static string ErrorMessageSupervisorNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageSupervisorNotSelected", resourceCulture);
             }
         }
         

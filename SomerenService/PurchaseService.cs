@@ -13,7 +13,7 @@ namespace SomerenService
             purchaseDao = new PurchaseDao();
         }
 
-        public List<Purchase> GetPurchases()
+        public List<Purchase> GetAllPurchases()
         {
             return purchaseDao.GetAllPurchases();
         }

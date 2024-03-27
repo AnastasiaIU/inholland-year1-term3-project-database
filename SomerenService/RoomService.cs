@@ -13,7 +13,7 @@ namespace SomerenService
             roomDao = new RoomDao();
         }
 
-        public List<Room> GetRooms()
+        public List<Room> GetAllRooms()
         {
             return roomDao.GetAllRooms();
         }

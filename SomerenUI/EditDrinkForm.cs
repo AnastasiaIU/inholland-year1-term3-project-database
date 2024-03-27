@@ -2,6 +2,7 @@
 using SomerenModel;
 using System;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace SomerenUI
 {
@@ -24,6 +25,12 @@ namespace SomerenUI
             btnCreateDrink.Hide();
             currentDrink = drink;
             LoadText();
+        }
+
+        private void ShowMessageAndCloseForm(string message, Form form, string arg = null)
+        {
+            ShowMessage(message, arg);
+            form.Close();
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)

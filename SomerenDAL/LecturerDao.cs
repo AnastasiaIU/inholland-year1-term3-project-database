@@ -16,7 +16,7 @@ namespace SomerenDAL
             return ReadTables(dataTable);
         }
 
-        private List<Lecturer> ReadTables(DataTable dataTable)
+        protected List<Lecturer> ReadTables(DataTable dataTable)
         {
             List<Lecturer> lecturers = new List<Lecturer>();
 
