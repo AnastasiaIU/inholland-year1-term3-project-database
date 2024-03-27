@@ -13,7 +13,7 @@ namespace SomerenService
             activityDao = new ActivityDao();
         }
 
-        public List<Activity> GetActivities()
+        public List<Activity> GetAllActivities()
         {
             return activityDao.GetAllActivities();
         }

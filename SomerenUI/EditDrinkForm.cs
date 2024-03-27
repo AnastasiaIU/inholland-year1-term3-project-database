@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using SomerenModel;
 using System;
+using System.Windows.Forms;
 
 namespace SomerenUI
 {
@@ -27,6 +28,12 @@ namespace SomerenUI
                 rdoTrue.Checked = true;
             else
                 rdoFalse.Checked = false;
+        }
+
+        protected void ShowMessageAndCloseForm(string message, Form form, string arg = null)
+        {
+            ShowMessage(message, arg);
+            form.Close();
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)

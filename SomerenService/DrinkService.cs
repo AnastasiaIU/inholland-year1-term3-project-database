@@ -17,7 +17,7 @@ namespace SomerenService
             drinkDao = new DrinkDao();
         }
 
-        public List<Drink> GetDrinks()
+        public List<Drink> GetAllDrinks()
         {
             return drinkDao.GetAllDrinks();
         }

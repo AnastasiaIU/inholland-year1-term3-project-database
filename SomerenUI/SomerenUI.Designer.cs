@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
             menuStrip = new System.Windows.Forms.MenuStrip();
             menuItemApplication = new System.Windows.Forms.ToolStripMenuItem();
             menuItemDashboard = new System.Windows.Forms.ToolStripMenuItem();
@@ -203,14 +202,14 @@
             // menuItemActivities
             // 
             menuItemActivities.Name = "menuItemActivities";
-            menuItemActivities.Size = new System.Drawing.Size(177, 22);
+            menuItemActivities.Size = new System.Drawing.Size(180, 22);
             menuItemActivities.Text = "Activities";
             menuItemActivities.Click += menuItemActivities_Click;
             // 
             // menuItemActivitiesSupervisors
             // 
             menuItemActivitiesSupervisors.Name = "menuItemActivitiesSupervisors";
-            menuItemActivitiesSupervisors.Size = new System.Drawing.Size(177, 22);
+            menuItemActivitiesSupervisors.Size = new System.Drawing.Size(180, 22);
             menuItemActivitiesSupervisors.Text = "Activity Supervisors";
             menuItemActivitiesSupervisors.Click += menuItemActivitiesSupervisors_Click;
             // 
@@ -679,6 +678,7 @@
             listViewActivitiesSupervisors.TabIndex = 0;
             listViewActivitiesSupervisors.UseCompatibleStateImageBehavior = false;
             listViewActivitiesSupervisors.View = System.Windows.Forms.View.Details;
+            listViewActivitiesSupervisors.ItemSelectionChanged += listViewActivitiesSupervisors_ItemSelectionChanged;
             // 
             // chActivitySupervisorsName
             // 
@@ -700,7 +700,7 @@
             lblActivitySupervisors.AutoSize = true;
             lblActivitySupervisors.Location = new System.Drawing.Point(16, 195);
             lblActivitySupervisors.Name = "lblActivitySupervisors";
-            lblActivitySupervisors.Size = new System.Drawing.Size(91, 15);
+            lblActivitySupervisors.Size = new System.Drawing.Size(70, 15);
             lblActivitySupervisors.TabIndex = 2;
             lblActivitySupervisors.Text = "Supervisors:";
             // 
@@ -746,14 +746,14 @@
             btnDeleteSupervisor.TabIndex = 5;
             btnDeleteSupervisor.Text = "Delete supervisor";
             btnDeleteSupervisor.UseVisualStyleBackColor = true;
-            btnDeleteSupervisor.Click += btnDeleteDrink_Click;
+            btnDeleteSupervisor.Click += btnDeleteSupervisor_Click;
             // 
             // lblActivitiesSupervisorsLecturers
             // 
             lblActivitiesSupervisorsLecturers.AutoSize = true;
             lblActivitiesSupervisorsLecturers.Location = new System.Drawing.Point(16, 355);
             lblActivitiesSupervisorsLecturers.Name = "lblActivitiesSupervisorsLecturers";
-            lblActivitiesSupervisorsLecturers.Size = new System.Drawing.Size(91, 15);
+            lblActivitiesSupervisorsLecturers.Size = new System.Drawing.Size(106, 15);
             lblActivitiesSupervisorsLecturers.TabIndex = 2;
             lblActivitiesSupervisorsLecturers.Text = "Available lecturers:";
             // 
@@ -799,7 +799,7 @@
             btnAddSupervisor.TabIndex = 5;
             btnAddSupervisor.Text = "Add supervisor";
             btnAddSupervisor.UseVisualStyleBackColor = true;
-            btnAddSupervisor.Click += btnDeleteDrink_Click;
+            btnAddSupervisor.Click += btnAddSupervisor_Click;
             // 
             // pnlPlaceOrder
             // 

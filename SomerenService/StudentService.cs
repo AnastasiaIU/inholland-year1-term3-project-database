@@ -13,7 +13,7 @@ namespace SomerenService
             studentDao = new StudentDao();
         }
 
-        public List<Student> GetStudents()
+        public List<Student> GetAllStudents()
         {
             return studentDao.GetAllStudents();
         }

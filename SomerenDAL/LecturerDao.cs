@@ -16,18 +16,7 @@ namespace SomerenDAL
             return ReadTables(dataTable);
         }
 
-        public List<Lecturer> GetSupervisors(Activity activity)
-        {
-            string query = "SELECT [lecturerId], [age], [room_number], [first_name], [last_name], [phone_number] FROM Lecturers ORDER BY [last_name]";
-            SqlParameter[] sqlParameters = new SqlParameter[]
-            {
-                new SqlParameter("@Activity", activity.Id)
-            };
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable);
-        }
-
-        private List<Lecturer> ReadTables(DataTable dataTable)
+        protected List<Lecturer> ReadTables(DataTable dataTable)
         {
             List<Lecturer> lecturers = new List<Lecturer>();
 

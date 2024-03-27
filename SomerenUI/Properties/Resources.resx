@@ -123,8 +123,14 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>Something went wrong: </value>
   </data>
+  <data name="ErrorMessageActivityNotSelected" xml:space="preserve">
+    <value>Need to select an activity.</value>
+  </data>
   <data name="ErrorMessageDrinkNotSelected" xml:space="preserve">
     <value>Need to select a drink.</value>
+  </data>
+  <data name="ErrorMessageLecturerNotSelected" xml:space="preserve">
+    <value>Need to select a lecturer.</value>
   </data>
   <data name="ErrorMessageNoDataToShow" xml:space="preserve">
     <value>There is no data to show.</value>
@@ -135,6 +141,9 @@ Error: </value>
   </data>
   <data name="ErrorMessageStudentNotSelected" xml:space="preserve">
     <value>Need to select a student.</value>
+  </data>
+  <data name="ErrorMessageSupervisorNotSelected" xml:space="preserve">
+    <value>Need to select a supervisor.</value>
   </data>
   <data name="ErrorMessageWrongQuantityFormat" xml:space="preserve">
     <value>Wrong input for quantity. Needs to be a whole number.</value>

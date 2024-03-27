@@ -1,4 +1,5 @@
 using SomerenModel;
+using SomerenService;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,6 +8,13 @@ namespace SomerenUI
 {
     public partial class SomerenUI : BaseForm
     {
+        private ActivityService activityService = new ActivityService();
+        private LecturerService lecturerService = new LecturerService();
+        private SupervisorService supervisorService = new SupervisorService();
+        private PurchaseService purchaseService = new PurchaseService();
+        private RoomService roomService = new RoomService();
+        private StudentService studentService = new StudentService();
+
         public SomerenUI()
         {
             InitializeComponent();
@@ -21,6 +29,48 @@ namespace SomerenUI
                 if (control.Name.StartsWith(panelName)) control.Hide();
 
             panel.Show();
+        }
+
+        /// <summary>
+        /// Executes the provided function to fetch a list of data items of type <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="fetchData">A function delegate that, when invoked, returns a list of items of type <typeparamref name="T"/>. This function encapsulates the actual data fetching operation, which can vary depending on the specific type of data being requested.</param>
+        /// <returns>
+        /// A list containing the fetched data items of type <typeparamref name="T"/> if the operation is successful; otherwise, returns null if an exception is caught during the fetching operation.
+        /// </returns>
+        /// <remarks>
+        /// If an exception occurs during the execution of the <paramref name="fetchData"/> function, the exception message is displayed to the user using <c>ShowMessage</c>, and null is returned. This method allows for a generic way to fetch different types of data while handling exceptions uniformly.
+        /// </remarks>
+        private List<T> FetchData<T>(Func<List<T>> fetchData)
+        {
+            List<T> data = null;
+
+            try
+            {
+                data = fetchData();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
+
+            return data;
+        }
+
+        private List<T> FetchData<T, TParam>(Func<TParam, List<T>> fetchData, TParam param)
+        {
+            List<T> data = null;
+
+            try
+            {
+                data = fetchData(param);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
+
+            return data;
         }
 
         /// <summary>
@@ -59,58 +109,53 @@ namespace SomerenUI
         private void ShowStudentsPanel()
         {
             ShowPanel(pnlStudents);
-            List<Student> data = FetchData(GetStudents);
+            List<Student> data = FetchData(studentService.GetAllStudents);
             DisplayDataInListView(listViewStudents, data, CreateStudentListViewItem);
         }
 
         private void ShowLecturersPanel()
         {
             ShowPanel(pnlLecturers);
-            List<Lecturer> data = FetchData(GetLecturers);
+            List<Lecturer> data = FetchData(lecturerService.GetAllLecturers);
             DisplayDataInListView(listViewLecturers, data, CreateLecturerListViewItem);
         }
 
         private void ShowActivitiesPanel()
         {
             ShowPanel(pnlActivities);
-            List<Activity> data = FetchData(GetActivities);
+            List<Activity> data = FetchData(activityService.GetAllActivities);
             DisplayDataInListView(listViewActivities, data, CreateActivityListViewItem);
         }
 
         private void ShowActivitiesSupervisorsPanel()
         {
+            listViewSupervisors.Items.Clear();
+            listViewActivitiesSupervisorsLecturers.Items.Clear();
             ShowPanel(pnlActivitiesSupervisors);
-            List<Activity> activities = FetchData(GetActivities);
+            List<Activity> activities = FetchData(activityService.GetAllActivities);
             DisplayDataInListView(listViewActivitiesSupervisors, activities, CreateActivityListViewItem);
-
-            Activity activity = GetSelectedItemFromListView<Activity>(listViewActivities, Properties.Resources.ErrorMessage);
-            List<Lecturer> supervisors = FetchData(GetSupervisors, activity);
-            DisplayDataInListView(listViewSupervisors, supervisors, CreateLecturerListViewItem);
-
-            List<Lecturer> availableLecturers = FetchData(GetLecturers);
-            DisplayDataInListView(listViewActivitiesSupervisorsLecturers, availableLecturers, CreateLecturerListViewItem);
         }
 
         private void ShowRoomsPanel()
         {
             ShowPanel(pnlRooms);
-            List<Room> data = FetchData(GetRooms);
+            List<Room> data = FetchData(roomService.GetAllRooms);
             DisplayDataInListView(listViewRooms, data, CreateRoomListViewItem);
         }
 
         private void ShowDrinksPanel()
         {
             ShowPanel(pnlDrinks);
-            List<Drink> data = FetchData(GetDrinks);
+            List<Drink> data = FetchData(drinkService.GetAllDrinks);
             DisplayDataInListView(listViewDrinks, data, CreateDrinkListViewItem);
         }
 
         private void ShowPlaceOrderPanel()
         {
             ShowPanel(pnlPlaceOrder);
-            List<Student> dataStudents = FetchData(GetStudents);
+            List<Student> dataStudents = FetchData(studentService.GetAllStudents);
             DisplayDataInListView(listViewPlaceOrderStudents, dataStudents, CreatePlaceOrderStudentListViewItem);
-            List<Drink> dataDrinks = FetchData(GetDrinks);
+            List<Drink> dataDrinks = FetchData(drinkService.GetAllDrinks);
             DisplayDataInListView(listViewPlaceOrderDrinks, dataDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
@@ -197,6 +242,27 @@ namespace SomerenUI
             return item;
         }
 
+        /// <summary>
+        /// Retrieves the selected item of type <typeparamref name="T"/> from the provided ListView.
+        /// </summary>
+        /// <typeparam name="T">The type of the object associated with the ListView item. It is expected that the Tag property of each ListViewItem contains an object of this type.</typeparam>
+        /// <param name="listView">The ListView control from which the selected item should be retrieved.</param>
+        /// <param name="errorMessage">The error message to be included in the exception if no item is selected in the ListView.</param>
+        /// <returns>The object of type <typeparamref name="T"/> associated with the selected ListViewItem's Tag property.</returns>
+        /// <exception cref="Exception">Throws an exception with the provided <paramref name="errorMessage"/> if no item is selected in the ListView.</exception>
+        /// <remarks>
+        /// This method assumes that the Tag property of each ListViewItem in the ListView contains an object of type <typeparamref name="T"/>. It is designed to be used in scenarios where the ListView selection is expected to always contain exactly one selected item. If no item is selected, the method throws an exception with a custom error message.
+        /// </remarks>
+        protected T GetSelectedItemFromListView<T>(ListView listView, string errorMessage)
+        {
+            T selectedItem =
+                listView.SelectedItems.Count != 0 ?
+                (T)listView.SelectedItems[0].Tag :
+                throw new Exception(errorMessage);
+
+            return selectedItem;
+        }
+
         private string GetStockLevelString(StockLevel stockLevel)
         {
             string stockLevelString;
@@ -247,11 +313,33 @@ namespace SomerenUI
             }
         }
 
+        /// <summary>
+        /// Opens a new form dialog and executes an action to update the parent form upon the new form's closure.
+        /// </summary>
+        /// <param name="form">The form to be displayed as a modal dialog. This form is expected to perform some operation that requires the parent form to update once the dialog is closed.</param>
+        /// <param name="updatePanel">An action delegate that encapsulates the updating logic for the parent form. This action is executed immediately after the modal dialog is closed, allowing the parent form to reflect any changes or updates made.</param>
+        /// <remarks>
+        /// This method is particularly useful for scenarios where opening a child form may result in changes that need to be reflected in the parent form (e.g., adding, editing, or deleting data). The <paramref name="updatePanel"/> action provides a flexible way to specify exactly how the parent form should respond once the child form is closed.
+        /// </remarks>
+        private void OpenNewFormAndUpdateParentOnClose(Form form, Action updatePanel)
+        {
+            form.ShowDialog();
+            updatePanel();
+        }
+
         private void ResetPlaceOrderForm()
         {
             listViewPlaceOrderStudents.SelectedIndices.Clear();
             listViewPlaceOrderDrinks.SelectedIndices.Clear();
             txtBoxPlaceOrderQuantity.Clear();
+        }
+
+        private void DisplaySupervisorsForActivity(Activity activity)
+        {
+            List<Lecturer> supervisors = FetchData(supervisorService.GetAllSupervisorsForActivity, activity);
+            DisplayDataInListView(listViewSupervisors, supervisors, CreateLecturerListViewItem);
+            List<Lecturer> availableLecturers = FetchData(supervisorService.GetAllAvailableSupervisorsForActivity, activity);
+            DisplayDataInListView(listViewActivitiesSupervisorsLecturers, availableLecturers, CreateLecturerListViewItem);
         }
 
         private void menuItemDashboard_Click(object sender, EventArgs e)
@@ -302,6 +390,38 @@ namespace SomerenUI
         private void menuItemPlaceOrder_Click(object sender, EventArgs e)
         {
             ShowPlaceOrderPanel();
+        }
+
+        private void btnAddSupervisor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitiesSupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
+                Lecturer currentLecturer = GetSelectedItemFromListView<Lecturer>(listViewActivitiesSupervisorsLecturers, Properties.Resources.ErrorMessageLecturerNotSelected);
+                supervisorService.AddSupervisorToActivity(currentLecturer, currentActivity);
+                ShowMessage(Properties.Resources.SuccessfullyAdded, currentLecturer.FullName);
+                DisplaySupervisorsForActivity(currentActivity);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
+        }
+
+        private void btnDeleteSupervisor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitiesSupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
+                Lecturer currentSupervisor = GetSelectedItemFromListView<Lecturer>(listViewSupervisors, Properties.Resources.ErrorMessageSupervisorNotSelected);
+                supervisorService.DeleteSupervisorForActivity(currentSupervisor, currentActivity);
+                ShowMessage(Properties.Resources.SuccessfullyDeleted, currentSupervisor.FullName);
+                DisplaySupervisorsForActivity(currentActivity);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
@@ -367,6 +487,22 @@ namespace SomerenUI
         private void calculateTotalPricePlaceOrder_Event(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             calculateTotalPrice();
+        }
+
+        private void listViewActivitiesSupervisors_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (listViewActivitiesSupervisors.SelectedItems.Count != 0)
+                {
+                    Activity activity = (Activity)listViewActivitiesSupervisors.SelectedItems[0].Tag;
+                    DisplaySupervisorsForActivity(activity);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
         }
     }
 }

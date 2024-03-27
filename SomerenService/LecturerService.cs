@@ -13,14 +13,9 @@ namespace SomerenService
             lecturerDao = new LecturerDao();
         }
 
-        public List<Lecturer> GetLecturers()
+        public List<Lecturer> GetAllLecturers()
         {
             return lecturerDao.GetAllLecturers();
-        }
-
-        public List<Lecturer> GetSupervisors(Activity activity)
-        {
-            return lecturerDao.GetSupervisors(activity);
         }
     }
 }

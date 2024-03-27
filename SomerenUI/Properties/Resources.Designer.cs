@@ -79,11 +79,29 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need to select an activity..
+        /// </summary>
+        internal static string ErrorMessageActivityNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageActivityNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need to select a drink..
         /// </summary>
         internal static string ErrorMessageDrinkNotSelected {
             get {
                 return ResourceManager.GetString("ErrorMessageDrinkNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to select a lecturer..
+        /// </summary>
+        internal static string ErrorMessageLecturerNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageLecturerNotSelected", resourceCulture);
             }
         }
         
@@ -112,6 +130,15 @@ namespace SomerenUI.Properties {
         internal static string ErrorMessageStudentNotSelected {
             get {
                 return ResourceManager.GetString("ErrorMessageStudentNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to select a supervisor..
+        /// </summary>
+        internal static string ErrorMessageSupervisorNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageSupervisorNotSelected", resourceCulture);
             }
         }
         
