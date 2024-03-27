@@ -97,11 +97,38 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Another student already has that student number. Please enter another number..
+        /// </summary>
+        internal static string ErrorMessageExistingStudentNumber {
+            get {
+                return ResourceManager.GetString("ErrorMessageExistingStudentNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no data to show..
         /// </summary>
         internal static string ErrorMessageNoDataToShow {
             get {
                 return ResourceManager.GetString("ErrorMessageNoDataToShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to input a first name..
+        /// </summary>
+        internal static string ErrorMessageNoFirstName {
+            get {
+                return ResourceManager.GetString("ErrorMessageNoFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to input a last name..
+        /// </summary>
+        internal static string ErrorMessageNoLastName {
+            get {
+                return ResourceManager.GetString("ErrorMessageNoLastName", resourceCulture);
             }
         }
         
@@ -120,6 +147,24 @@ namespace SomerenUI.Properties {
         internal static string ErrorMessageStudentNotSelected {
             get {
                 return ResourceManager.GetString("ErrorMessageStudentNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student number needs to be 6 numbers..
+        /// </summary>
+        internal static string ErrorMessageStudentNumberLength {
+            get {
+                return ResourceManager.GetString("ErrorMessageStudentNumberLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to input a class number..
+        /// </summary>
+        internal static string ErrorMessageWrongClass {
+            get {
+                return ResourceManager.GetString("ErrorMessageWrongClass", resourceCulture);
             }
         }
         
@@ -147,6 +192,15 @@ namespace SomerenUI.Properties {
         internal static string ErrorMessageWrongStock {
             get {
                 return ResourceManager.GetString("ErrorMessageWrongStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong input for student number. Needs to be only numbers..
+        /// </summary>
+        internal static string ErrorMessageWrongStudentNumber {
+            get {
+                return ResourceManager.GetString("ErrorMessageWrongStudentNumber", resourceCulture);
             }
         }
         

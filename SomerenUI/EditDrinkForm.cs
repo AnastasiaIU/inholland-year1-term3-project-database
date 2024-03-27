@@ -24,10 +24,6 @@ namespace SomerenUI
             btnCreateDrink.Hide();
             currentDrink = drink;
             LoadText();
-            if (drink.IsAlcoholic)
-                rdoTrue.Checked = true;
-            else
-                rdoFalse.Checked = true;
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)

@@ -25,5 +25,10 @@
             Floor = floor;
             Capacity = capacity;
         }
+
+        public override string ToString()
+        {
+            return $"{Number}";
+        }
     }
 }
