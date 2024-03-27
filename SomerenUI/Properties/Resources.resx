@@ -129,14 +129,29 @@
   <data name="ErrorMessageDrinkNotSelected" xml:space="preserve">
     <value>Need to select a drink. </value>
   </data>
+  <data name="ErrorMessageExistingStudentNumber" xml:space="preserve">
+    <value>Another student already has that student number. Please enter another number.</value>
+  </data>
   <data name="ErrorMessageNoDataToShow" xml:space="preserve">
     <value>There is no data to show.</value>
+  </data>
+  <data name="ErrorMessageNoFirstName" xml:space="preserve">
+    <value>Need to input a first name.</value>
+  </data>
+  <data name="ErrorMessageNoLastName" xml:space="preserve">
+    <value>Need to input a last name.</value>
   </data>
   <data name="ErrorMessageNoName" xml:space="preserve">
     <value>Need to input a name. </value>
   </data>
   <data name="ErrorMessageStudentNotSelected" xml:space="preserve">
     <value>Need to select a student.</value>
+  </data>
+  <data name="ErrorMessageStudentNumberLength" xml:space="preserve">
+    <value>Student number needs to be 6 numbers.</value>
+  </data>
+  <data name="ErrorMessageWrongClass" xml:space="preserve">
+    <value>Need to input a class number.</value>
   </data>
   <data name="ErrorMessageWrongPrice" xml:space="preserve">
     <value>Wrong input for price. Needs to be a number.</value>
@@ -146,6 +161,9 @@
   </data>
   <data name="ErrorMessageWrongStock" xml:space="preserve">
     <value>Wrong input for stock. Needs to be a number.</value>
+  </data>
+  <data name="ErrorMessageWrongStudentNumber" xml:space="preserve">
+    <value>Wrong input for student number. Needs to be only numbers.</value>
   </data>
   <data name="Lecturer" xml:space="preserve">
     <value>Lecturer</value>

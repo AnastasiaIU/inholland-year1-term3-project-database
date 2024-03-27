@@ -63,6 +63,13 @@ namespace SomerenUI
             DisplayDataInListView(listViewStudents, data, CreateStudentListViewItem);
         }
 
+        private void ShowManageStudentsPanel()
+        {
+            ShowPanel(pnlManageStudents);
+            List<Student> data = FetchData(GetStudents);
+            DisplayDataInListView(listViewManageStudents, data, CreateStudentListViewItem);
+        }
+
         private void ShowLecturersPanel()
         {
             ShowPanel(pnlLecturers);
@@ -241,7 +248,7 @@ namespace SomerenUI
             drinkService.UpdateDrink(currentDrink);
         }
 
-        private void calculateTotalPrice()
+        private void CalculateTotalPrice()
         {
             try
             {
@@ -271,11 +278,6 @@ namespace SomerenUI
         private void menuItemExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void menuItemStudents_Click(object sender, EventArgs e)
-        {
-            ShowStudentsPanel();
         }
 
         private void menuItemLecturers_Click(object sender, EventArgs e)
@@ -367,12 +369,58 @@ namespace SomerenUI
 
         private void calculateTotalPricePlaceOrder_Event(object sender, EventArgs e)
         {
-            calculateTotalPrice();
+            CalculateTotalPrice();
         }
 
         private void calculateTotalPricePlaceOrder_Event(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            calculateTotalPrice();
+            CalculateTotalPrice();
+        }
+
+        private void menuItemStudents_Click_1(object sender, EventArgs e)
+        {
+            ShowStudentsPanel();
+        }
+
+        private void menuItemManageStudents_Click(object sender, EventArgs e)
+        {
+            ShowManageStudentsPanel();
+        }
+
+        private void btnCreateStudent_Click(object sender, EventArgs e)
+        {
+            OpenNewFormAndUpdateParentOnClose(new EditStudentForm(), ShowManageStudentsPanel);
+        }
+
+        private void btnDeleteStudent_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Student currentStudent = GetSelectedItemFromListView<Student>(listViewManageStudents, Properties.Resources.ErrorMessageStudentNotSelected);
+                var confirmResult = MessageBox.Show($"Are you sure you want to delete {currentStudent.FullName}?", Properties.Resources.ConfirmDeletion, MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    studentService.DeleteStudent(currentStudent);
+                    ShowManageStudentsPanel();
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
+        }
+
+        private void btnEditStudent_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Student currentStudent = GetSelectedItemFromListView<Student>(listViewManageStudents, Properties.Resources.ErrorMessageStudentNotSelected);
+                OpenNewFormAndUpdateParentOnClose(new EditStudentForm(currentStudent), ShowManageStudentsPanel);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
+            }
         }
     }
 }

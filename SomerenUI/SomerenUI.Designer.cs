@@ -33,7 +33,9 @@
             menuItemApplication = new System.Windows.Forms.ToolStripMenuItem();
             menuItemDashboard = new System.Windows.Forms.ToolStripMenuItem();
             menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
+            menuItemStudentsMenu = new System.Windows.Forms.ToolStripMenuItem();
             menuItemStudents = new System.Windows.Forms.ToolStripMenuItem();
+            menuItemManageStudents = new System.Windows.Forms.ToolStripMenuItem();
             menuItemLecturers = new System.Windows.Forms.ToolStripMenuItem();
             menuItemActivities = new System.Windows.Forms.ToolStripMenuItem();
             menuItemRooms = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +118,18 @@
             chStockStatusDrinkSupplies = new System.Windows.Forms.ColumnHeader();
             chNumberOfPurchaseSupplies = new System.Windows.Forms.ColumnHeader();
             chNumberOfPurchases = new System.Windows.Forms.ColumnHeader();
+            pnlManageStudents = new System.Windows.Forms.Panel();
+            picBoxManageStudents = new System.Windows.Forms.PictureBox();
+            listViewManageStudents = new System.Windows.Forms.ListView();
+            chFirstNameManageStudents = new System.Windows.Forms.ColumnHeader();
+            chLastNameManageStudents = new System.Windows.Forms.ColumnHeader();
+            chPhoneNumberManageStudents = new System.Windows.Forms.ColumnHeader();
+            chStudentNumberManageStudents = new System.Windows.Forms.ColumnHeader();
+            chClassManageStudents = new System.Windows.Forms.ColumnHeader();
+            lblManageStudents = new System.Windows.Forms.Label();
+            btnCreateStudent = new System.Windows.Forms.Button();
+            btnDeleteStudent = new System.Windows.Forms.Button();
+            btnEditStudent = new System.Windows.Forms.Button();
             menuStrip.SuspendLayout();
             pnlDashboard.SuspendLayout();
             pnlStudents.SuspendLayout();
@@ -132,12 +146,14 @@
             ((System.ComponentModel.ISupportInitialize)picBoxPlaceOrder).BeginInit();
             pnlDrinkSupplies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxDrinkSupplies).BeginInit();
+            pnlManageStudents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxManageStudents).BeginInit();
             SuspendLayout();
             // 
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemApplication, menuItemStudents, menuItemLecturers, menuItemActivities, menuItemRooms, menuItemDrinksMenu });
+            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemApplication, menuItemStudentsMenu, menuItemLecturers, menuItemActivities, menuItemRooms, menuItemDrinksMenu });
             menuStrip.Location = new System.Drawing.Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
@@ -166,12 +182,26 @@
             menuItemExit.Text = "Exit";
             menuItemExit.Click += menuItemExit_Click;
             // 
+            // menuItemStudentsMenu
+            // 
+            menuItemStudentsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemStudents, menuItemManageStudents });
+            menuItemStudentsMenu.Name = "menuItemStudentsMenu";
+            menuItemStudentsMenu.Size = new System.Drawing.Size(97, 29);
+            menuItemStudentsMenu.Text = "Students";
+            // 
             // menuItemStudents
             // 
             menuItemStudents.Name = "menuItemStudents";
-            menuItemStudents.Size = new System.Drawing.Size(97, 29);
+            menuItemStudents.Size = new System.Drawing.Size(252, 34);
             menuItemStudents.Text = "Students";
-            menuItemStudents.Click += menuItemStudents_Click;
+            menuItemStudents.Click += menuItemStudents_Click_1;
+            // 
+            // menuItemManageStudents
+            // 
+            menuItemManageStudents.Name = "menuItemManageStudents";
+            menuItemManageStudents.Size = new System.Drawing.Size(252, 34);
+            menuItemManageStudents.Text = "Manage Students";
+            menuItemManageStudents.Click += menuItemManageStudents_Click;
             // 
             // menuItemLecturers
             // 
@@ -253,7 +283,7 @@
             // picBoxStudents
             // 
             picBoxStudents.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxStudents.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxStudents.Image = (System.Drawing.Image)resources.GetObject("picBoxStudents.Image");
             picBoxStudents.Location = new System.Drawing.Point(732, 56);
             picBoxStudents.Name = "picBoxStudents";
             picBoxStudents.Size = new System.Drawing.Size(127, 116);
@@ -332,7 +362,7 @@
             // picBoxRooms
             // 
             picBoxRooms.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxRooms.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxRooms.Image = (System.Drawing.Image)resources.GetObject("picBoxRooms.Image");
             picBoxRooms.Location = new System.Drawing.Point(732, 56);
             picBoxRooms.Name = "picBoxRooms";
             picBoxRooms.Size = new System.Drawing.Size(127, 116);
@@ -391,7 +421,7 @@
             // picBoxDrinks
             // 
             picBoxDrinks.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxDrinks.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinks.Image");
             picBoxDrinks.Location = new System.Drawing.Point(732, 56);
             picBoxDrinks.Name = "picBoxDrinks";
             picBoxDrinks.Size = new System.Drawing.Size(127, 116);
@@ -490,7 +520,7 @@
             // picBoxLecturers
             // 
             picBoxLecturers.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxLecturers.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxLecturers.Image = (System.Drawing.Image)resources.GetObject("picBoxLecturers.Image");
             picBoxLecturers.Location = new System.Drawing.Point(732, 56);
             picBoxLecturers.Name = "picBoxLecturers";
             picBoxLecturers.Size = new System.Drawing.Size(127, 116);
@@ -555,7 +585,7 @@
             // picBoxActivities
             // 
             picBoxActivities.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxActivities.Image = (System.Drawing.Image)resources.GetObject("picBoxActivities.Image");
             picBoxActivities.Location = new System.Drawing.Point(732, 56);
             picBoxActivities.Name = "picBoxActivities";
             picBoxActivities.Size = new System.Drawing.Size(127, 116);
@@ -622,7 +652,7 @@
             // picBoxPlaceOrder
             // 
             picBoxPlaceOrder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxPlaceOrder.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxPlaceOrder.Image = (System.Drawing.Image)resources.GetObject("picBoxPlaceOrder.Image");
             picBoxPlaceOrder.Location = new System.Drawing.Point(732, 56);
             picBoxPlaceOrder.Name = "picBoxPlaceOrder";
             picBoxPlaceOrder.Size = new System.Drawing.Size(127, 116);
@@ -780,7 +810,7 @@
             // picBoxDrinkSupplies
             // 
             picBoxDrinkSupplies.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxDrinkSupplies.Image = (System.Drawing.Image)resources.GetObject(Properties.Resources.SomerenImage);
+            picBoxDrinkSupplies.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinkSupplies.Image");
             picBoxDrinkSupplies.Location = new System.Drawing.Point(732, 56);
             picBoxDrinkSupplies.Name = "picBoxDrinkSupplies";
             picBoxDrinkSupplies.Size = new System.Drawing.Size(127, 116);
@@ -831,6 +861,108 @@
             chNumberOfPurchaseSupplies.Text = "Purchases";
             chNumberOfPurchaseSupplies.Width = 100;
             // 
+            // pnlManageStudents
+            // 
+            pnlManageStudents.Controls.Add(picBoxManageStudents);
+            pnlManageStudents.Controls.Add(listViewManageStudents);
+            pnlManageStudents.Controls.Add(lblManageStudents);
+            pnlManageStudents.Controls.Add(btnCreateStudent);
+            pnlManageStudents.Controls.Add(btnDeleteStudent);
+            pnlManageStudents.Controls.Add(btnEditStudent);
+            pnlManageStudents.Location = new System.Drawing.Point(0, 35);
+            pnlManageStudents.Name = "pnlManageStudents";
+            pnlManageStudents.Size = new System.Drawing.Size(1000, 565);
+            pnlManageStudents.TabIndex = 3;
+            // 
+            // picBoxManageStudents
+            // 
+            picBoxManageStudents.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            picBoxManageStudents.Image = (System.Drawing.Image)resources.GetObject("picBoxManageStudents.Image");
+            picBoxManageStudents.Location = new System.Drawing.Point(732, 56);
+            picBoxManageStudents.Name = "picBoxManageStudents";
+            picBoxManageStudents.Size = new System.Drawing.Size(127, 116);
+            picBoxManageStudents.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            picBoxManageStudents.TabIndex = 2;
+            picBoxManageStudents.TabStop = false;
+            // 
+            // listViewManageStudents
+            // 
+            listViewManageStudents.AutoArrange = false;
+            listViewManageStudents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chFirstNameManageStudents, chLastNameManageStudents, chPhoneNumberManageStudents, chStudentNumberManageStudents, chClassManageStudents });
+            listViewManageStudents.FullRowSelect = true;
+            listViewManageStudents.Location = new System.Drawing.Point(16, 56);
+            listViewManageStudents.MultiSelect = false;
+            listViewManageStudents.Name = "listViewManageStudents";
+            listViewManageStudents.Size = new System.Drawing.Size(700, 300);
+            listViewManageStudents.TabIndex = 2;
+            listViewManageStudents.UseCompatibleStateImageBehavior = false;
+            listViewManageStudents.View = System.Windows.Forms.View.Details;
+            // 
+            // chFirstNameManageStudents
+            // 
+            chFirstNameManageStudents.Text = "First Name";
+            chFirstNameManageStudents.Width = 150;
+            // 
+            // chLastNameManageStudents
+            // 
+            chLastNameManageStudents.Text = "Last Name";
+            chLastNameManageStudents.Width = 150;
+            // 
+            // chPhoneNumberManageStudents
+            // 
+            chPhoneNumberManageStudents.Text = "Phone Number";
+            chPhoneNumberManageStudents.Width = 200;
+            // 
+            // chStudentNumberManageStudents
+            // 
+            chStudentNumberManageStudents.Text = "Student Number";
+            chStudentNumberManageStudents.Width = 150;
+            // 
+            // chClassManageStudents
+            // 
+            chClassManageStudents.Text = "Class";
+            chClassManageStudents.Width = 75;
+            // 
+            // lblManageStudents
+            // 
+            lblManageStudents.AutoSize = true;
+            lblManageStudents.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblManageStudents.Location = new System.Drawing.Point(16, 8);
+            lblManageStudents.Name = "lblManageStudents";
+            lblManageStudents.Size = new System.Drawing.Size(295, 48);
+            lblManageStudents.TabIndex = 2;
+            lblManageStudents.Text = "Manage Students";
+            // 
+            // btnCreateStudent
+            // 
+            btnCreateStudent.Location = new System.Drawing.Point(16, 380);
+            btnCreateStudent.Name = "btnCreateStudent";
+            btnCreateStudent.Size = new System.Drawing.Size(150, 34);
+            btnCreateStudent.TabIndex = 4;
+            btnCreateStudent.Text = "Create student";
+            btnCreateStudent.UseVisualStyleBackColor = true;
+            btnCreateStudent.Click += btnCreateStudent_Click;
+            // 
+            // btnDeleteStudent
+            // 
+            btnDeleteStudent.Location = new System.Drawing.Point(186, 380);
+            btnDeleteStudent.Name = "btnDeleteStudent";
+            btnDeleteStudent.Size = new System.Drawing.Size(150, 34);
+            btnDeleteStudent.TabIndex = 5;
+            btnDeleteStudent.Text = "Delete student";
+            btnDeleteStudent.UseVisualStyleBackColor = true;
+            btnDeleteStudent.Click += btnDeleteStudent_Click;
+            // 
+            // btnEditStudent
+            // 
+            btnEditStudent.Location = new System.Drawing.Point(356, 380);
+            btnEditStudent.Name = "btnEditStudent";
+            btnEditStudent.Size = new System.Drawing.Size(150, 34);
+            btnEditStudent.TabIndex = 6;
+            btnEditStudent.Text = "Edit student";
+            btnEditStudent.UseVisualStyleBackColor = true;
+            btnEditStudent.Click += btnEditStudent_Click;
+            // 
             // SomerenUI
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -845,6 +977,7 @@
             Controls.Add(pnlDrinks);
             Controls.Add(pnlDrinkSupplies);
             Controls.Add(pnlPlaceOrder);
+            Controls.Add(pnlManageStudents);
             MainMenuStrip = menuStrip;
             Name = "SomerenUI";
             Text = "SomerenApp";
@@ -873,6 +1006,9 @@
             pnlDrinkSupplies.ResumeLayout(false);
             pnlDrinkSupplies.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxDrinkSupplies).EndInit();
+            pnlManageStudents.ResumeLayout(false);
+            pnlManageStudents.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxManageStudents).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -883,7 +1019,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemApplication;
         private System.Windows.Forms.ToolStripMenuItem menuItemDashboard;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
-        private System.Windows.Forms.ToolStripMenuItem menuItemStudents;
+        private System.Windows.Forms.ToolStripMenuItem menuItemStudentsMenu;
         private System.Windows.Forms.ToolStripMenuItem menuItemLecturers;
         private System.Windows.Forms.ToolStripMenuItem menuItemActivities;
         private System.Windows.Forms.ToolStripMenuItem menuItemRooms;
@@ -966,5 +1102,19 @@
         private System.Windows.Forms.ColumnHeader chStockDrinkSupplies;
         private System.Windows.Forms.ColumnHeader chStockStatusDrinkSupplies;
         private System.Windows.Forms.ColumnHeader chNumberOfPurchaseSupplies;
+        private System.Windows.Forms.Panel pnlManageStudents;
+        private System.Windows.Forms.PictureBox picBoxManageStudents;
+        private System.Windows.Forms.ListView listViewManageStudents;
+        private System.Windows.Forms.Label lblManageStudents;
+        private System.Windows.Forms.ToolStripMenuItem menuItemStudents;
+        private System.Windows.Forms.ToolStripMenuItem menuItemManageStudents;
+        private System.Windows.Forms.ColumnHeader chFirstNameManageStudents;
+        private System.Windows.Forms.ColumnHeader chLastNameManageStudents;
+        private System.Windows.Forms.ColumnHeader chPhoneNumberManageStudents;
+        private System.Windows.Forms.ColumnHeader chStudentNumberManageStudents;
+        private System.Windows.Forms.ColumnHeader chClassManageStudents;
+        private System.Windows.Forms.Button btnCreateStudent;
+        private System.Windows.Forms.Button btnDeleteStudent;
+        private System.Windows.Forms.Button btnEditStudent;
     }
 }
