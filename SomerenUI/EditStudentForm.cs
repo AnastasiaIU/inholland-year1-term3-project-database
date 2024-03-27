@@ -14,7 +14,7 @@ namespace SomerenUI
             Size = new System.Drawing.Size(411, 486);
             Text = "Create Student";
             btnUpdateStudent.Hide();
-            List<Room> rooms = roomService.GetRooms();
+            List<Room> rooms = roomService.GetAllRooms();
 
             foreach (Room room in rooms)
                 if (!room.ToString().StartsWith("A0"))
@@ -108,7 +108,7 @@ namespace SomerenUI
             else
                 studentNumber = tryGetStudentNumber;
 
-            List<Student> students = studentService.GetStudents();
+            List<Student> students = studentService.GetAllStudents();
             foreach (Student student in students)
                 if (student.StudentNumber == studentNumber)
                     throw new Exception(Properties.Resources.ErrorMessageExistingStudentNumber);

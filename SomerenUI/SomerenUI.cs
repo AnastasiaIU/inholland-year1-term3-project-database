@@ -12,8 +12,6 @@ namespace SomerenUI
         private LecturerService lecturerService = new LecturerService();
         private SupervisorService supervisorService = new SupervisorService();
         private PurchaseService purchaseService = new PurchaseService();
-        private RoomService roomService = new RoomService();
-        private StudentService studentService = new StudentService();
 
         public SomerenUI()
         {
@@ -116,7 +114,7 @@ namespace SomerenUI
         private void ShowManageStudentsPanel()
         {
             ShowPanel(pnlManageStudents);
-            List<Student> data = FetchData(GetStudents);
+            List<Student> data = FetchData(studentService.GetAllStudents);
             DisplayDataInListView(listViewManageStudents, data, CreateStudentListViewItem);
         }
 
@@ -160,7 +158,7 @@ namespace SomerenUI
         private void ShowDrinkSuppliesPanel()
         {
             ShowPanel(pnlDrinkSupplies);
-            List<Drink> data = FetchData(GetDrinks);
+            List<Drink> data = FetchData(drinkService.GetAllDrinks);
             DisplayDataInListView(listViewDrinkSupplies, data, CreateDrinkSuppliesListViewItem);
         }
 

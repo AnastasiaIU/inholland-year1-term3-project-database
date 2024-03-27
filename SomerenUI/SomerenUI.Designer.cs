@@ -1030,7 +1030,7 @@
             // picBoxDrinkSupplies
             // 
             picBoxDrinkSupplies.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxDrinkSupplies.Image = (System.Drawing.Image)resources.GetObject("picBoxDrinkSupplies.Image");
+            picBoxDrinkSupplies.Image = Properties.Resources.someren;
             picBoxDrinkSupplies.Location = new System.Drawing.Point(732, 56);
             picBoxDrinkSupplies.Name = "picBoxDrinkSupplies";
             picBoxDrinkSupplies.Size = new System.Drawing.Size(127, 116);
@@ -1097,7 +1097,7 @@
             // picBoxManageStudents
             // 
             picBoxManageStudents.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            picBoxManageStudents.Image = (System.Drawing.Image)resources.GetObject("picBoxManageStudents.Image");
+            picBoxManageStudents.Image = Properties.Resources.someren;
             picBoxManageStudents.Location = new System.Drawing.Point(732, 56);
             picBoxManageStudents.Name = "picBoxManageStudents";
             picBoxManageStudents.Size = new System.Drawing.Size(127, 116);

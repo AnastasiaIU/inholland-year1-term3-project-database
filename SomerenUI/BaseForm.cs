@@ -6,7 +6,9 @@ namespace SomerenUI
     public partial class BaseForm : Form
     {
         protected DrinkService drinkService = new DrinkService();
-        
+        protected RoomService roomService = new RoomService();
+        protected StudentService studentService = new StudentService();
+
         protected void ShowMessage(string message, string arg = null)
         {
             MessageBox.Show(message + arg);
