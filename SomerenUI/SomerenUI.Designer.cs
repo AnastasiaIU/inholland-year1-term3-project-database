@@ -784,7 +784,6 @@
             btnPlaceOrder.UseVisualStyleBackColor = true;
             btnPlaceOrder.Click += btnPlaceOrder_Click;
             // 
-
             // pnlDrinkSupplies
             // 
             pnlDrinkSupplies.Controls.Add(btnEditDrink);
@@ -901,22 +900,27 @@
             // 
             // chFirstNameManageStudents
             // 
+            chFirstNameManageStudents.Text = "First Name";
             chFirstNameManageStudents.Width = 150;
             // 
             // chLastNameManageStudents
             // 
+            chLastNameManageStudents.Text = "Last Name";
             chLastNameManageStudents.Width = 150;
             // 
             // chPhoneNumberManageStudents
             // 
+            chPhoneNumberManageStudents.Text = "Phone Number";
             chPhoneNumberManageStudents.Width = 200;
             // 
             // chStudentNumberManageStudents
             // 
-            chStudentNumberManageStudents.Width = 100;
+            chStudentNumberManageStudents.Text = "Student Number";
+            chStudentNumberManageStudents.Width = 150;
             // 
             // chClassManageStudents
             // 
+            chClassManageStudents.Text = "Class";
             chClassManageStudents.Width = 75;
             // 
             // lblManageStudents

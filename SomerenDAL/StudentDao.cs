@@ -18,7 +18,7 @@ namespace SomerenDAL
 
         public void CreateStudent(Student student)
         {
-            string query = "SET IDENTITY_INSERT Students ON INSERT INTO Students (student_number, room_number, first_name, last_name, phone_number, class_number) VALUES (@StudentNumber, @RoomNumber, @FirstName, @LastName, @PhoneNumber, @ClassNumber)";
+            string query = "INSERT INTO Students (student_number, room_number, first_name, last_name, phone_number, class_number) VALUES (@StudentNumber, @RoomNumber, @FirstName, @LastName, @PhoneNumber, @ClassNumber)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("@StudentNumber", student.StudentNumber),
