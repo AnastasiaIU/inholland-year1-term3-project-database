@@ -298,7 +298,7 @@ namespace SomerenUI
             drinkService.UpdateDrink(currentDrink);
         }
 
-        private void calculateTotalPrice()
+        private void CalculateTotalPrice()
         {
             try
             {
@@ -414,14 +414,26 @@ namespace SomerenUI
             {
                 Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitiesSupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
                 Lecturer currentSupervisor = GetSelectedItemFromListView<Lecturer>(listViewSupervisors, Properties.Resources.ErrorMessageSupervisorNotSelected);
-                supervisorService.DeleteSupervisorForActivity(currentSupervisor, currentActivity);
-                ShowMessage(Properties.Resources.SuccessfullyDeleted, currentSupervisor.FullName);
-                DisplaySupervisorsForActivity(currentActivity);
+
+                DialogResult confirmResult = ShowConfirmDeletionMessageBox(currentSupervisor.FullName);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    supervisorService.DeleteSupervisorForActivity(currentSupervisor, currentActivity);
+                    ShowMessage(Properties.Resources.SuccessfullyDeleted, currentSupervisor.FullName);
+                    DisplaySupervisorsForActivity(currentActivity);
+                }
             }
             catch (Exception ex)
             {
                 ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
             }
+        }
+
+        private DialogResult ShowConfirmDeletionMessageBox(string deletionSubject)
+        {
+            string messageText = GetResourceStringWithArgument(Properties.Resources.DeletePrompt, deletionSubject);
+            DialogResult confirmResult = MessageBox.Show(messageText, Properties.Resources.ConfirmDeletion, MessageBoxButtons.YesNo);
+            return confirmResult;
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
@@ -481,12 +493,12 @@ namespace SomerenUI
 
         private void calculateTotalPricePlaceOrder_Event(object sender, EventArgs e)
         {
-            calculateTotalPrice();
+            CalculateTotalPrice();
         }
 
         private void calculateTotalPricePlaceOrder_Event(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            calculateTotalPrice();
+            CalculateTotalPrice();
         }
 
         private void listViewActivitiesSupervisors_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)

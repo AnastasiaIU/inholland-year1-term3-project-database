@@ -27,5 +27,10 @@ namespace SomerenUI
         {
             return double.Parse(number.Replace(',', '.'), CultureInfo.InvariantCulture);
         }
+
+        protected string GetResourceStringWithArgument(string resourceString, string arg)
+        {
+            return string.Format(resourceString, arg);
+        }
     }
 }
