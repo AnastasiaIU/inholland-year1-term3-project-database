@@ -16,6 +16,47 @@ namespace SomerenDAL
             return ReadTables(dataTable);
         }
 
+        public void CreateStudent(Student student)
+        {
+            string query = "INSERT INTO Students (student_number, room_number, first_name, last_name, phone_number, class_number) VALUES (@StudentNumber, @RoomNumber, @FirstName, @LastName, @PhoneNumber, @ClassNumber)";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@StudentNumber", student.StudentNumber),
+                new SqlParameter("@RoomNumber", student.RoomNumber),
+                new SqlParameter("@FirstName", student.FirstName),
+                new SqlParameter("@LastName", student.LastName),
+                new SqlParameter("@PhoneNumber", student.PhoneNumber),
+                new SqlParameter("@ClassNumber", student.ClassNumber)
+            };
+
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void UpdateStudent(Student student)
+        {
+            string query = "UPDATE Students SET [first_name]=@FirstName, [last_name]=@LastName, [phone_number]=@PhoneNumber WHERE [student_number]=@StudentNumber";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@FirstName", student.FirstName),
+                new SqlParameter("@LastName", student.LastName),
+                new SqlParameter("@PhoneNumber", student.PhoneNumber),
+                new SqlParameter("@StudentNumber", student.StudentNumber)
+            };
+
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void DeleteStudent(Student student)
+        {
+            string query = "DELETE FROM Students WHERE [student_number]=@StudentNumber";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@StudentNumber", student.StudentNumber)
+            };
+
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
         private List<Student> ReadTables(DataTable dataTable)
         {
             List<Student> students = new List<Student>();

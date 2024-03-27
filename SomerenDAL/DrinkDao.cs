@@ -1,4 +1,5 @@
 ﻿using SomerenModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,7 +10,7 @@ namespace SomerenDAL
     {
         public List<Drink> GetAllDrinks()
         {
-            string query = "SELECT [drinkId], [price], [alcoholic], [drink_name], [current_stock] FROM Drinks ORDER BY [drink_name]";
+            string query = "SELECT [drinkId], [price], [alcoholic], [drink_name], [current_stock], (SELECT SUM(quantity) FROM Purchases WHERE Purchases.drinkId = Drinks.drinkId GROUP BY [drinkId]) AS [number_of_purchases] FROM Drinks ORDER BY [drink_name];";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
             return ReadTables(dataTable);
@@ -66,8 +67,9 @@ namespace SomerenDAL
                 bool isAlcoholic = (bool)dr["alcoholic"];
                 string name = (string)dr["drink_name"];
                 int stock = (int)dr["current_stock"];
+                int numberOfPurchases = dr["number_of_purchases"] == DBNull.Value ? 0 : (int)dr["number_of_purchases"];
 
-                Drink drink = new Drink(id, price, isAlcoholic, name, stock);
+                Drink drink = new Drink(id, price, isAlcoholic, name, stock, numberOfPurchases);
                 drinks.Add(drink);
             }
 

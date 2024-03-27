@@ -23,6 +23,7 @@
                 }
             }
         }
+        public int NumberOfPurchases { get; set; }
 
 
         /// <summary>
@@ -32,12 +33,14 @@
         /// <param name="isAlcoholic">Indicates whether the drink contains alcohol.</param>
         /// <param name="name">The name of the drink.</param>
         /// <param name="stock">The quantity of the drink.</param>
-        public Drink(double price, bool isAlcoholic, string name, int stock)
+        /// <param name="numberOfPurchases"">The number of times the drink type has been purchased</param>
+        public Drink(double price, bool isAlcoholic, string name, int stock, int numberOfPurchases)
         {
             Price = price;
             IsAlcoholic = isAlcoholic;
             Name = name;
             Stock = stock;
+            NumberOfPurchases = numberOfPurchases;
         }
 
         /// <summary>
@@ -48,8 +51,9 @@
         /// <param name="isAlcoholic">Indicates whether the drink contains alcohol.</param>
         /// <param name="name">The name of the drink.</param>
         /// <param name="stock">The quantity of the drink.</param>
-        public Drink(int id, double price, bool isAlcoholic, string name, int stock)
-            : this(price, isAlcoholic, name, stock)
+        /// <param name="numberOfPurchases"">The number of times the drink type has been purchased</param>
+        public Drink(int id, double price, bool isAlcoholic, string name, int stock, int numberOfPurchases)
+            : this(price, isAlcoholic, name, stock, numberOfPurchases)
         {
             Id = id;
         }

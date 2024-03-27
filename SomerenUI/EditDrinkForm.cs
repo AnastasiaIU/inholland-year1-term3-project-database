@@ -24,10 +24,6 @@ namespace SomerenUI
             btnCreateDrink.Hide();
             currentDrink = drink;
             LoadText();
-            if (drink.IsAlcoholic)
-                rdoTrue.Checked = true;
-            else
-                rdoFalse.Checked = false;
         }
 
         protected void ShowMessageAndCloseForm(string message, Form form, string arg = null)
@@ -40,20 +36,20 @@ namespace SomerenUI
         {
             try
             {
-                if (txtDrinkName.Text.IsNullOrEmpty())
-                    throw new ArgumentNullException();
+                ValidateInputs(out double tryGetPrice, out int tryGetStock);
 
-                double price = GetDoubleFromString(txtDrinkPrice.Text);
-                int stock = int.Parse(txtDrinkStock.Text);
+                double price = tryGetPrice;
+                int stock = tryGetStock;
+                bool isAlcoholic = rdoTrue.Checked;
 
-                Drink drink = new Drink(price, currentDrink.IsAlcoholic, txtDrinkName.Text, stock);
+                Drink drink = new Drink(price, isAlcoholic, txtDrinkName.Text, stock, 0);
                 drinkService.CreateDrink(drink);
                 ShowMessageAndCloseForm(Properties.Resources.SuccessfullyAdded, this, drink.Name);
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongPrice : ex.Message;
+                ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
             }
         }
 
@@ -61,21 +57,34 @@ namespace SomerenUI
         {
             try
             {
-                if (txtDrinkName.Text.IsNullOrEmpty())
-                    throw new ArgumentNullException();
+                ValidateInputs(out double tryGetPrice, out int tryGetStock);
 
-                double price = GetDoubleFromString(txtDrinkPrice.Text);
-                int stock = int.Parse(txtDrinkStock.Text);
+                double price = tryGetPrice;
+                int stock = tryGetStock;
+                bool isAlcoholic = rdoTrue.Checked;
 
-                Drink drink = new Drink(currentDrink.Id, price, currentDrink.IsAlcoholic, txtDrinkName.Text, stock);
+                Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, txtDrinkName.Text, stock, currentDrink.NumberOfPurchases);
                 drinkService.UpdateDrink(drink);
                 ShowMessageAndCloseForm(Properties.Resources.SuccessfullyEdited, this, drink.Name);
             }
             catch (Exception ex)
             {
-                string errorMessage = ex is ArgumentNullException ? Properties.Resources.ErrorMessageNullField : Properties.Resources.ErrorMessage;
-                ShowMessage(errorMessage, ex.Message);
+                string errorMessage = ex is FormatException ? Properties.Resources.ErrorMessageWrongPrice : ex.Message;
+                ShowMessage(Properties.Resources.ErrorMessage, errorMessage);
             }
+        }
+
+        private void ValidateInputs(out double tryGetPrice, out int tryGetStock)
+        {
+            if (txtDrinkName.Text.IsNullOrEmpty())
+                throw new Exception(Properties.Resources.ErrorMessageNoName);
+
+            tryGetPrice = double.Parse(txtDrinkPrice.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
+
+            if (!int.TryParse(txtDrinkStock.Text, out int tryGetInt))
+                throw new Exception(Properties.Resources.ErrorMessageWrongStock);
+
+            tryGetStock = tryGetInt;
         }
 
         private void LoadText()
