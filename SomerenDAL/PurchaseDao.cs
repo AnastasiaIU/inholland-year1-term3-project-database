@@ -12,7 +12,7 @@ namespace SomerenDAL
             string query = "SELECT [purchaseId], [student_number], [drinkId], [quantity] FROM Purchases";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable);
+            return ReadTables(dataTable, ReadRow);
         }
 
         public void CreatePurchase(Purchase purchase)
@@ -28,22 +28,14 @@ namespace SomerenDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
-        private List<Purchase> ReadTables(DataTable dataTable)
+        private Purchase ReadRow(DataRow dr)
         {
-            List<Purchase> purchases = new List<Purchase>();
+            int id = (int)dr["purchaseId"];
+            int studentId = (int)dr["student_number"];
+            int drinkId = (int)dr["drinkId"];
+            int quantity = (int)dr["quantity"];
 
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                int id = (int)dr["purchaseId"];
-                int studentId = (int)dr["student_number"];
-                int drinkId = (int)dr["drinkId"];
-                int quantity = (int)dr["quantity"];
-
-                Purchase purchase = new Purchase(id, studentId, drinkId, quantity);
-                purchases.Add(purchase);
-            }
-
-            return purchases;
+            return new Purchase(id, studentId, drinkId, quantity);
         }
     }
 }

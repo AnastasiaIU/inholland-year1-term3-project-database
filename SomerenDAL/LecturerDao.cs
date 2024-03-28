@@ -13,27 +13,19 @@ namespace SomerenDAL
             string query = "SELECT [lecturerId], [age], [room_number], [first_name], [last_name], [phone_number] FROM Lecturers ORDER BY [last_name]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable);
+            return ReadTables(dataTable, ReadRow);
         }
 
-        protected List<Lecturer> ReadTables(DataTable dataTable)
+        protected Lecturer ReadRow(DataRow dr)
         {
-            List<Lecturer> lecturers = new List<Lecturer>();
+            int id = (int)dr["lecturerId"];
+            int age = (int)dr["age"];
+            string roomNumber = (string)dr["room_number"];
+            string firstName = (string)dr["first_name"];
+            string lastName = (string)dr["last_name"];
+            string phoneNumber = dr["phone_number"] == DBNull.Value ? null : (string)dr["phone_number"];
 
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                int id = (int)dr["lecturerId"];
-                int age = (int)dr["age"];
-                string roomNumber = (string)dr["room_number"];
-                string firstName = (string)dr["first_name"];
-                string lastName = (string)dr["last_name"];
-                string phoneNumber = dr["phone_number"] == DBNull.Value ? null : (string)dr["phone_number"];
-
-                Lecturer lecturer = new Lecturer(id, age, roomNumber, firstName, lastName, phoneNumber);
-                lecturers.Add(lecturer);
-            };
-
-            return lecturers;
+            return new Lecturer(id, age, roomNumber, firstName, lastName, phoneNumber);
         }
     }
 }

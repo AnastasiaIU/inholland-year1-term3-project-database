@@ -15,7 +15,7 @@ namespace SomerenDAL
                 new SqlParameter("@ActivityId", activity.Id)
             };
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable);
+            return ReadTables(dataTable, ReadRow);
         }
 
         public List<Lecturer> GetAllAvailableSupervisorsForActivity(Activity activity)
@@ -26,7 +26,7 @@ namespace SomerenDAL
                 new SqlParameter("@ActivityId", activity.Id)
             };
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable);
+            return ReadTables(dataTable, ReadRow);
         }
 
         public void AddSupervisorToActivity(Lecturer lecturer, Activity activity)
