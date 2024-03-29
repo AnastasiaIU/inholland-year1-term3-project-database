@@ -23,7 +23,7 @@ namespace SomerenUI
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 string name = ValidateString(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
                 double price = ValidatePrice(txtDrinkPrice.Text);
                 int stock = ValidateInt(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
@@ -43,7 +43,7 @@ namespace SomerenUI
         private void btnUpdateDrink_Click(object sender, EventArgs e)
         {
             try
-            {                      
+            {
                 string name = ValidateString(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
                 double price = ValidatePrice(txtDrinkPrice.Text);
                 int stock = ValidateInt(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
@@ -71,10 +71,10 @@ namespace SomerenUI
             else
             {
                 Text = formName;
-                btnCreateDrink.Hide();                
+                btnCreateDrink.Hide();
                 LoadText();
             }
-            
+
         }
 
         private void LoadText()

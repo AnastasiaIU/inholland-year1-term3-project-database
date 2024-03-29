@@ -37,7 +37,7 @@ namespace SomerenUI
         }
 
         protected double ValidatePrice(string price)
-        {            
+        {
             return double.Parse(price.Replace(',', '.'), CultureInfo.InvariantCulture);
         }
     }

@@ -10,7 +10,7 @@ namespace SomerenUI
         const int FormWidth = 411;
         const int CreateStudentHeight = 486;
         const int EditStudentHeight = 350;
-        
+
         public EditStudentForm()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace SomerenUI
                 string lastName = ValidateString(txtLastName.Text, Properties.Resources.ErrorMessageNoLastName);
                 int studentNumber = ValidateStudentNumber(txtStudentNumber.Text);
                 string roomNumber = ((Room)cmbRooms.SelectedItem).ToString();
-                string classNumber = ValidateString(txtClassNumber.Text, Properties.Resources.ErrorMessageNoClass);                
+                string classNumber = ValidateString(txtClassNumber.Text, Properties.Resources.ErrorMessageNoClass);
 
                 Student student = new Student(studentNumber, roomNumber, firstName, lastName, txtPhoneNumber.Text, classNumber);
                 studentService.CreateStudent(student);
