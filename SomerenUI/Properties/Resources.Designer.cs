@@ -106,7 +106,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to select a drink..
+        ///   Looks up a localized string similar to Need to select a drink. .
         /// </summary>
         internal static string ErrorMessageDrinkNotSelected {
             get {
@@ -120,6 +120,15 @@ namespace SomerenUI.Properties {
         internal static string ErrorMessageExistingStudentNumber {
             get {
                 return ResourceManager.GetString("ErrorMessageExistingStudentNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not enough stock to fulfill order..
+        /// </summary>
+        internal static string ErrorMessageInsufficientStock {
+            get {
+                return ResourceManager.GetString("ErrorMessageInsufficientStock", resourceCulture);
             }
         }
         
@@ -187,6 +196,15 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need to select a supervisor..
+        /// </summary>
+        internal static string ErrorMessageSupervisorNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorMessageSupervisorNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need to input a class number..
         /// </summary>
         internal static string ErrorMessageWrongClass {
@@ -201,15 +219,6 @@ namespace SomerenUI.Properties {
         internal static string ErrorMessageWrongPrice {
             get {
                 return ResourceManager.GetString("ErrorMessageWrongPrice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Need to select a supervisor..
-        /// </summary>
-        internal static string ErrorMessageSupervisorNotSelected {
-            get {
-                return ResourceManager.GetString("ErrorMessageSupervisorNotSelected", resourceCulture);
             }
         }
         
@@ -268,15 +277,6 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New purchase..
-        /// </summary>
-        internal static string NewPurchase {
-            get {
-                return ResourceManager.GetString("NewPurchase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
@@ -323,7 +323,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully added: .
+        ///   Looks up a localized string similar to Successfully added: {0}..
         /// </summary>
         internal static string SuccessfullyAdded {
             get {
@@ -332,7 +332,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully deleted: .
+        ///   Looks up a localized string similar to Successfully deleted: {0}..
         /// </summary>
         internal static string SuccessfullyDeleted {
             get {
@@ -341,7 +341,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully edited: .
+        ///   Looks up a localized string similar to Successfully edited: {0}..
         /// </summary>
         internal static string SuccessfullyEdited {
             get {

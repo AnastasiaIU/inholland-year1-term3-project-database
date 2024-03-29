@@ -311,28 +311,12 @@ namespace SomerenUI
             return stockLevelString;
         }
 
-        private void CreatePurchase(Student currentStudent, Drink currentDrink, int quantity)
-        {
-            int studentId = currentStudent.StudentNumber;
-            int drinkId = currentDrink.Id;
-
-            Purchase purchase = new Purchase(studentId, drinkId, quantity);
-            purchaseService.CreatePurchase(purchase);
-        }
-
-        private void UpdateStock(Drink currentDrink, int quantity)
-        {
-            currentDrink.Stock -= quantity;
-            drinkService.UpdateDrink(currentDrink);
-        }
-
-        private void CalculateTotalPrice()
+        private void ShowTotalPrice()
         {
             try
             {
-                Drink currentDrink = (Drink)listViewPlaceOrderDrinks.SelectedItems[0].Tag;
-                int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
-                double totalPrice = drinkService.GetTotalPrice(currentDrink, quantity);
+                SetPurchaseFromPlaceOrder();
+                double totalPrice = purchaseService.NewPurchase.TotalPrice;
                 lblPlaceOrderTotalPriceValue.Text = totalPrice.ToString(Properties.Resources.MoneyFormat);
             }
             catch
@@ -357,9 +341,11 @@ namespace SomerenUI
 
         private void ResetPlaceOrderForm()
         {
-            listViewPlaceOrderStudents.SelectedIndices.Clear();
-            listViewPlaceOrderDrinks.SelectedIndices.Clear();
             txtBoxPlaceOrderQuantity.Clear();
+            List<Student> dataStudents = FetchData(studentService.GetAllStudents);
+            DisplayDataInListView(listViewPlaceOrderStudents, dataStudents, CreatePlaceOrderStudentListViewItem);
+            List<Drink> dataDrinks = FetchData(drinkService.GetAllDrinks);
+            DisplayDataInListView(listViewPlaceOrderDrinks, dataDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
         private void DisplaySupervisorsForActivity(Activity activity)
@@ -368,6 +354,21 @@ namespace SomerenUI
             DisplayDataInListView(listViewSupervisors, supervisors, CreateLecturerListViewItem);
             List<Lecturer> availableLecturers = FetchData(supervisorService.GetAllAvailableSupervisorsForActivity, activity);
             DisplayDataInListView(listViewActivitySupervisorsLecturers, availableLecturers, CreateLecturerListViewItem);
+        }
+
+        private DialogResult ShowConfirmDeletionMessageBox<T>(T deletionSubject)
+        {
+            string messageText = GetResourceStringWithArgument(Properties.Resources.DeletePrompt, deletionSubject);
+            DialogResult confirmResult = MessageBox.Show(messageText, Properties.Resources.ConfirmDeletion, MessageBoxButtons.YesNo);
+            return confirmResult;
+        }
+
+        private void SetPurchaseFromPlaceOrder()
+        {
+            Student currentStudent = GetSelectedItemFromListView<Student>(listViewPlaceOrderStudents, Properties.Resources.ErrorMessageStudentNotSelected);
+            Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewPlaceOrderDrinks, Properties.Resources.ErrorMessageDrinkNotSelected);
+            int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
+            purchaseService.SetPurchase(currentStudent, currentDrink, quantity);
         }
 
         private void menuItemDashboard_Click(object sender, EventArgs e)
@@ -452,13 +453,6 @@ namespace SomerenUI
             }
         }
 
-        private DialogResult ShowConfirmDeletionMessageBox(string deletionSubject)
-        {
-            string messageText = GetResourceStringWithArgument(Properties.Resources.DeletePrompt, deletionSubject);
-            DialogResult confirmResult = MessageBox.Show(messageText, Properties.Resources.ConfirmDeletion, MessageBoxButtons.YesNo);
-            return confirmResult;
-        }
-
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
             OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(), ShowDrinkSuppliesPanel);
@@ -499,15 +493,24 @@ namespace SomerenUI
         {
             try
             {
-                Student currentStudent = GetSelectedItemFromListView<Student>(listViewPlaceOrderStudents, Properties.Resources.ErrorMessageStudentNotSelected);
-                Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewPlaceOrderDrinks, Properties.Resources.ErrorMessageDrinkNotSelected);
-                int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
+                int zero = int.Parse(Properties.Resources.Zero);
 
-                CreatePurchase(currentStudent, currentDrink, quantity);
-                UpdateStock(currentDrink, quantity);
+                SetPurchaseFromPlaceOrder();
 
-                ShowMessage(Properties.Resources.SuccessfullyAdded, Properties.Resources.NewPurchase);
-                ResetPlaceOrderForm();
+                if (purchaseService.NewPurchase.Drink.Stock - purchaseService.NewPurchase.Quantity < zero)
+                    throw new Exception(Properties.Resources.ErrorMessageInsufficientStock);
+                else if (purchaseService.NewPurchase.Quantity == zero)
+                    throw new Exception(Properties.Resources.ErrorMessageWrongQuantityFormat);
+                else
+                {
+                    drinkService.UpdateStock(purchaseService.NewPurchase.Drink, purchaseService.NewPurchase.Quantity);
+                    drinkService.UpdateDrink(purchaseService.NewPurchase.Drink);
+                    purchaseService.AddPurchaseToDatabase(purchaseService.NewPurchase);
+                    string messageText = GetResourceStringWithArgument(Properties.Resources.SuccessfullyAdded, purchaseService.NewPurchase);
+                    ShowMessage(messageText);
+                    purchaseService.ClearPurchase();
+                    ResetPlaceOrderForm();
+                }
             }
             catch (Exception ex)
             {
@@ -518,12 +521,12 @@ namespace SomerenUI
 
         private void calculateTotalPricePlaceOrder_Event(object sender, EventArgs e)
         {
-            CalculateTotalPrice();
+            ShowTotalPrice();
         }
 
         private void calculateTotalPricePlaceOrder_Event(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            CalculateTotalPrice();
+            ShowTotalPrice();
         }
 
         private void listViewActivitySupervisors_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)

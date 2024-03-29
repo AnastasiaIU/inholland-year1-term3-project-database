@@ -1,26 +1,32 @@
 ﻿using SomerenDAL;
 using SomerenModel;
-using System.Collections.Generic;
 
 namespace SomerenService
 {
     public class PurchaseService
     {
         private PurchaseDao purchaseDao;
+        private Purchase newPurchase;
+        public Purchase NewPurchase { get { return newPurchase; } }
 
         public PurchaseService()
         {
             purchaseDao = new PurchaseDao();
         }
 
-        public List<Purchase> GetAllPurchases()
+        public void AddPurchaseToDatabase(Purchase purchase)
         {
-            return purchaseDao.GetAllPurchases();
+            purchaseDao.AddPurchase(purchase);
         }
 
-        public void CreatePurchase(Purchase purchase)
+        public void SetPurchase(Student student, Drink drink, int quantity)
         {
-            purchaseDao.CreatePurchase(purchase);
+            newPurchase = new Purchase(student, drink, quantity);
+        }
+
+        public void ClearPurchase()
+        {
+            newPurchase = null;
         }
     }
 }

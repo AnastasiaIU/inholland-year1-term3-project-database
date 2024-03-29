@@ -16,5 +16,14 @@
             LastName = lastName;
             PhoneNumber = phoneNumber;
         }
+
+        /// <summary>
+        /// Returns a string representation of the person.
+        /// </summary>
+        /// <returns>A string representing the full name of the person, formatted as "FullName". For example, "John Doe".</returns>
+        public override string ToString()
+        {
+            return $"{FullName}";
+        }
     }
 }

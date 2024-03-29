@@ -37,9 +37,9 @@ namespace SomerenService
             drinkDao.DeleteDrink(drink);
         }
 
-        public double GetTotalPrice(Drink drink, int quantity)
+        public void UpdateStock(Drink drink, int quantity)
         {
-            return drink.Price * quantity;
+            drink.Stock -= quantity;
         }
 
         /* We don't use this method currently but we want to keep it till the end of the project in case we will need it.

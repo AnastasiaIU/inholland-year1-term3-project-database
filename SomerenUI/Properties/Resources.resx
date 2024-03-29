@@ -186,9 +186,6 @@
   <data name="NearlyDepleted" xml:space="preserve">
     <value>stock nearly depleted</value>
   </data>
-  <data name="NewPurchase" xml:space="preserve">
-    <value>New purchase.</value>
-  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
@@ -206,13 +203,13 @@
     <value>Student</value>
   </data>
   <data name="SuccessfullyAdded" xml:space="preserve">
-    <value>Successfully added: </value>
+    <value>Successfully added: {0}.</value>
   </data>
   <data name="SuccessfullyDeleted" xml:space="preserve">
-    <value>Successfully deleted: </value>
+    <value>Successfully deleted: {0}.</value>
   </data>
   <data name="SuccessfullyEdited" xml:space="preserve">
-    <value>Successfully edited: </value>
+    <value>Successfully edited: {0}.</value>
   </data>
   <data name="Sufficient" xml:space="preserve">
     <value>stock sufficient</value>
@@ -222,5 +219,8 @@
   </data>
   <data name="Zero" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="ErrorMessageInsufficientStock" xml:space="preserve">
+    <value>Not enough stock to fulfill order.</value>
   </data>
 </root>

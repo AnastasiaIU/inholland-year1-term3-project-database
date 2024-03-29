@@ -14,7 +14,7 @@ namespace SomerenUI
             MessageBox.Show(message + arg);
         }
 
-        protected string GetResourceStringWithArgument(string resourceString, string arg)
+        protected string GetResourceStringWithArgument<T>(string resourceString, T arg)
         {
             return string.Format(resourceString, arg);
         }

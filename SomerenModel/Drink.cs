@@ -58,6 +58,10 @@
             Id = id;
         }
 
+        /// <summary>
+        /// Returns a string representation of the drink.
+        /// </summary>
+        /// <returns>A string representing the name of the drink, formatted as "Name". For example, "Coca Cola".</returns>
         public override string ToString()
         {
             return Name;
