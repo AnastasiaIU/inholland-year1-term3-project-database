@@ -13,7 +13,7 @@ namespace SomerenDAL
             string query = "SELECT [student_number], [room_number], [first_name], [last_name], [phone_number], [class_number] FROM Students ORDER BY [last_name]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable, ReadRow);
+            return ReadTable(dataTable, ReadRow);
         }
 
         public void CreateStudent(Student student)

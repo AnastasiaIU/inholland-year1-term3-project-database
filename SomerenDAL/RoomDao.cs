@@ -12,7 +12,7 @@ namespace SomerenDAL
             string query = "SELECT [room_number], [building_number], [floor], [number_of_beds] FROM Rooms ORDER BY [room_number]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable, ReadRow);
+            return ReadTable(dataTable, ReadRow);
         }
 
         private Room ReadRow(DataRow dr)

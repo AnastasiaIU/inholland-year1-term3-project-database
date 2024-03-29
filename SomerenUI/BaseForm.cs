@@ -1,4 +1,7 @@
-﻿using SomerenService;
+﻿using Microsoft.IdentityModel.Tokens;
+using SomerenService;
+using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SomerenUI
@@ -17,6 +20,25 @@ namespace SomerenUI
         protected string GetResourceStringWithArgument(string resourceString, string arg)
         {
             return string.Format(resourceString, arg);
+        }
+
+        protected string ValidateString(string str, string errorMessage)
+        {
+            if (str.IsNullOrEmpty())
+                throw new Exception(errorMessage);
+            return str;
+        }
+
+        protected int ValidateInt(string number, string errorMesage)
+        {
+            if (!int.TryParse(number, out int tryGetInt))
+                throw new Exception(errorMesage);
+            return tryGetInt;
+        }
+
+        protected double ValidatePrice(string price)
+        {            
+            return double.Parse(price.Replace(',', '.'), CultureInfo.InvariantCulture);
         }
     }
 }

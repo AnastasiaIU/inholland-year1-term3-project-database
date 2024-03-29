@@ -70,11 +70,47 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Drink.
+        /// </summary>
+        internal static string CreateDrink {
+            get {
+                return ResourceManager.GetString("CreateDrink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Student.
+        /// </summary>
+        internal static string CreateStudent {
+            get {
+                return ResourceManager.GetString("CreateStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete {0}?.
         /// </summary>
         internal static string DeletePrompt {
             get {
                 return ResourceManager.GetString("DeletePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Drink.
+        /// </summary>
+        internal static string EditDrink {
+            get {
+                return ResourceManager.GetString("EditDrink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Student.
+        /// </summary>
+        internal static string EditStudent {
+            get {
+                return ResourceManager.GetString("EditStudent", resourceCulture);
             }
         }
         
@@ -106,7 +142,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to select a drink..
+        ///   Looks up a localized string similar to Need to select a drink. .
         /// </summary>
         internal static string ErrorMessageDrinkNotSelected {
             get {
@@ -124,11 +160,29 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not enough stock to fulfill order.
+        /// </summary>
+        internal static string ErrorMessageInsufficientStock {
+            get {
+                return ResourceManager.GetString("ErrorMessageInsufficientStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need to select a lecturer..
         /// </summary>
         internal static string ErrorMessageLecturerNotSelected {
             get {
                 return ResourceManager.GetString("ErrorMessageLecturerNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to input a class number..
+        /// </summary>
+        internal static string ErrorMessageNoClass {
+            get {
+                return ResourceManager.GetString("ErrorMessageNoClass", resourceCulture);
             }
         }
         
@@ -187,11 +241,11 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to input a class number..
+        ///   Looks up a localized string similar to Need to select a supervisor..
         /// </summary>
-        internal static string ErrorMessageWrongClass {
+        internal static string ErrorMessageSupervisorNotSelected {
             get {
-                return ResourceManager.GetString("ErrorMessageWrongClass", resourceCulture);
+                return ResourceManager.GetString("ErrorMessageSupervisorNotSelected", resourceCulture);
             }
         }
         
@@ -205,16 +259,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need to select a supervisor..
-        /// </summary>
-        internal static string ErrorMessageSupervisorNotSelected {
-            get {
-                return ResourceManager.GetString("ErrorMessageSupervisorNotSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wrong input for quantity. Needs to be a whole number..
+        ///   Looks up a localized string similar to Wrong input for quantity. Needs to be a whole number and not zero..
         /// </summary>
         internal static string ErrorMessageWrongQuantityFormat {
             get {
@@ -246,6 +291,15 @@ namespace SomerenUI.Properties {
         internal static string Lecturer {
             get {
                 return ResourceManager.GetString("Lecturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A0.
+        /// </summary>
+        internal static string LecturerRoomStart {
+            get {
+                return ResourceManager.GetString("LecturerRoomStart", resourceCulture);
             }
         }
         

@@ -42,7 +42,7 @@
             menuItemRooms = new System.Windows.Forms.ToolStripMenuItem();
             menuItemDrinksMenu = new System.Windows.Forms.ToolStripMenuItem();
             menuItemDrinks = new System.Windows.Forms.ToolStripMenuItem();
-            menuItemDrinksSupplies = new System.Windows.Forms.ToolStripMenuItem();
+            menuItemDrinkSupplies = new System.Windows.Forms.ToolStripMenuItem();
             menuItemPlaceOrder = new System.Windows.Forms.ToolStripMenuItem();
             pnlDashboard = new System.Windows.Forms.Panel();
             lblDashboard = new System.Windows.Forms.Label();
@@ -239,20 +239,20 @@
             // 
             menuItemActivitiesMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemActivities, menuItemActivitiesSupervisors });
             menuItemActivitiesMenu.Name = "menuItemActivitiesMenu";
-            menuItemActivitiesMenu.Size = new System.Drawing.Size(67, 19);
+            menuItemActivitiesMenu.Size = new System.Drawing.Size(98, 29);
             menuItemActivitiesMenu.Text = "Activities";
             // 
             // menuItemActivities
             // 
             menuItemActivities.Name = "menuItemActivities";
-            menuItemActivities.Size = new System.Drawing.Size(180, 22);
+            menuItemActivities.Size = new System.Drawing.Size(269, 34);
             menuItemActivities.Text = "Activities";
             menuItemActivities.Click += menuItemActivities_Click;
             // 
             // menuItemActivitiesSupervisors
             // 
             menuItemActivitiesSupervisors.Name = "menuItemActivitiesSupervisors";
-            menuItemActivitiesSupervisors.Size = new System.Drawing.Size(180, 22);
+            menuItemActivitiesSupervisors.Size = new System.Drawing.Size(269, 34);
             menuItemActivitiesSupervisors.Text = "Activity Supervisors";
             menuItemActivitiesSupervisors.Click += menuItemActivitySupervisors_Click;
             // 
@@ -265,7 +265,7 @@
             // 
             // menuItemDrinksMenu
             // 
-            menuItemDrinksMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemDrinks, menuItemDrinksSupplies, menuItemPlaceOrder });
+            menuItemDrinksMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { menuItemDrinks, menuItemDrinkSupplies, menuItemPlaceOrder });
             menuItemDrinksMenu.Name = "menuItemDrinksMenu";
             menuItemDrinksMenu.Size = new System.Drawing.Size(78, 29);
             menuItemDrinksMenu.Text = "Drinks";
@@ -273,21 +273,21 @@
             // menuItemDrinks
             // 
             menuItemDrinks.Name = "menuItemDrinks";
-            menuItemDrinks.Size = new System.Drawing.Size(236, 34);
+            menuItemDrinks.Size = new System.Drawing.Size(270, 34);
             menuItemDrinks.Text = "Drinks";
             menuItemDrinks.Click += menuItemDrinks_Click;
             // 
-            // menuItemDrinksSupplies
+            // menuItemDrinkSupplies
             // 
-            menuItemDrinksSupplies.Name = "menuItemDrinksSupplies";
-            menuItemDrinksSupplies.Size = new System.Drawing.Size(236, 34);
-            menuItemDrinksSupplies.Text = "Drinks Supplies";
-            menuItemDrinksSupplies.Click += menuItemDrinksSupplies_Click;
+            menuItemDrinkSupplies.Name = "menuItemDrinkSupplies";
+            menuItemDrinkSupplies.Size = new System.Drawing.Size(270, 34);
+            menuItemDrinkSupplies.Text = "Drink Supplies";
+            menuItemDrinkSupplies.Click += menuItemDrinksSupplies_Click;
             // 
             // menuItemPlaceOrder
             // 
             menuItemPlaceOrder.Name = "menuItemPlaceOrder";
-            menuItemPlaceOrder.Size = new System.Drawing.Size(236, 34);
+            menuItemPlaceOrder.Size = new System.Drawing.Size(270, 34);
             menuItemPlaceOrder.Text = "Place Order";
             menuItemPlaceOrder.Click += menuItemPlaceOrder_Click;
             // 
@@ -660,7 +660,7 @@
             chEndTime.Text = "End Time";
             chEndTime.Width = 225;
             // 
-            // pnlActivitiesSupervisors
+            // pnlActivitySupervisors
             // 
             pnlActivitySupervisors.Controls.Add(lblActivitiesSupervisors);
             pnlActivitySupervisors.Controls.Add(picBoxActivitiesSupervisors);
@@ -673,7 +673,7 @@
             pnlActivitySupervisors.Controls.Add(listViewActivitySupervisorsLecturers);
             pnlActivitySupervisors.Controls.Add(btnAddSupervisor);
             pnlActivitySupervisors.Location = new System.Drawing.Point(0, 35);
-            pnlActivitySupervisors.Name = "pnlActivitiesSupervisors";
+            pnlActivitySupervisors.Name = "pnlActivitySupervisors";
             pnlActivitySupervisors.Size = new System.Drawing.Size(1000, 565);
             pnlActivitySupervisors.TabIndex = 0;
             // 
@@ -683,7 +683,7 @@
             lblActivitiesSupervisors.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblActivitiesSupervisors.Location = new System.Drawing.Point(16, 8);
             lblActivitiesSupervisors.Name = "lblActivitiesSupervisors";
-            lblActivitiesSupervisors.Size = new System.Drawing.Size(221, 32);
+            lblActivitiesSupervisors.Size = new System.Drawing.Size(328, 48);
             lblActivitiesSupervisors.TabIndex = 2;
             lblActivitiesSupervisors.Text = "Activity Supervisors";
             // 
@@ -702,18 +702,18 @@
             lblActivitiesSupervisorsChooseActivity.AutoSize = true;
             lblActivitiesSupervisorsChooseActivity.Location = new System.Drawing.Point(16, 52);
             lblActivitiesSupervisorsChooseActivity.Name = "lblActivitiesSupervisorsChooseActivity";
-            lblActivitiesSupervisorsChooseActivity.Size = new System.Drawing.Size(91, 15);
+            lblActivitiesSupervisorsChooseActivity.Size = new System.Drawing.Size(136, 25);
             lblActivitiesSupervisorsChooseActivity.TabIndex = 2;
             lblActivitiesSupervisorsChooseActivity.Text = "Choose activity:";
             // 
-            // listViewActivitiesSupervisors
+            // listViewActivitySupervisors
             // 
             listViewActivitySupervisors.AutoArrange = false;
             listViewActivitySupervisors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chActivitySupervisorsName, chActivitySupervisorsStartTime, chActivitySupervisorsEndTime });
             listViewActivitySupervisors.FullRowSelect = true;
             listViewActivitySupervisors.Location = new System.Drawing.Point(16, 75);
             listViewActivitySupervisors.MultiSelect = false;
-            listViewActivitySupervisors.Name = "listViewActivitiesSupervisors";
+            listViewActivitySupervisors.Name = "listViewActivitySupervisors";
             listViewActivitySupervisors.Size = new System.Drawing.Size(700, 100);
             listViewActivitySupervisors.TabIndex = 0;
             listViewActivitySupervisors.UseCompatibleStateImageBehavior = false;
@@ -740,7 +740,7 @@
             lblActivitySupervisors.AutoSize = true;
             lblActivitySupervisors.Location = new System.Drawing.Point(16, 195);
             lblActivitySupervisors.Name = "lblActivitySupervisors";
-            lblActivitySupervisors.Size = new System.Drawing.Size(70, 15);
+            lblActivitySupervisors.Size = new System.Drawing.Size(108, 25);
             lblActivitySupervisors.TabIndex = 2;
             lblActivitySupervisors.Text = "Supervisors:";
             // 
@@ -793,11 +793,11 @@
             lblActivitiesSupervisorsLecturers.AutoSize = true;
             lblActivitiesSupervisorsLecturers.Location = new System.Drawing.Point(16, 355);
             lblActivitiesSupervisorsLecturers.Name = "lblActivitiesSupervisorsLecturers";
-            lblActivitiesSupervisorsLecturers.Size = new System.Drawing.Size(106, 15);
+            lblActivitiesSupervisorsLecturers.Size = new System.Drawing.Size(158, 25);
             lblActivitiesSupervisorsLecturers.TabIndex = 2;
             lblActivitiesSupervisorsLecturers.Text = "Available lecturers:";
             // 
-            // listViewActivitiesSupervisorsLecturers
+            // listViewActivitySupervisorsLecturers
             // 
             listViewActivitySupervisorsLecturers.AutoArrange = false;
             listViewActivitySupervisorsLecturers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { chActivitySupervisorsFirstNameLecturers, chActivitySupervisorsLastNameLecturers, chActivitySupervisorsPhoneNumberLecturers, chActivitySupervisorsAgeLecturers });
@@ -805,7 +805,7 @@
             listViewActivitySupervisorsLecturers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             listViewActivitySupervisorsLecturers.Location = new System.Drawing.Point(16, 375);
             listViewActivitySupervisorsLecturers.MultiSelect = false;
-            listViewActivitySupervisorsLecturers.Name = "listViewActivitiesSupervisorsLecturers";
+            listViewActivitySupervisorsLecturers.Name = "listViewActivitySupervisorsLecturers";
             listViewActivitySupervisorsLecturers.Size = new System.Drawing.Size(700, 120);
             listViewActivitySupervisorsLecturers.TabIndex = 2;
             listViewActivitySupervisorsLecturers.UseCompatibleStateImageBehavior = false;
@@ -1251,7 +1251,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemRooms;
         private System.Windows.Forms.ToolStripMenuItem menuItemDrinksMenu;
         private System.Windows.Forms.ToolStripMenuItem menuItemDrinks;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDrinksSupplies;
+        private System.Windows.Forms.ToolStripMenuItem menuItemDrinkSupplies;
         private System.Windows.Forms.ToolStripMenuItem menuItemPlaceOrder;
         private System.Windows.Forms.Panel pnlDashboard;
         private System.Windows.Forms.Label lblDashboard;

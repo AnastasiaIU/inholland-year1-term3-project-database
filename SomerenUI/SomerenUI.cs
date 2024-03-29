@@ -104,71 +104,10 @@ namespace SomerenUI
             ShowPanel(pnlDashboard);
         }
 
-        private void ShowStudentsPanel()
+        private void FillAndDisplayListView<T>(Func<List<T>> GetData, ListView listView, Func<T, ListViewItem> CreateListViewItem)
         {
-            ShowPanel(pnlStudents);
-            List<Student> data = FetchData(studentService.GetAllStudents);
-            DisplayDataInListView(listViewStudents, data, CreateStudentListViewItem);
-        }
-
-        private void ShowManageStudentsPanel()
-        {
-            ShowPanel(pnlManageStudents);
-            List<Student> data = FetchData(studentService.GetAllStudents);
-            DisplayDataInListView(listViewManageStudents, data, CreateStudentListViewItem);
-        }
-
-        private void ShowLecturersPanel()
-        {
-            ShowPanel(pnlLecturers);
-            List<Lecturer> data = FetchData(lecturerService.GetAllLecturers);
-            DisplayDataInListView(listViewLecturers, data, CreateLecturerListViewItem);
-        }
-
-        private void ShowActivitiesPanel()
-        {
-            ShowPanel(pnlActivities);
-            List<Activity> data = FetchData(activityService.GetAllActivities);
-            DisplayDataInListView(listViewActivities, data, CreateActivityListViewItem);
-        }
-
-        private void ShowActivitySupervisorsPanel()
-        {
-            listViewSupervisors.Items.Clear();
-            listViewActivitySupervisorsLecturers.Items.Clear();
-            ShowPanel(pnlActivitySupervisors);
-            List<Activity> activities = FetchData(activityService.GetAllActivities);
-            DisplayDataInListView(listViewActivitySupervisors, activities, CreateActivityListViewItem);
-        }
-
-        private void ShowRoomsPanel()
-        {
-            ShowPanel(pnlRooms);
-            List<Room> data = FetchData(roomService.GetAllRooms);
-            DisplayDataInListView(listViewRooms, data, CreateRoomListViewItem);
-        }
-
-        private void ShowDrinksPanel()
-        {
-            ShowPanel(pnlDrinks);
-            List<Drink> data = FetchData(drinkService.GetAllDrinks);
-            DisplayDataInListView(listViewDrinks, data, CreateDrinkListViewItem);
-        }
-
-        private void ShowDrinkSuppliesPanel()
-        {
-            ShowPanel(pnlDrinkSupplies);
-            List<Drink> data = FetchData(drinkService.GetAllDrinks);
-            DisplayDataInListView(listViewDrinkSupplies, data, CreateDrinkSuppliesListViewItem);
-        }
-
-        private void ShowPlaceOrderPanel()
-        {
-            ShowPanel(pnlPlaceOrder);
-            List<Student> dataStudents = FetchData(studentService.GetAllStudents);
-            DisplayDataInListView(listViewPlaceOrderStudents, dataStudents, CreatePlaceOrderStudentListViewItem);
-            List<Drink> dataDrinks = FetchData(drinkService.GetAllDrinks);
-            DisplayDataInListView(listViewPlaceOrderDrinks, dataDrinks, CreatePlaceOrderDrinkListViewItem);
+            List<T> data = FetchData(GetData);
+            DisplayDataInListView(listView, data, CreateListViewItem);
         }
 
         private ListViewItem CreateStudentListViewItem(Student student)
@@ -313,11 +252,18 @@ namespace SomerenUI
 
         private void CreatePurchase(Student currentStudent, Drink currentDrink, int quantity)
         {
-            int studentId = currentStudent.StudentNumber;
-            int drinkId = currentDrink.Id;
+            if (currentDrink.Stock - quantity < 0)
+                throw new Exception(Properties.Resources.ErrorMessageInsufficientStock);
+            else if (quantity == 0)
+                throw new Exception(Properties.Resources.ErrorMessageWrongQuantityFormat);
+            else
+            {
+                int studentId = currentStudent.StudentNumber;
+                int drinkId = currentDrink.Id;
 
-            Purchase purchase = new Purchase(studentId, drinkId, quantity);
-            purchaseService.CreatePurchase(purchase);
+                Purchase purchase = new Purchase(studentId, drinkId, quantity);
+                purchaseService.CreatePurchase(purchase);
+            }
         }
 
         private void UpdateStock(Drink currentDrink, int quantity)
@@ -349,10 +295,11 @@ namespace SomerenUI
         /// <remarks>
         /// This method is particularly useful for scenarios where opening a child form may result in changes that need to be reflected in the parent form (e.g., adding, editing, or deleting data). The <paramref name="updatePanel"/> action provides a flexible way to specify exactly how the parent form should respond once the child form is closed.
         /// </remarks>
-        private void OpenNewFormAndUpdateParentOnClose(Form form, Action updatePanel)
+        private void OpenNewFormAndUpdateParentOnClose<T>(Form form, Panel panel, Func<List<T>> GetData, ListView listView, Func<T, ListViewItem> CreateListViewItem)
         {
             form.ShowDialog();
-            updatePanel();
+            ShowPanel(panel);
+            FillAndDisplayListView(GetData, listView, CreateListViewItem);
         }
 
         private void ResetPlaceOrderForm()
@@ -360,6 +307,7 @@ namespace SomerenUI
             listViewPlaceOrderStudents.SelectedIndices.Clear();
             listViewPlaceOrderDrinks.SelectedIndices.Clear();
             txtBoxPlaceOrderQuantity.Clear();
+            FillAndDisplayListView(drinkService.GetAllDrinks, listViewPlaceOrderDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
         private void DisplaySupervisorsForActivity(Activity activity)
@@ -382,37 +330,47 @@ namespace SomerenUI
 
         private void menuItemLecturers_Click(object sender, EventArgs e)
         {
-            ShowLecturersPanel();
+            ShowPanel(pnlLecturers);
+            FillAndDisplayListView(lecturerService.GetAllLecturers, listViewLecturers, CreateLecturerListViewItem);
         }
 
         private void menuItemActivities_Click(object sender, EventArgs e)
         {
-            ShowActivitiesPanel();
+            ShowPanel(pnlActivities);
+            FillAndDisplayListView(activityService.GetAllActivities, listViewActivities, CreateActivityListViewItem);
         }
 
         private void menuItemActivitySupervisors_Click(object sender, EventArgs e)
         {
-            ShowActivitySupervisorsPanel();
+            listViewSupervisors.Items.Clear();
+            listViewActivitySupervisorsLecturers.Items.Clear();
+            ShowPanel(pnlActivitySupervisors);
+            FillAndDisplayListView(activityService.GetAllActivities, listViewActivitySupervisors, CreateActivityListViewItem);
         }
 
         private void menuItemRooms_Click(object sender, EventArgs e)
         {
-            ShowRoomsPanel();
+            ShowPanel(pnlRooms);
+            FillAndDisplayListView(roomService.GetAllRooms, listViewRooms, CreateRoomListViewItem);
         }
 
         private void menuItemDrinks_Click(object sender, EventArgs e)
         {
-            ShowDrinksPanel();
+            ShowPanel(pnlDrinks);
+            FillAndDisplayListView(drinkService.GetAllDrinks, listViewDrinks, CreateDrinkListViewItem);
         }
 
         private void menuItemDrinksSupplies_Click(object sender, EventArgs e)
         {
-            ShowDrinkSuppliesPanel();
+            ShowPanel(pnlDrinkSupplies);
+            FillAndDisplayListView(drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
         }
 
         private void menuItemPlaceOrder_Click(object sender, EventArgs e)
         {
-            ShowPlaceOrderPanel();
+            ShowPanel(pnlPlaceOrder);
+            FillAndDisplayListView(studentService.GetAllStudents, listViewPlaceOrderStudents, CreatePlaceOrderStudentListViewItem);
+            FillAndDisplayListView(drinkService.GetAllDrinks, listViewPlaceOrderDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
         private void btnAddSupervisor_Click(object sender, EventArgs e)
@@ -422,7 +380,6 @@ namespace SomerenUI
                 Activity currentActivity = GetSelectedItemFromListView<Activity>(listViewActivitySupervisors, Properties.Resources.ErrorMessageActivityNotSelected);
                 Lecturer currentLecturer = GetSelectedItemFromListView<Lecturer>(listViewActivitySupervisorsLecturers, Properties.Resources.ErrorMessageLecturerNotSelected);
                 supervisorService.AddSupervisorToActivity(currentLecturer, currentActivity);
-                ShowMessage(Properties.Resources.SuccessfullyAdded, currentLecturer.FullName);
                 DisplaySupervisorsForActivity(currentActivity);
             }
             catch (Exception ex)
@@ -442,7 +399,6 @@ namespace SomerenUI
                 if (confirmResult == DialogResult.Yes)
                 {
                     supervisorService.DeleteSupervisorFromActivity(currentSupervisor, currentActivity);
-                    ShowMessage(Properties.Resources.SuccessfullyDeleted, currentSupervisor.FullName);
                     DisplaySupervisorsForActivity(currentActivity);
                 }
             }
@@ -461,7 +417,7 @@ namespace SomerenUI
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
-            OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(), ShowDrinkSuppliesPanel);
+            OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(), pnlDrinkSupplies, drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
         }
 
         private void btnDeleteDrink_Click(object sender, EventArgs e)
@@ -473,8 +429,8 @@ namespace SomerenUI
                 if (confirmResult == DialogResult.Yes)
                 {
                     drinkService.DeleteDrink(currentDrink);
-                    ShowMessage(Properties.Resources.SuccessfullyDeleted, currentDrink.Name);
-                    ShowDrinkSuppliesPanel();
+                    ShowPanel(pnlDrinkSupplies);
+                    FillAndDisplayListView(drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
                 }
             }
             catch (Exception ex)
@@ -488,13 +444,14 @@ namespace SomerenUI
             try
             {
                 Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewDrinkSupplies, Properties.Resources.ErrorMessageDrinkNotSelected);
-                OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(currentDrink), ShowDrinkSuppliesPanel);
+                OpenNewFormAndUpdateParentOnClose(new EditDrinkForm(currentDrink), pnlDrinkSupplies, drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
             }
             catch (Exception ex)
             {
                 ShowMessage(Properties.Resources.ErrorMessage, ex.Message);
             }
         }
+
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             try
@@ -544,17 +501,19 @@ namespace SomerenUI
 
         private void menuItemStudents_Click(object sender, EventArgs e)
         {
-            ShowStudentsPanel();
+            ShowPanel(pnlStudents);
+            FillAndDisplayListView(studentService.GetAllStudents, listViewStudents, CreateStudentListViewItem);
         }
 
         private void menuItemManageStudents_Click(object sender, EventArgs e)
         {
-            ShowManageStudentsPanel();
+            ShowPanel(pnlManageStudents);
+            FillAndDisplayListView(studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
         }
 
         private void btnCreateStudent_Click(object sender, EventArgs e)
         {
-            OpenNewFormAndUpdateParentOnClose(new EditStudentForm(), ShowManageStudentsPanel);
+            OpenNewFormAndUpdateParentOnClose(new EditStudentForm(), pnlManageStudents, studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
         }
 
         private void btnDeleteStudent_Click(object sender, EventArgs e)
@@ -566,7 +525,8 @@ namespace SomerenUI
                 if (confirmResult == DialogResult.Yes)
                 {
                     studentService.DeleteStudent(currentStudent);
-                    ShowManageStudentsPanel();
+                    ShowPanel(pnlManageStudents);
+                    FillAndDisplayListView(studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
                 }
             }
             catch (Exception ex)
@@ -580,7 +540,7 @@ namespace SomerenUI
             try
             {
                 Student currentStudent = GetSelectedItemFromListView<Student>(listViewManageStudents, Properties.Resources.ErrorMessageStudentNotSelected);
-                OpenNewFormAndUpdateParentOnClose(new EditStudentForm(currentStudent), ShowManageStudentsPanel);
+                OpenNewFormAndUpdateParentOnClose(new EditStudentForm(currentStudent), pnlManageStudents, studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
             }
             catch (Exception ex)
             {

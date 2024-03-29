@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using SomerenModel;
+﻿using SomerenModel;
 using System;
 using System.Collections.Generic;
 
@@ -8,45 +7,34 @@ namespace SomerenUI
     public partial class EditStudentForm : BaseForm
     {
         Student currentStudent;
+        const int FormWidth = 411;
+        const int CreateStudentHeight = 486;
+        const int EditStudentHeight = 350;
+        
         public EditStudentForm()
         {
             InitializeComponent();
-            Size = new System.Drawing.Size(411, 486);
-            Text = "Create Student";
-            btnUpdateStudent.Hide();
-            List<Room> rooms = roomService.GetAllRooms();
-
-            foreach (Room room in rooms)
-                if (!room.ToString().StartsWith("A0"))
-                    cmbRooms.Items.Add(room);
-
-            cmbRooms.SelectedIndex = 0;
+            LoadForm(Properties.Resources.CreateStudent);
         }
 
         public EditStudentForm(Student student)
         {
             InitializeComponent();
-            Size = new System.Drawing.Size(411, 350);
-            Text = "Edit Student";
-            btnCreateStudent.Hide();
-            txtStudentNumber.Hide();
-            txtClassNumber.Hide();
-            cmbRooms.Hide();
-            lblStudentNumber.Hide();
-            lblClassNumber.Hide();
-            lblRoomNumber.Hide();
             currentStudent = student;
-            LoadText();
+            LoadForm(Properties.Resources.EditStudent);
         }
 
         private void btnCreateStudent_Click(object sender, EventArgs e)
         {
             try
             {
-                ValidateInputs(out int studentNumber, out string firstName, out string lastName, out string phoneNumber, out string classNumber);
+                string firstName = ValidateString(txtFirstName.Text, Properties.Resources.ErrorMessageNoFirstName);
+                string lastName = ValidateString(txtLastName.Text, Properties.Resources.ErrorMessageNoLastName);
+                int studentNumber = ValidateStudentNumber(txtStudentNumber.Text);
                 string roomNumber = ((Room)cmbRooms.SelectedItem).ToString();
+                string classNumber = ValidateString(txtClassNumber.Text, Properties.Resources.ErrorMessageNoClass);                
 
-                Student student = new Student(studentNumber, roomNumber, firstName, lastName, phoneNumber, classNumber);
+                Student student = new Student(studentNumber, roomNumber, firstName, lastName, txtPhoneNumber.Text, classNumber);
                 studentService.CreateStudent(student);
                 Close();
             }
@@ -60,9 +48,10 @@ namespace SomerenUI
         {
             try
             {
-                ValidateInputs(out string firstName, out string lastName, out string phoneNumber);
+                string firstName = ValidateString(txtFirstName.Text, Properties.Resources.ErrorMessageNoFirstName);
+                string lastName = ValidateString(txtLastName.Text, Properties.Resources.ErrorMessageNoLastName);
 
-                Student student = new Student(currentStudent.StudentNumber, currentStudent.RoomNumber, firstName, lastName, phoneNumber, currentStudent.ClassNumber);
+                Student student = new Student(currentStudent.StudentNumber, currentStudent.RoomNumber, firstName, lastName, txtPhoneNumber.Text, currentStudent.ClassNumber);
                 studentService.UpdateStudent(student);
                 Close();
             }
@@ -72,38 +61,12 @@ namespace SomerenUI
             }
         }
 
-        private void ValidateInputs(out string firstName, out string lastName, out string phoneNumber)
+        private int ValidateStudentNumber(string studentNumberString)
         {
-            if (txtFirstName.Text.IsNullOrEmpty())
-                throw new Exception(Properties.Resources.ErrorMessageNoFirstName);
-            else
-                firstName = txtFirstName.Text;
-
-            if (txtLastName.Text.IsNullOrEmpty())
-                throw new Exception(Properties.Resources.ErrorMessageNoLastName);
-            else
-                lastName = txtLastName.Text;
-
-            phoneNumber = txtPhoneNumber.Text;
-        }
-
-        private void ValidateInputs(out int studentNumber, out string firstName, out string lastName, out string phoneNumber, out string classNumber)
-        {
-            if (txtFirstName.Text.IsNullOrEmpty())
-                throw new Exception(Properties.Resources.ErrorMessageNoFirstName);
-            else
-                firstName = txtFirstName.Text;
-
-            if (txtLastName.Text.IsNullOrEmpty())
-                throw new Exception(Properties.Resources.ErrorMessageNoLastName);
-            else
-                lastName = txtLastName.Text;
-
-            phoneNumber = txtPhoneNumber.Text;
-
-            if (txtStudentNumber.Text.Length > 6)
+            int studentNumber;
+            if (studentNumberString.Length != 6)
                 throw new Exception(Properties.Resources.ErrorMessageStudentNumberLength);
-            else if (!int.TryParse((txtStudentNumber.Text), out int tryGetStudentNumber))
+            else if (!int.TryParse((studentNumberString), out int tryGetStudentNumber))
                 throw new Exception(Properties.Resources.ErrorMessageWrongStudentNumber);
             else
                 studentNumber = tryGetStudentNumber;
@@ -113,10 +76,47 @@ namespace SomerenUI
                 if (student.StudentNumber == studentNumber)
                     throw new Exception(Properties.Resources.ErrorMessageExistingStudentNumber);
 
-            if (txtClassNumber.Text.IsNullOrEmpty())
-                throw new Exception(Properties.Resources.ErrorMessageWrongClass);
+            return studentNumber;
+        }
+
+        private void LoadForm(string formName)
+        {
+            if (formName.Equals(Properties.Resources.CreateStudent))
+            {
+                Size = new System.Drawing.Size(FormWidth, CreateStudentHeight);
+                Text = formName;
+                HideControls();
+                List<Room> rooms = roomService.GetAllRooms();
+
+                foreach (Room room in rooms)
+                    if (!room.ToString().StartsWith(Properties.Resources.LecturerRoomStart))
+                        cmbRooms.Items.Add(room);
+
+                cmbRooms.SelectedIndex = int.Parse(Properties.Resources.Zero);
+            }
             else
-                classNumber = txtClassNumber.Text;
+            {
+                Size = new System.Drawing.Size(FormWidth, EditStudentHeight);
+                Text = formName;
+                HideControls();
+                LoadText();
+            }
+        }
+
+        private void HideControls()
+        {
+            if (Text.Equals(Properties.Resources.CreateStudent))
+                btnUpdateStudent.Hide();
+            else
+            {
+                btnCreateStudent.Hide();
+                txtStudentNumber.Hide();
+                txtClassNumber.Hide();
+                cmbRooms.Hide();
+                lblStudentNumber.Hide();
+                lblClassNumber.Hide();
+                lblRoomNumber.Hide();
+            }
         }
 
         private void LoadText()
