@@ -24,8 +24,8 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                T t = ReadRow(dr);
-                list.Add(t);
+                T item = ReadRow(dr);
+                list.Add(item);
             }
 
             return list;
