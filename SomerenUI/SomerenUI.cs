@@ -104,7 +104,7 @@ namespace SomerenUI
             ShowPanel(pnlDashboard);
         }
 
-        private void FillAndDisplayListView<T>(Func<List<T>> GetData, ListView listView, Func<T, ListViewItem> CreateListViewItem)
+        private void GetAndDisplayDataInListView<T>(Func<List<T>> GetData, ListView listView, Func<T, ListViewItem> CreateListViewItem)
         {
             List<T> data = FetchData(GetData);
             DisplayDataInListView(listView, data, CreateListViewItem);
@@ -222,9 +222,10 @@ namespace SomerenUI
         /// </remarks>
         protected T GetSelectedItemFromListView<T>(ListView listView, string errorMessage)
         {
+            int zero = int.Parse(Properties.Resources.Zero);
             T selectedItem =
-                listView.SelectedItems.Count != 0 ?
-                (T)listView.SelectedItems[0].Tag :
+                listView.SelectedItems.Count != int.Parse(Properties.Resources.Zero) ?
+                (T)listView.SelectedItems[zero].Tag :
                 throw new Exception(errorMessage);
 
             return selectedItem;
@@ -252,9 +253,11 @@ namespace SomerenUI
 
         private void CreatePurchase(Student currentStudent, Drink currentDrink, int quantity)
         {
-            if (currentDrink.Stock - quantity < 0)
+            int zero = int.Parse(Properties.Resources.Zero);
+
+            if (currentDrink.Stock - quantity < zero)
                 throw new Exception(Properties.Resources.ErrorMessageInsufficientStock);
-            else if (quantity == 0)
+            else if (quantity == zero)
                 throw new Exception(Properties.Resources.ErrorMessageWrongQuantityFormat);
             else
             {
@@ -276,7 +279,8 @@ namespace SomerenUI
         {
             try
             {
-                Drink currentDrink = (Drink)listViewPlaceOrderDrinks.SelectedItems[0].Tag;
+                int zero = int.Parse(Properties.Resources.Zero);
+                Drink currentDrink = (Drink)listViewPlaceOrderDrinks.SelectedItems[zero].Tag;
                 int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
                 double totalPrice = drinkService.GetTotalPrice(currentDrink, quantity);
                 lblPlaceOrderTotalPriceValue.Text = totalPrice.ToString(Properties.Resources.MoneyFormat);
@@ -299,7 +303,7 @@ namespace SomerenUI
         {
             form.ShowDialog();
             ShowPanel(panel);
-            FillAndDisplayListView(GetData, listView, CreateListViewItem);
+            GetAndDisplayDataInListView(GetData, listView, CreateListViewItem);
         }
 
         private void ResetPlaceOrderForm()
@@ -307,7 +311,7 @@ namespace SomerenUI
             listViewPlaceOrderStudents.SelectedIndices.Clear();
             listViewPlaceOrderDrinks.SelectedIndices.Clear();
             txtBoxPlaceOrderQuantity.Clear();
-            FillAndDisplayListView(drinkService.GetAllDrinks, listViewPlaceOrderDrinks, CreatePlaceOrderDrinkListViewItem);
+            GetAndDisplayDataInListView(drinkService.GetAllDrinks, listViewPlaceOrderDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
         private void DisplaySupervisorsForActivity(Activity activity)
@@ -331,13 +335,13 @@ namespace SomerenUI
         private void menuItemLecturers_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlLecturers);
-            FillAndDisplayListView(lecturerService.GetAllLecturers, listViewLecturers, CreateLecturerListViewItem);
+            GetAndDisplayDataInListView(lecturerService.GetAllLecturers, listViewLecturers, CreateLecturerListViewItem);
         }
 
         private void menuItemActivities_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlActivities);
-            FillAndDisplayListView(activityService.GetAllActivities, listViewActivities, CreateActivityListViewItem);
+            GetAndDisplayDataInListView(activityService.GetAllActivities, listViewActivities, CreateActivityListViewItem);
         }
 
         private void menuItemActivitySupervisors_Click(object sender, EventArgs e)
@@ -345,32 +349,32 @@ namespace SomerenUI
             listViewSupervisors.Items.Clear();
             listViewActivitySupervisorsLecturers.Items.Clear();
             ShowPanel(pnlActivitySupervisors);
-            FillAndDisplayListView(activityService.GetAllActivities, listViewActivitySupervisors, CreateActivityListViewItem);
+            GetAndDisplayDataInListView(activityService.GetAllActivities, listViewActivitySupervisors, CreateActivityListViewItem);
         }
 
         private void menuItemRooms_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlRooms);
-            FillAndDisplayListView(roomService.GetAllRooms, listViewRooms, CreateRoomListViewItem);
+            GetAndDisplayDataInListView(roomService.GetAllRooms, listViewRooms, CreateRoomListViewItem);
         }
 
         private void menuItemDrinks_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlDrinks);
-            FillAndDisplayListView(drinkService.GetAllDrinks, listViewDrinks, CreateDrinkListViewItem);
+            GetAndDisplayDataInListView(drinkService.GetAllDrinks, listViewDrinks, CreateDrinkListViewItem);
         }
 
         private void menuItemDrinksSupplies_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlDrinkSupplies);
-            FillAndDisplayListView(drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
+            GetAndDisplayDataInListView(drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
         }
 
         private void menuItemPlaceOrder_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlPlaceOrder);
-            FillAndDisplayListView(studentService.GetAllStudents, listViewPlaceOrderStudents, CreatePlaceOrderStudentListViewItem);
-            FillAndDisplayListView(drinkService.GetAllDrinks, listViewPlaceOrderDrinks, CreatePlaceOrderDrinkListViewItem);
+            GetAndDisplayDataInListView(studentService.GetAllStudents, listViewPlaceOrderStudents, CreatePlaceOrderStudentListViewItem);
+            GetAndDisplayDataInListView(drinkService.GetAllDrinks, listViewPlaceOrderDrinks, CreatePlaceOrderDrinkListViewItem);
         }
 
         private void btnAddSupervisor_Click(object sender, EventArgs e)
@@ -430,7 +434,7 @@ namespace SomerenUI
                 {
                     drinkService.DeleteDrink(currentDrink);
                     ShowPanel(pnlDrinkSupplies);
-                    FillAndDisplayListView(drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
+                    GetAndDisplayDataInListView(drinkService.GetAllDrinks, listViewDrinkSupplies, CreateDrinkSuppliesListViewItem);
                 }
             }
             catch (Exception ex)
@@ -487,9 +491,10 @@ namespace SomerenUI
         {
             try
             {
-                if (listViewActivitySupervisors.SelectedItems.Count != 0)
+                int zero = int.Parse(Properties.Resources.Zero);
+                if (listViewActivitySupervisors.SelectedItems.Count != zero)
                 {
-                    Activity activity = (Activity)listViewActivitySupervisors.SelectedItems[0].Tag;
+                    Activity activity = (Activity)listViewActivitySupervisors.SelectedItems[zero].Tag;
                     DisplaySupervisorsForActivity(activity);
                 }
             }
@@ -502,13 +507,13 @@ namespace SomerenUI
         private void menuItemStudents_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlStudents);
-            FillAndDisplayListView(studentService.GetAllStudents, listViewStudents, CreateStudentListViewItem);
+            GetAndDisplayDataInListView(studentService.GetAllStudents, listViewStudents, CreateStudentListViewItem);
         }
 
         private void menuItemManageStudents_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlManageStudents);
-            FillAndDisplayListView(studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
+            GetAndDisplayDataInListView(studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
         }
 
         private void btnCreateStudent_Click(object sender, EventArgs e)
@@ -526,7 +531,7 @@ namespace SomerenUI
                 {
                     studentService.DeleteStudent(currentStudent);
                     ShowPanel(pnlManageStudents);
-                    FillAndDisplayListView(studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
+                    GetAndDisplayDataInListView(studentService.GetAllStudents, listViewManageStudents, CreateStudentListViewItem);
                 }
             }
             catch (Exception ex)

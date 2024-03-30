@@ -22,21 +22,21 @@ namespace SomerenUI
             return string.Format(resourceString, arg);
         }
 
-        protected string ValidateString(string str, string errorMessage)
+        protected string ValidateStringOrThrow(string str, string errorMessage)
         {
             if (str.IsNullOrEmpty())
                 throw new Exception(errorMessage);
             return str;
         }
 
-        protected int ValidateInt(string number, string errorMesage)
+        protected int ParseIntOrThrow(string number, string errorMesage)
         {
-            if (!int.TryParse(number, out int tryGetInt))
+            if (!int.TryParse(number, out int result))
                 throw new Exception(errorMesage);
-            return tryGetInt;
+            return result;
         }
 
-        protected double ValidatePrice(string price)
+        protected double ParsePriceOrThrow(string price)
         {
             return double.Parse(price.Replace(',', '.'), CultureInfo.InvariantCulture);
         }

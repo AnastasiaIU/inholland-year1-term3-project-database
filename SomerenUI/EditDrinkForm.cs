@@ -24,12 +24,13 @@ namespace SomerenUI
         {
             try
             {
-                string name = ValidateString(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
-                double price = ValidatePrice(txtDrinkPrice.Text);
-                int stock = ValidateInt(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
+                string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
+                double price = ParsePriceOrThrow(txtDrinkPrice.Text);
+                int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
                 bool isAlcoholic = rdoTrue.Checked;
+                int purchases = int.Parse(Properties.Resources.Zero);
 
-                Drink drink = new Drink(price, isAlcoholic, name, stock, 0);
+                Drink drink = new Drink(price, isAlcoholic, name, stock, purchases);
                 drinkService.CreateDrink(drink);
                 Close();
             }
@@ -44,9 +45,9 @@ namespace SomerenUI
         {
             try
             {
-                string name = ValidateString(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
-                double price = ValidatePrice(txtDrinkPrice.Text);
-                int stock = ValidateInt(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
+                string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
+                double price = ParsePriceOrThrow(txtDrinkPrice.Text);
+                int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
                 bool isAlcoholic = rdoTrue.Checked;
 
                 Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, name, stock, currentDrink.NumberOfPurchases);
@@ -62,15 +63,11 @@ namespace SomerenUI
 
         private void LoadForm(string formName)
         {
-            if (formName.Equals(Properties.Resources.CreateDrink))
-            {
-                Text = formName;
+            Text = formName;
+            if (Text.Equals(Properties.Resources.CreateDrink))
                 btnUpdateDrink.Hide();
-                rdoTrue.Checked = true;
-            }
             else
             {
-                Text = formName;
                 btnCreateDrink.Hide();
                 LoadText();
             }
