@@ -1,8 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using SomerenModel;
+﻿using SomerenModel;
 using System;
-using System.Globalization;
-using System.Windows.Forms;
 
 namespace SomerenUI
 {
@@ -13,39 +10,29 @@ namespace SomerenUI
         public EditDrinkForm()
         {
             InitializeComponent();
-            Text = "Create Drink";
-            btnUpdateDrink.Hide();
-            rdoTrue.Checked = true;
+            LoadForm(Properties.Resources.CreateDrink);
         }
 
         public EditDrinkForm(Drink drink)
         {
             InitializeComponent();
-            Text = "Edit Drink";
-            btnCreateDrink.Hide();
             currentDrink = drink;
-            LoadText();
-        }
-
-        private void ShowMessageAndCloseForm(string message, Form form, string arg = null)
-        {
-            ShowMessage(message, arg);
-            form.Close();
+            LoadForm(Properties.Resources.EditDrink);
         }
 
         private void btnCreateDrink_Click(object sender, EventArgs e)
         {
             try
             {
-                ValidateInputs(out double tryGetPrice, out int tryGetStock);
-
-                double price = tryGetPrice;
-                int stock = tryGetStock;
+                string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
+                double price = ParsePriceOrThrow(txtDrinkPrice.Text);
+                int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
                 bool isAlcoholic = rdoTrue.Checked;
+                int purchases = zero;
 
-                Drink drink = new Drink(price, isAlcoholic, txtDrinkName.Text, stock, 0);
+                Drink drink = new Drink(price, isAlcoholic, name, stock, purchases);
                 drinkService.CreateDrink(drink);
-                ShowMessageAndCloseForm(Properties.Resources.SuccessfullyAdded, this, drink.Name);
+                Close();
             }
             catch (Exception ex)
             {
@@ -58,15 +45,14 @@ namespace SomerenUI
         {
             try
             {
-                ValidateInputs(out double tryGetPrice, out int tryGetStock);
-
-                double price = tryGetPrice;
-                int stock = tryGetStock;
+                string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
+                double price = ParsePriceOrThrow(txtDrinkPrice.Text);
+                int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
                 bool isAlcoholic = rdoTrue.Checked;
 
-                Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, txtDrinkName.Text, stock, currentDrink.NumberOfPurchases);
+                Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, name, stock, currentDrink.NumberOfPurchases);
                 drinkService.UpdateDrink(drink);
-                ShowMessageAndCloseForm(Properties.Resources.SuccessfullyEdited, this, drink.Name);
+                Close();
             }
             catch (Exception ex)
             {
@@ -75,17 +61,17 @@ namespace SomerenUI
             }
         }
 
-        private void ValidateInputs(out double tryGetPrice, out int tryGetStock)
+        private void LoadForm(string formName)
         {
-            if (txtDrinkName.Text.IsNullOrEmpty())
-                throw new Exception(Properties.Resources.ErrorMessageNoName);
+            Text = formName;
+            if (Text.Equals(Properties.Resources.CreateDrink))
+                btnUpdateDrink.Hide();
+            else
+            {
+                btnCreateDrink.Hide();
+                LoadText();
+            }
 
-            tryGetPrice = double.Parse(txtDrinkPrice.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
-
-            if (!int.TryParse(txtDrinkStock.Text, out int tryGetInt))
-                throw new Exception(Properties.Resources.ErrorMessageWrongStock);
-
-            tryGetStock = tryGetInt;
         }
 
         private void LoadText()
