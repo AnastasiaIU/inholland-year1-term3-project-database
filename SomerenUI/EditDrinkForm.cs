@@ -28,7 +28,7 @@ namespace SomerenUI
                 double price = ParsePriceOrThrow(txtDrinkPrice.Text);
                 int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
                 bool isAlcoholic = rdoTrue.Checked;
-                int purchases = int.Parse(Properties.Resources.Zero);
+                int purchases = zero;
 
                 Drink drink = new Drink(price, isAlcoholic, name, stock, purchases);
                 drinkService.CreateDrink(drink);

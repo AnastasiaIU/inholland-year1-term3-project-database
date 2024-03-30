@@ -11,6 +11,7 @@ namespace SomerenUI
         protected DrinkService drinkService = new DrinkService();
         protected RoomService roomService = new RoomService();
         protected StudentService studentService = new StudentService();
+        protected int zero = int.Parse(Properties.Resources.Zero);
 
         protected void ShowMessage(string message, string arg = null)
         {

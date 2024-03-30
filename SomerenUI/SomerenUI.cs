@@ -11,7 +11,7 @@ namespace SomerenUI
         private ActivityService activityService = new ActivityService();
         private LecturerService lecturerService = new LecturerService();
         private SupervisorService supervisorService = new SupervisorService();
-        private PurchaseService purchaseService = new PurchaseService();
+        private PurchaseService purchaseService = new PurchaseService();        
 
         public SomerenUI()
         {
@@ -222,9 +222,8 @@ namespace SomerenUI
         /// </remarks>
         protected T GetSelectedItemFromListView<T>(ListView listView, string errorMessage)
         {
-            int zero = int.Parse(Properties.Resources.Zero);
             T selectedItem =
-                listView.SelectedItems.Count != int.Parse(Properties.Resources.Zero) ?
+                listView.SelectedItems.Count != zero ?
                 (T)listView.SelectedItems[zero].Tag :
                 throw new Exception(errorMessage);
 
@@ -253,8 +252,6 @@ namespace SomerenUI
 
         private void CreatePurchase(Student currentStudent, Drink currentDrink, int quantity)
         {
-            int zero = int.Parse(Properties.Resources.Zero);
-
             if (currentDrink.Stock - quantity < zero)
                 throw new Exception(Properties.Resources.ErrorMessageInsufficientStock);
             else if (quantity == zero)
@@ -279,7 +276,6 @@ namespace SomerenUI
         {
             try
             {
-                int zero = int.Parse(Properties.Resources.Zero);
                 Drink currentDrink = (Drink)listViewPlaceOrderDrinks.SelectedItems[zero].Tag;
                 int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
                 double totalPrice = drinkService.GetTotalPrice(currentDrink, quantity);
@@ -491,7 +487,6 @@ namespace SomerenUI
         {
             try
             {
-                int zero = int.Parse(Properties.Resources.Zero);
                 if (listViewActivitySupervisors.SelectedItems.Count != zero)
                 {
                     Activity activity = (Activity)listViewActivitySupervisors.SelectedItems[zero].Tag;

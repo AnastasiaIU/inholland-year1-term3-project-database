@@ -119,7 +119,7 @@ namespace SomerenUI
                 if (!room.ToString().StartsWith(Properties.Resources.LecturerRoomStart))
                     cmbRooms.Items.Add(room);
 
-            cmbRooms.SelectedIndex = int.Parse(Properties.Resources.Zero);
+            cmbRooms.SelectedIndex = zero;
         }
 
         private void LoadText()
