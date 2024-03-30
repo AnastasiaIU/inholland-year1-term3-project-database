@@ -6,12 +6,7 @@ namespace SomerenService
 {
     public class SupervisorService
     {
-        private SupervisorDao supervisorDao;
-
-        public SupervisorService()
-        {
-            supervisorDao = new SupervisorDao();
-        }
+        private SupervisorDao supervisorDao = new SupervisorDao();
 
         public List<Lecturer> GetAllSupervisorsForActivity(Activity activity)
         {

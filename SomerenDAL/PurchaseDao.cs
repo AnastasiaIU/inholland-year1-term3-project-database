@@ -5,7 +5,7 @@ namespace SomerenDAL
 {
     public class PurchaseDao : BaseDao
     {
-        public void AddPurchase(Purchase purchase)
+        public void CreatePurchase(Purchase purchase)
         {
             string query = "INSERT INTO Purchases VALUES (@StudentId, @DrinkId, @Quantity); SELECT CAST(scope_identity() AS int)";
             SqlParameter[] sqlParameters = new SqlParameter[]

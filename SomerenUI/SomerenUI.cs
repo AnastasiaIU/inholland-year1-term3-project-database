@@ -316,7 +316,7 @@ namespace SomerenUI
             try
             {
                 SetPurchaseFromPlaceOrder();
-                double totalPrice = purchaseService.NewPurchase.TotalPrice;
+                double totalPrice = purchaseService.StagedPurchase.TotalPrice;
                 lblPlaceOrderTotalPriceValue.Text = totalPrice.ToString(Properties.Resources.MoneyFormat);
             }
             catch
@@ -368,7 +368,7 @@ namespace SomerenUI
             Student currentStudent = GetSelectedItemFromListView<Student>(listViewPlaceOrderStudents, Properties.Resources.ErrorMessageStudentNotSelected);
             Drink currentDrink = GetSelectedItemFromListView<Drink>(listViewPlaceOrderDrinks, Properties.Resources.ErrorMessageDrinkNotSelected);
             int quantity = int.Parse(txtBoxPlaceOrderQuantity.Text);
-            purchaseService.SetPurchase(currentStudent, currentDrink, quantity);
+            purchaseService.StagePurchaseForCreation(currentStudent, currentDrink, quantity);
         }
 
         private void menuItemDashboard_Click(object sender, EventArgs e)
@@ -497,18 +497,18 @@ namespace SomerenUI
 
                 SetPurchaseFromPlaceOrder();
 
-                if (purchaseService.NewPurchase.Drink.Stock - purchaseService.NewPurchase.Quantity < zero)
+                if (purchaseService.StagedPurchase.Drink.Stock - purchaseService.StagedPurchase.Quantity < zero)
                     throw new Exception(Properties.Resources.ErrorMessageInsufficientStock);
-                else if (purchaseService.NewPurchase.Quantity == zero)
+                else if (purchaseService.StagedPurchase.Quantity == zero)
                     throw new Exception(Properties.Resources.ErrorMessageWrongQuantityFormat);
                 else
                 {
-                    drinkService.UpdateStock(purchaseService.NewPurchase.Drink, purchaseService.NewPurchase.Quantity);
-                    drinkService.UpdateDrink(purchaseService.NewPurchase.Drink);
-                    purchaseService.AddPurchaseToDatabase(purchaseService.NewPurchase);
-                    string messageText = GetResourceStringWithArgument(Properties.Resources.SuccessfullyAdded, purchaseService.NewPurchase);
+                    drinkService.UpdateStock(purchaseService.StagedPurchase.Drink, purchaseService.StagedPurchase.Quantity);
+                    drinkService.UpdateDrink(purchaseService.StagedPurchase.Drink);
+                    purchaseService.CreatePurchase(purchaseService.StagedPurchase);
+                    string messageText = GetResourceStringWithArgument(Properties.Resources.SuccessfullyAdded, purchaseService.StagedPurchase);
                     ShowMessage(messageText);
-                    purchaseService.ClearPurchase();
+                    purchaseService.ClearStagedPurchase();
                     ResetPlaceOrderForm();
                 }
             }

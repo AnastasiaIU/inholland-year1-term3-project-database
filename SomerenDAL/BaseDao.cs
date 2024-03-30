@@ -8,7 +8,7 @@ namespace SomerenDAL
     public abstract class BaseDao
     {
         const string ConnectionStringName = "SomerenDatabase";
-        const string DatabaseErrorMessage = "Database operation failed";
+        const string DatabaseErrorMessage = "Database operation failed.";
 
         protected SqlConnection OpenConnection()
         {

@@ -6,12 +6,7 @@ namespace SomerenService
 {
     public class RoomService
     {
-        private RoomDao roomDao;
-
-        public RoomService()
-        {
-            roomDao = new RoomDao();
-        }
+        private RoomDao roomDao = new RoomDao();
 
         public List<Room> GetAllRooms()
         {
