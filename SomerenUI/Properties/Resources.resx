@@ -162,14 +162,14 @@
   <data name="ErrorMessageStudentNumberLength" xml:space="preserve">
     <value>Student number needs to be 6 numbers.</value>
   </data>
-  <data name="ErrorMessageWrongClass" xml:space="preserve">
+  <data name="ErrorMessageNoClass" xml:space="preserve">
     <value>Need to input a class number.</value>
   </data>
   <data name="ErrorMessageWrongPrice" xml:space="preserve">
     <value>Wrong input for price. Needs to be a number.</value>
   </data>
   <data name="ErrorMessageWrongQuantityFormat" xml:space="preserve">
-    <value>Wrong input for quantity. Needs to be a whole number.</value>
+    <value>Wrong input for quantity. Needs to be a whole number and not zero.</value>
   </data>
   <data name="ErrorMessageWrongStock" xml:space="preserve">
     <value>Wrong input for stock. Needs to be a number.</value>
@@ -219,6 +219,21 @@
   </data>
   <data name="Zero" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="CreateDrink" xml:space="preserve">
+    <value>Create Drink</value>
+  </data>
+  <data name="EditDrink" xml:space="preserve">
+    <value>Edit Drink</value>
+  </data>
+  <data name="CreateStudent" xml:space="preserve">
+    <value>Create Student</value>
+  </data>
+  <data name="EditStudent" xml:space="preserve">
+    <value>Edit Student</value>
+  </data>
+  <data name="LecturerRoomStart" xml:space="preserve">
+    <value>A0</value>
   </data>
   <data name="ErrorMessageInsufficientStock" xml:space="preserve">
     <value>Not enough stock to fulfill order.</value>

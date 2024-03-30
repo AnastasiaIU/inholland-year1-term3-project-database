@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,6 +16,19 @@ namespace SomerenDAL
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString);
             connection.Open();
             return connection;
+        }
+
+        protected List<T> ReadTable<T>(DataTable dataTable, Func<DataRow, T> ReadRow)
+        {
+            List<T> list = new List<T>();
+
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                T item = ReadRow(dr);
+                list.Add(item);
+            }
+
+            return list;
         }
 
         /// <summary>
@@ -37,32 +51,6 @@ namespace SomerenDAL
                 HandleSqlException(ex);
             }
         }
-
-        /* We don't use this method currently but we want to keep it till the end of the project in case we will need it. */
-        /// <summary>
-        /// For Insert Queries with Scalar.
-        /// </summary>
-        /*protected int ExecuteInsertQueryWithScalar(string query, SqlParameter[] sqlParameters)
-        {
-            int newId = -1;
-
-            try
-            {
-                using (SqlConnection connection = OpenConnection())
-                {
-                    using (SqlCommand command = CreateCommand(connection, query, sqlParameters))
-                    {
-                        newId = (int)command.ExecuteScalar();
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                HandleSqlException(ex);
-            }
-
-            return newId;
-        }*/
 
         /// <summary>
         /// For Select Queries.

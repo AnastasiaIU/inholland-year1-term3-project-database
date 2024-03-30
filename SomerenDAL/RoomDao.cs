@@ -12,25 +12,17 @@ namespace SomerenDAL
             string query = "SELECT [room_number], [building_number], [floor], [number_of_beds] FROM Rooms ORDER BY [room_number]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
-            return ReadTables(dataTable);
+            return ReadTable(dataTable, ReadRow);
         }
 
-        private List<Room> ReadTables(DataTable dataTable)
+        private Room ReadRow(DataRow dr)
         {
-            List<Room> rooms = new List<Room>();
+            string number = (string)dr["room_number"];
+            char buildingNumber = dr["building_number"].ToString()[0];
+            int floor = (int)dr["floor"];
+            int capacity = (int)dr["number_of_beds"];
 
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                string number = (string)dr["room_number"];
-                char buildingNumber = dr["building_number"].ToString()[0];
-                int floor = (int)dr["floor"];
-                int capacity = (int)dr["number_of_beds"];
-
-                Room room = new Room(number, buildingNumber, floor, capacity);
-                rooms.Add(room);
-            }
-
-            return rooms;
+            return new Room(number, buildingNumber, floor, capacity);
         }
     }
 }
