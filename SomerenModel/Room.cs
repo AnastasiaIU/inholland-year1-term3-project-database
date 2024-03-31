@@ -26,6 +26,10 @@
             Capacity = capacity;
         }
 
+        /// <summary>
+        /// Returns a string representation of the room.
+        /// </summary>
+        /// <returns>A string representing the number of the room, formatted as "Number". For example, "A0-001".</returns>
         public override string ToString()
         {
             return $"{Number}";

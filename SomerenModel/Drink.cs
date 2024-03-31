@@ -25,10 +25,12 @@
         }
         public int NumberOfPurchases { get; set; }
 
-
         /// <summary>
-        /// A Drink constructor without an ID.
+        /// Initializes a new instance of the Drink class without an ID.
         /// </summary>
+        /// <remarks>
+        /// This constructor is typically used for creating new drink records before saving them to a database, where an ID will be generated.
+        /// </remarks>
         /// <param name="price">The price of the drink.</param>
         /// <param name="isAlcoholic">Indicates whether the drink contains alcohol.</param>
         /// <param name="name">The name of the drink.</param>
@@ -44,8 +46,11 @@
         }
 
         /// <summary>
-        /// A Drink constructor with an ID.
+        /// Initializes a new instance of the Drink class with a specified ID.
         /// </summary>
+        /// <remarks>
+        /// This constructor is typically used for loading existing drink records from a database, where the drink already has an assigned ID. It can also be used for creating a drink record with a pre-defined ID, if necessary.
+        /// </remarks>
         /// <param name="id">The ID of the drink.</param>
         /// <param name="price">The price of the drink.</param>
         /// <param name="isAlcoholic">Indicates whether the drink contains alcohol.</param>
@@ -58,6 +63,10 @@
             Id = id;
         }
 
+        /// <summary>
+        /// Returns a string representation of the drink.
+        /// </summary>
+        /// <returns>A string representing the name of the drink, formatted as "Name". For example, "Coca Cola".</returns>
         public override string ToString()
         {
             return Name;

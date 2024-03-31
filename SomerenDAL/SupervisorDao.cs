@@ -7,50 +7,56 @@ namespace SomerenDAL
 {
     public class SupervisorDao : LecturerDao
     {
+        const string QueryGetAllSupervisorsForActivity = $"SELECT {ColumnLecturerId}, {ColumnAge}, {ColumnRoomNumber}, {ColumnFirstName}, {ColumnLastName}, {ColumnPhoneNumber} FROM Lecturers WHERE {ColumnLecturerId} IN (SELECT {ColumnLecturerId} FROM Supervisions WHERE {ColumnActivityId}={ParameterNameActivityId}) ORDER BY {ColumnLastName};";
+        const string QueryGetAllAvailableSupervisorsForActivity = $"SELECT {ColumnLecturerId}, {ColumnAge}, {ColumnRoomNumber}, {ColumnFirstName}, {ColumnLastName}, {ColumnPhoneNumber} FROM Lecturers WHERE {ColumnLecturerId} NOT IN (SELECT {ColumnLecturerId} FROM Supervisions WHERE {ColumnActivityId}={ParameterNameActivityId}) ORDER BY {ColumnLastName};";
+        const string QueryAddSupervisorToActivity = $"INSERT INTO Supervisions VALUES ({ParameterNameLecturerId}, {ParameterNameActivityId});";
+        const string QueryDeleteSupervisorFromActivity = $"DELETE FROM Supervisions WHERE {ColumnActivityId}={ParameterNameActivityId} AND {ColumnLecturerId}={ParameterNameLecturerId};";
+
+        const string ParameterNameLecturerId = "@LecturerId";
+        const string ParameterNameActivityId = "@ActivityId";
+
+        const string ColumnActivityId = "activityId";
+
         public List<Lecturer> GetAllSupervisorsForActivity(Activity activity)
         {
-            string query = "SELECT [lecturerId], [age], [room_number], [first_name], [last_name], [phone_number] FROM Lecturers WHERE [lecturerId] IN (SELECT [lecturerId] FROM Supervisions WHERE [activityId] = @ActivityId) ORDER BY [last_name];";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@ActivityId", activity.Id)
+                new SqlParameter(ParameterNameActivityId, activity.Id)
             };
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            DataTable dataTable = ExecuteSelectQuery(QueryGetAllSupervisorsForActivity, sqlParameters);
             return ReadTable(dataTable, ReadRow);
         }
 
         public List<Lecturer> GetAllAvailableSupervisorsForActivity(Activity activity)
         {
-            string query = "SELECT [lecturerId], [age], [room_number], [first_name], [last_name], [phone_number] FROM Lecturers WHERE [lecturerId] NOT IN (SELECT [lecturerId] FROM Supervisions WHERE [activityId] = @ActivityId) ORDER BY [last_name];";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@ActivityId", activity.Id)
+                new SqlParameter(ParameterNameActivityId, activity.Id)
             };
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            DataTable dataTable = ExecuteSelectQuery(QueryGetAllAvailableSupervisorsForActivity, sqlParameters);
             return ReadTable(dataTable, ReadRow);
         }
 
         public void AddSupervisorToActivity(Lecturer lecturer, Activity activity)
         {
-            string query = "INSERT INTO Supervisions VALUES (@LecturerId, @ActivityId)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@LecturerId", lecturer.Id),
-                new SqlParameter("@ActivityId", activity.Id)
+                new SqlParameter(ParameterNameLecturerId, lecturer.Id),
+                new SqlParameter(ParameterNameActivityId, activity.Id)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryAddSupervisorToActivity, sqlParameters);
         }
 
         public void DeleteSupervisorFromActivity(Lecturer lecturer, Activity activity)
         {
-            string query = "DELETE FROM Supervisions WHERE activityId=@ActivityId AND lecturerId=@LecturerId";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@LecturerId", lecturer.Id),
-                new SqlParameter("@ActivityId", activity.Id)
+                new SqlParameter(ParameterNameLecturerId, lecturer.Id),
+                new SqlParameter(ParameterNameActivityId, activity.Id)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryDeleteSupervisorFromActivity, sqlParameters);
         }
     }
 }

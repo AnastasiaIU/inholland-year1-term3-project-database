@@ -77,7 +77,7 @@
             // txtFirstName
             // 
             txtFirstName.Location = new System.Drawing.Point(132, 18);
-            txtFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            txtFirstName.Margin = new System.Windows.Forms.Padding(2);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new System.Drawing.Size(106, 23);
             txtFirstName.TabIndex = 3;
@@ -85,7 +85,7 @@
             // txtLastName
             // 
             txtLastName.Location = new System.Drawing.Point(132, 54);
-            txtLastName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            txtLastName.Margin = new System.Windows.Forms.Padding(2);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new System.Drawing.Size(106, 23);
             txtLastName.TabIndex = 4;
@@ -93,37 +93,39 @@
             // txtPhoneNumber
             // 
             txtPhoneNumber.Location = new System.Drawing.Point(132, 90);
-            txtPhoneNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            txtPhoneNumber.Margin = new System.Windows.Forms.Padding(2);
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new System.Drawing.Size(106, 23);
             txtPhoneNumber.TabIndex = 5;
             // 
             // btnCreateStudent
             // 
+            btnCreateStudent.AutoSize = true;
             btnCreateStudent.Location = new System.Drawing.Point(84, 234);
-            btnCreateStudent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            btnCreateStudent.Margin = new System.Windows.Forms.Padding(2);
             btnCreateStudent.Name = "btnCreateStudent";
-            btnCreateStudent.Size = new System.Drawing.Size(105, 20);
+            btnCreateStudent.Size = new System.Drawing.Size(105, 30);
             btnCreateStudent.TabIndex = 10;
             btnCreateStudent.Text = "Create student";
             btnCreateStudent.UseVisualStyleBackColor = true;
-            btnCreateStudent.Click += btnCreateStudent_Click;
+            btnCreateStudent.Click += ButtonCreateStudent_Click;
             // 
             // btnUpdateStudent
             // 
+            btnUpdateStudent.AutoSize = true;
             btnUpdateStudent.Location = new System.Drawing.Point(84, 126);
-            btnUpdateStudent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            btnUpdateStudent.Margin = new System.Windows.Forms.Padding(2);
             btnUpdateStudent.Name = "btnUpdateStudent";
-            btnUpdateStudent.Size = new System.Drawing.Size(105, 20);
+            btnUpdateStudent.Size = new System.Drawing.Size(105, 30);
             btnUpdateStudent.TabIndex = 10;
             btnUpdateStudent.Text = "Update student";
             btnUpdateStudent.UseVisualStyleBackColor = true;
-            btnUpdateStudent.Click += btnUpdateStudent_Click;
+            btnUpdateStudent.Click += ButtonUpdateStudent_Click;
             // 
             // txtClassNumber
             // 
             txtClassNumber.Location = new System.Drawing.Point(132, 162);
-            txtClassNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            txtClassNumber.Margin = new System.Windows.Forms.Padding(2);
             txtClassNumber.Name = "txtClassNumber";
             txtClassNumber.Size = new System.Drawing.Size(106, 23);
             txtClassNumber.TabIndex = 7;
@@ -131,7 +133,7 @@
             // txtStudentNumber
             // 
             txtStudentNumber.Location = new System.Drawing.Point(132, 126);
-            txtStudentNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            txtStudentNumber.Margin = new System.Windows.Forms.Padding(2);
             txtStudentNumber.Name = "txtStudentNumber";
             txtStudentNumber.Size = new System.Drawing.Size(106, 23);
             txtStudentNumber.TabIndex = 6;
@@ -140,7 +142,7 @@
             // 
             cmbRooms.FormattingEnabled = true;
             cmbRooms.Location = new System.Drawing.Point(132, 198);
-            cmbRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            cmbRooms.Margin = new System.Windows.Forms.Padding(2);
             cmbRooms.Name = "cmbRooms";
             cmbRooms.Size = new System.Drawing.Size(106, 23);
             cmbRooms.TabIndex = 9;
@@ -194,7 +196,7 @@
             Controls.Add(lblPhoneNumber);
             Controls.Add(lblLastName);
             Controls.Add(lblFirstName);
-            Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            Margin = new System.Windows.Forms.Padding(2);
             Name = "EditStudentForm";
             Text = "EditStudentForm";
             ResumeLayout(false);

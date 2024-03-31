@@ -14,14 +14,5 @@
             RoomNumber = roomNumber;
             ClassNumber = classNumber;
         }
-
-        /// <summary>
-        /// Returns a string representation of the student.
-        /// </summary>
-        /// <returns>A string representing the full name and student number of the student, formatted as "FullName (StudentNumber)". For example, "John Doe (123456)".</returns>
-        public override string ToString()
-        {
-            return $"{FullName} ({StudentNumber})";
-        }
     }
 }

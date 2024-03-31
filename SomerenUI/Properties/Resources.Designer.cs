@@ -160,7 +160,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not enough stock to fulfill order.
+        ///   Looks up a localized string similar to Not enough stock to fulfill order..
         /// </summary>
         internal static string ErrorMessageInsufficientStock {
             get {
@@ -239,7 +239,7 @@ namespace SomerenUI.Properties {
                 return ResourceManager.GetString("ErrorMessageStudentNumberLength", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Need to select a supervisor..
         /// </summary>
@@ -322,15 +322,6 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New purchase..
-        /// </summary>
-        internal static string NewPurchase {
-            get {
-                return ResourceManager.GetString("NewPurchase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
@@ -377,7 +368,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully added: .
+        ///   Looks up a localized string similar to Successfully added: {0}..
         /// </summary>
         internal static string SuccessfullyAdded {
             get {
@@ -386,7 +377,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully deleted: .
+        ///   Looks up a localized string similar to Successfully deleted: {0}..
         /// </summary>
         internal static string SuccessfullyDeleted {
             get {
@@ -395,7 +386,7 @@ namespace SomerenUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully edited: .
+        ///   Looks up a localized string similar to Successfully edited: {0}..
         /// </summary>
         internal static string SuccessfullyEdited {
             get {

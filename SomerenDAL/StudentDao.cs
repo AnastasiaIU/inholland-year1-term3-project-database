@@ -8,63 +8,78 @@ namespace SomerenDAL
 {
     public class StudentDao : BaseDao
     {
+        const string QueryGetAllStudents = $"SELECT {ColumnStudentNumber}, {ColumnRoomNumber}, {ColumnFirstName}, {ColumnLastName}, {ColumnPhoneNumber}, {ColumnClassNumber} FROM Students ORDER BY {ColumnLastName};";
+        const string QueryCreateStudent = $"INSERT INTO Students ({ColumnStudentNumber}, {ColumnRoomNumber}, {ColumnFirstName}, {ColumnLastName}, {ColumnPhoneNumber}, {ColumnClassNumber}) VALUES ({ParameterNameStudentNumber}, {ParameterNameRoomNumber}, {ParameterNameFirstName}, {ParameterNameLastName}, {ParameterNamePhoneNumber}, {ParameterNameClassNumber});";
+        const string QueryUpdateStudent = $"UPDATE Students SET {ColumnFirstName}={ParameterNameFirstName}, {ColumnLastName}={ParameterNameLastName}, {ColumnPhoneNumber}={ParameterNamePhoneNumber} WHERE {ColumnStudentNumber}={ParameterNameStudentNumber};";
+        const string QueryDeleteStudent = $"DELETE FROM Students WHERE {ColumnStudentNumber}={ParameterNameStudentNumber};";
+
+        const string ParameterNameStudentNumber = "@StudentNumber";
+        const string ParameterNameRoomNumber = "@RoomNumber";
+        const string ParameterNameFirstName = "@FirstName";
+        const string ParameterNameLastName = "@LastName";
+        const string ParameterNamePhoneNumber = "@PhoneNumber";
+        const string ParameterNameClassNumber = "@ClassNumber";
+
+        const string ColumnStudentNumber = "student_number";
+        const string ColumnRoomNumber = "room_number";
+        const string ColumnFirstName = "first_name";
+        const string ColumnLastName = "last_name";
+        const string ColumnPhoneNumber = "phone_number";
+        const string ColumnClassNumber = "class_number";
+
         public List<Student> GetAllStudents()
         {
-            string query = "SELECT [student_number], [room_number], [first_name], [last_name], [phone_number], [class_number] FROM Students ORDER BY [last_name]";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            SqlParameter[] sqlParameters = new SqlParameter[Zero];
+            DataTable dataTable = ExecuteSelectQuery(QueryGetAllStudents, sqlParameters);
             return ReadTable(dataTable, ReadRow);
         }
 
         public void CreateStudent(Student student)
         {
-            string query = "INSERT INTO Students (student_number, room_number, first_name, last_name, phone_number, class_number) VALUES (@StudentNumber, @RoomNumber, @FirstName, @LastName, @PhoneNumber, @ClassNumber)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@StudentNumber", student.StudentNumber),
-                new SqlParameter("@RoomNumber", student.RoomNumber),
-                new SqlParameter("@FirstName", student.FirstName),
-                new SqlParameter("@LastName", student.LastName),
-                new SqlParameter("@PhoneNumber", student.PhoneNumber),
-                new SqlParameter("@ClassNumber", student.ClassNumber)
+                new SqlParameter(ParameterNameStudentNumber, student.StudentNumber),
+                new SqlParameter(ParameterNameRoomNumber, student.RoomNumber),
+                new SqlParameter(ParameterNameFirstName, student.FirstName),
+                new SqlParameter(ParameterNameLastName, student.LastName),
+                new SqlParameter(ParameterNamePhoneNumber, student.PhoneNumber),
+                new SqlParameter(ParameterNameClassNumber, student.ClassNumber)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryCreateStudent, sqlParameters);
         }
 
         public void UpdateStudent(Student student)
         {
-            string query = "UPDATE Students SET [first_name]=@FirstName, [last_name]=@LastName, [phone_number]=@PhoneNumber WHERE [student_number]=@StudentNumber";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@FirstName", student.FirstName),
-                new SqlParameter("@LastName", student.LastName),
-                new SqlParameter("@PhoneNumber", student.PhoneNumber),
-                new SqlParameter("@StudentNumber", student.StudentNumber)
+                new SqlParameter(ParameterNameStudentNumber, student.StudentNumber),
+                new SqlParameter(ParameterNameFirstName, student.FirstName),
+                new SqlParameter(ParameterNameLastName, student.LastName),
+                new SqlParameter(ParameterNamePhoneNumber, student.PhoneNumber)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryUpdateStudent, sqlParameters);
         }
 
         public void DeleteStudent(Student student)
         {
-            string query = "DELETE FROM Students WHERE [student_number]=@StudentNumber";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@StudentNumber", student.StudentNumber)
+                new SqlParameter(ParameterNameStudentNumber, student.StudentNumber)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryDeleteStudent, sqlParameters);
         }
 
         private Student ReadRow(DataRow dr)
         {
-            int studentNumber = (int)dr["student_number"];
-            string roomNumber = dr["room_number"].ToString();
-            string firstName = dr["first_name"].ToString();
-            string lastName = dr["last_name"].ToString();
-            string phoneNumber = dr["phone_number"] == DBNull.Value ? null : (string)dr["phone_number"];
-            string classNumber = dr["class_number"].ToString();
+            int studentNumber = (int)dr[ColumnStudentNumber];
+            string roomNumber = dr[ColumnRoomNumber].ToString();
+            string firstName = dr[ColumnFirstName].ToString();
+            string lastName = dr[ColumnLastName].ToString();
+            string phoneNumber = dr[ColumnPhoneNumber] == DBNull.Value ? null : (string)dr[ColumnPhoneNumber];
+            string classNumber = dr[ColumnClassNumber].ToString();
 
             return new Student(studentNumber, roomNumber, firstName, lastName, phoneNumber, classNumber);
         }
