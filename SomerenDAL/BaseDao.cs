@@ -10,21 +10,22 @@ namespace SomerenDAL
     {
         const string ConnectionStringName = "SomerenDatabase";
         const string DatabaseErrorMessage = "Database operation failed.";
+        protected const int Zero = 0;
 
-        protected SqlConnection OpenConnection()
+        private SqlConnection OpenConnection()
         {
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString);
             connection.Open();
             return connection;
         }
 
-        protected List<T> ReadTable<T>(DataTable dataTable, Func<DataRow, T> ReadRow)
+        protected List<T> ReadTable<T>(DataTable dataTable, Func<DataRow, T> readRow)
         {
             List<T> list = new List<T>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                T item = ReadRow(dr);
+                T item = readRow(dr);
                 list.Add(item);
             }
 
@@ -71,7 +72,7 @@ namespace SomerenDAL
 
                             adapter.SelectCommand = command;
                             adapter.Fill(dataSet);
-                            dataTable = dataSet.Tables[0];
+                            dataTable = dataSet.Tables[Zero];
                         }
                     }
                 }

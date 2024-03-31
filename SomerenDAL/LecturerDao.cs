@@ -8,22 +8,30 @@ namespace SomerenDAL
 {
     public class LecturerDao : BaseDao
     {
+        const string QueryGetAllLecturers = $"SELECT {ColumnLecturerId}, {ColumnAge}, {ColumnRoomNumber}, {ColumnFirstName}, {ColumnLastName}, {ColumnPhoneNumber} FROM Lecturers ORDER BY {ColumnLastName};";
+
+        protected const string ColumnLecturerId = "lecturerId";
+        protected const string ColumnAge = "age";
+        protected const string ColumnRoomNumber = "room_number";
+        protected const string ColumnFirstName = "first_name";
+        protected const string ColumnLastName = "last_name";
+        protected const string ColumnPhoneNumber = "phone_number";
+
         public List<Lecturer> GetAllLecturers()
         {
-            string query = "SELECT [lecturerId], [age], [room_number], [first_name], [last_name], [phone_number] FROM Lecturers ORDER BY [last_name]";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            SqlParameter[] sqlParameters = new SqlParameter[Zero];
+            DataTable dataTable = ExecuteSelectQuery(QueryGetAllLecturers, sqlParameters);
             return ReadTable(dataTable, ReadRow);
         }
 
         protected Lecturer ReadRow(DataRow dr)
         {
-            int id = (int)dr["lecturerId"];
-            int age = (int)dr["age"];
-            string roomNumber = (string)dr["room_number"];
-            string firstName = (string)dr["first_name"];
-            string lastName = (string)dr["last_name"];
-            string phoneNumber = dr["phone_number"] == DBNull.Value ? null : (string)dr["phone_number"];
+            int id = (int)dr[ColumnLecturerId];
+            int age = (int)dr[ColumnAge];
+            string roomNumber = (string)dr[ColumnRoomNumber];
+            string firstName = (string)dr[ColumnFirstName];
+            string lastName = (string)dr[ColumnLastName];
+            string phoneNumber = dr[ColumnPhoneNumber] == DBNull.Value ? null : (string)dr[ColumnPhoneNumber];
 
             return new Lecturer(id, age, roomNumber, firstName, lastName, phoneNumber);
         }

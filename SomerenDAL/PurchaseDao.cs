@@ -5,17 +5,22 @@ namespace SomerenDAL
 {
     public class PurchaseDao : BaseDao
     {
+        const string QueryCreatePurchase = $"INSERT INTO Purchases VALUES ({ParameterNameStudentNumber}, {ParameterNameDrinkId}, {ParameterNameQuantity}); SELECT CAST(scope_identity() AS int);";
+
+        const string ParameterNameStudentNumber = "@StudentNumber";
+        const string ParameterNameDrinkId = "@DrinkId";
+        const string ParameterNameQuantity = "@Quantity";
+
         public void CreatePurchase(Purchase purchase)
         {
-            string query = "INSERT INTO Purchases VALUES (@StudentId, @DrinkId, @Quantity); SELECT CAST(scope_identity() AS int)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@StudentId", purchase.Student.StudentNumber),
-                new SqlParameter("@DrinkId", purchase.Drink.Id),
-                new SqlParameter("@Quantity", purchase.Quantity)
+                new SqlParameter(ParameterNameStudentNumber, purchase.Student.StudentNumber),
+                new SqlParameter(ParameterNameDrinkId, purchase.Drink.Id),
+                new SqlParameter(ParameterNameQuantity, purchase.Quantity)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryCreatePurchase, sqlParameters);
         }
     }
 }

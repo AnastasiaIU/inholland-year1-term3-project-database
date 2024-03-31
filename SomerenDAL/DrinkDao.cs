@@ -8,62 +8,76 @@ namespace SomerenDAL
 {
     public class DrinkDao : BaseDao
     {
+        const string QueryGetAllDrinks = $"SELECT {ColumnDrinkId}, {ColumnPrice}, {ColumnAlcoholic}, {ColumnDrinkName}, {ColumnCurrentStock}, (SELECT SUM(quantity) FROM Purchases WHERE Purchases.{ColumnDrinkId} = Drinks.{ColumnDrinkId} GROUP BY {ColumnDrinkId}) AS {ColumnNumberOfPurchases} FROM Drinks ORDER BY {ColumnDrinkName};";
+        const string QueryCreateDrink = $"INSERT INTO Drinks VALUES ({ParameterNamePrice}, {ParameterNameIsAlcoholic}, {ParameterNameDrinkName}, {ParameterNameStock}); SELECT CAST(scope_identity() AS int);";
+        const string QueryUpdateDrink = $"UPDATE Drinks SET {ColumnPrice}={ParameterNamePrice}, {ColumnAlcoholic}={ParameterNameIsAlcoholic}, {ColumnDrinkName}={ParameterNameDrinkName}, {ColumnCurrentStock}={ParameterNameStock} WHERE {ColumnDrinkId}={ParameterNameDrinkId};";
+        const string QueryDeleteDrink = $"DELETE FROM Drinks WHERE {ColumnDrinkId}={ParameterNameDrinkId};";
+
+        const string ParameterNameDrinkId = "@DrinkId";
+        const string ParameterNamePrice = "@Price";
+        const string ParameterNameIsAlcoholic = "@IsAlcoholic";
+        const string ParameterNameDrinkName = "@DrinkName";
+        const string ParameterNameStock = "@Stock";
+
+        const string ColumnDrinkId = "drinkId";
+        const string ColumnPrice = "price";
+        const string ColumnAlcoholic = "alcoholic";
+        const string ColumnDrinkName = "drink_name";
+        const string ColumnCurrentStock = "current_stock";
+        const string ColumnNumberOfPurchases = "number_of_purchases";
+
         public List<Drink> GetAllDrinks()
         {
-            string query = "SELECT [drinkId], [price], [alcoholic], [drink_name], [current_stock], (SELECT SUM(quantity) FROM Purchases WHERE Purchases.drinkId = Drinks.drinkId GROUP BY [drinkId]) AS [number_of_purchases] FROM Drinks ORDER BY [drink_name];";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            SqlParameter[] sqlParameters = new SqlParameter[Zero];
+            DataTable dataTable = ExecuteSelectQuery(QueryGetAllDrinks, sqlParameters);
             return ReadTable(dataTable, ReadRow);
         }
 
         public void CreateDrink(Drink drink)
         {
-            string query = "INSERT INTO Drinks VALUES (@Price, @IsAlcoholic, @Name, @Stock); SELECT CAST(scope_identity() AS int)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@Price", drink.Price),
-                new SqlParameter("@IsAlcoholic", drink.IsAlcoholic),
-                new SqlParameter("@Name", drink.Name),
-                new SqlParameter("@Stock", drink.Stock)
+                new SqlParameter(ParameterNamePrice, drink.Price),
+                new SqlParameter(ParameterNameIsAlcoholic, drink.IsAlcoholic),
+                new SqlParameter(ParameterNameDrinkName, drink.Name),
+                new SqlParameter(ParameterNameStock, drink.Stock)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryCreateDrink, sqlParameters);
         }
 
         public void UpdateDrink(Drink drink)
         {
-            string query = "UPDATE Drinks SET price=@Price, alcoholic=@IsAlcoholic, drink_name=@Name, current_stock=@Stock WHERE drinkId=@Id";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@Price", drink.Price),
-                new SqlParameter("@IsAlcoholic", drink.IsAlcoholic),
-                new SqlParameter("@Name", drink.Name),
-                new SqlParameter("@Stock", drink.Stock),
-                new SqlParameter("@Id", drink.Id)
+                new SqlParameter(ParameterNameDrinkId, drink.Id),
+                new SqlParameter(ParameterNamePrice, drink.Price),
+                new SqlParameter(ParameterNameIsAlcoholic, drink.IsAlcoholic),
+                new SqlParameter(ParameterNameDrinkName, drink.Name),
+                new SqlParameter(ParameterNameStock, drink.Stock)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryUpdateDrink, sqlParameters);
         }
 
         public void DeleteDrink(Drink drink)
         {
-            string query = "DELETE FROM Drinks WHERE drinkId=@Id";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@Id", drink.Id)
+                new SqlParameter(ParameterNameDrinkId, drink.Id)
             };
 
-            ExecuteEditQuery(query, sqlParameters);
+            ExecuteEditQuery(QueryDeleteDrink, sqlParameters);
         }
 
         private Drink ReadRow(DataRow dr)
         {
-            int id = (int)dr["drinkId"];
-            double price = (double)dr["price"];
-            bool isAlcoholic = (bool)dr["alcoholic"];
-            string name = (string)dr["drink_name"];
-            int stock = (int)dr["current_stock"];
-            int numberOfPurchases = dr["number_of_purchases"] == DBNull.Value ? 0 : (int)dr["number_of_purchases"];
+            int id = (int)dr[ColumnDrinkId];
+            double price = (double)dr[ColumnPrice];
+            bool isAlcoholic = (bool)dr[ColumnAlcoholic];
+            string name = (string)dr[ColumnDrinkName];
+            int stock = (int)dr[ColumnCurrentStock];
+            int numberOfPurchases = dr[ColumnNumberOfPurchases] == DBNull.Value ? Zero : (int)dr[ColumnNumberOfPurchases];
 
             return new Drink(id, price, isAlcoholic, name, stock, numberOfPurchases);
         }

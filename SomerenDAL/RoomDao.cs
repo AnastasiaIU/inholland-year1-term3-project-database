@@ -7,20 +7,26 @@ namespace SomerenDAL
 {
     public class RoomDao : BaseDao
     {
+        const string QueryGetAllRooms = $"SELECT {ColumnRoomNumber}, {ColumnBuildingNumber}, {ColumnFloor}, {ColumnNumberOfBeds} FROM Rooms ORDER BY {ColumnRoomNumber};";
+
+        const string ColumnRoomNumber = "room_number";
+        const string ColumnBuildingNumber = "building_number";
+        const string ColumnFloor = "floor";
+        const string ColumnNumberOfBeds = "number_of_beds";
+
         public List<Room> GetAllRooms()
         {
-            string query = "SELECT [room_number], [building_number], [floor], [number_of_beds] FROM Rooms ORDER BY [room_number]";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            SqlParameter[] sqlParameters = new SqlParameter[Zero];
+            DataTable dataTable = ExecuteSelectQuery(QueryGetAllRooms, sqlParameters);
             return ReadTable(dataTable, ReadRow);
         }
 
         private Room ReadRow(DataRow dr)
         {
-            string number = (string)dr["room_number"];
-            char buildingNumber = dr["building_number"].ToString()[0];
-            int floor = (int)dr["floor"];
-            int capacity = (int)dr["number_of_beds"];
+            string number = (string)dr[ColumnRoomNumber];
+            char buildingNumber = dr[ColumnBuildingNumber].ToString()[Zero];
+            int floor = (int)dr[ColumnFloor];
+            int capacity = (int)dr[ColumnNumberOfBeds];
 
             return new Room(number, buildingNumber, floor, capacity);
         }

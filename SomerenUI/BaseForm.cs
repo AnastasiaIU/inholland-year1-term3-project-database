@@ -1,7 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using SomerenService;
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace SomerenUI
@@ -18,28 +17,11 @@ namespace SomerenUI
             MessageBox.Show(message + arg);
         }
 
-        protected string GetResourceStringWithArgument<T>(string resourceString, T arg)
-        {
-            return string.Format(resourceString, arg);
-        }
-
         protected string ValidateStringOrThrow(string str, string errorMessage)
         {
             if (str.IsNullOrEmpty())
                 throw new Exception(errorMessage);
             return str;
-        }
-
-        protected int ParseIntOrThrow(string number, string errorMesage)
-        {
-            if (!int.TryParse(number, out int result))
-                throw new Exception(errorMesage);
-            return result;
-        }
-
-        protected double ParsePriceOrThrow(string price)
-        {
-            return double.Parse(price.Replace(',', '.'), CultureInfo.InvariantCulture);
         }
     }
 }

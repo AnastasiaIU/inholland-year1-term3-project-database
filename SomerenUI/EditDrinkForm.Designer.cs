@@ -125,21 +125,22 @@
             btnCreateDrink.AutoSize = true;
             btnCreateDrink.Location = new System.Drawing.Point(113, 292);
             btnCreateDrink.Name = "btnCreateDrink";
-            btnCreateDrink.Size = new System.Drawing.Size(150, 45);
+            btnCreateDrink.Size = new System.Drawing.Size(150, 30);
             btnCreateDrink.TabIndex = 5;
             btnCreateDrink.Text = "Create drink";
             btnCreateDrink.UseVisualStyleBackColor = true;
-            btnCreateDrink.Click += btnCreateDrink_Click;
+            btnCreateDrink.Click += ButtonCreateDrink_Click;
             // 
             // btnUpdateDrink
             // 
+            btnUpdateDrink.AutoSize = true;
             btnUpdateDrink.Location = new System.Drawing.Point(113, 292);
             btnUpdateDrink.Name = "btnUpdateDrink";
-            btnUpdateDrink.Size = new System.Drawing.Size(150, 45);
+            btnUpdateDrink.Size = new System.Drawing.Size(150, 30);
             btnUpdateDrink.TabIndex = 5;
             btnUpdateDrink.Text = "Update drink";
             btnUpdateDrink.UseVisualStyleBackColor = true;
-            btnUpdateDrink.Click += btnUpdateDrink_Click;
+            btnUpdateDrink.Click += ButtonUpdateDrink_Click;
             // 
             // EditDrinkForm
             // 
