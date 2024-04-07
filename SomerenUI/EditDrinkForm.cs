@@ -54,9 +54,9 @@ namespace SomerenUI
         {
             try
             {
-                bool forEditDrink = true;
+                bool isEditDrinkForm = true;
 
-                Drink drink = ReadDrink(forEditDrink);
+                Drink drink = ReadDrink(isEditDrinkForm);
                 drinkService.UpdateDrink(drink);
                 Close();
             }
@@ -132,7 +132,7 @@ namespace SomerenUI
                 rdoFalse.Checked = true;
         }
 
-        private Drink ReadDrink(bool forEditDrink = false)
+        private Drink ReadDrink(bool isEditDrinkForm = false)
         {
             string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
             double price = ParsePriceOrThrow(txtDrinkPrice.Text);
@@ -140,7 +140,7 @@ namespace SomerenUI
             bool isAlcoholic = rdoTrue.Checked;
             int numberOfPurchases = zero;
 
-            if (!forEditDrink)
+            if (!isEditDrinkForm)
                 return new Drink(price, isAlcoholic, name, stock, numberOfPurchases);
 
             return new Drink(currentDrink.Id, price, isAlcoholic, name, stock, currentDrink.NumberOfPurchases);

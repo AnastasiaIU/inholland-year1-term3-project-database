@@ -57,9 +57,9 @@ namespace SomerenUI
         {
             try
             {
-                bool forEditStudent = true;
+                bool isEditStudentForm = true;
 
-                Student student = ReadStudent(forEditStudent);
+                Student student = ReadStudent(isEditStudentForm);
                 studentService.UpdateStudent(student);
                 Close();
             }
@@ -165,12 +165,12 @@ namespace SomerenUI
             txtPhoneNumber.Text = currentStudent.PhoneNumber;
         }
 
-        private Student ReadStudent(bool forEditStudent = false)
+        private Student ReadStudent(bool isEditStudentForm = false)
         {
             string firstName = ValidateStringOrThrow(txtFirstName.Text, Properties.Resources.ErrorMessageNoFirstName);
             string lastName = ValidateStringOrThrow(txtLastName.Text, Properties.Resources.ErrorMessageNoLastName);
 
-            if (!forEditStudent)
+            if (!isEditStudentForm)
             {
                 int studentNumber = ValidateStudentNumberOrThrow(txtStudentNumber.Text);
                 string roomNumber = ((Room)cmbRooms.SelectedItem).ToString();
