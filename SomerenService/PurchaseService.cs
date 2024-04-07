@@ -6,14 +6,13 @@ namespace SomerenService
     public class PurchaseService
     {
         private PurchaseDao purchaseDao = new PurchaseDao();
-        private Purchase stagedPurchase;
         /// <summary>
         /// Gets the currently staged purchase that is prepared but not yet finalized or persisted to the database.
         /// </summary>
         /// <value>
         /// The <see cref="Purchase"/> object representing the purchase details that are pending creation. This property returns <c>null</c> if no purchase is currently staged.
         /// </value>
-        public Purchase StagedPurchase { get { return stagedPurchase; } }
+        public Purchase StagedPurchase { get; private set; }
 
         public void CreatePurchase(Purchase purchase)
         {
@@ -31,7 +30,7 @@ namespace SomerenService
         /// </remarks>
         public void StagePurchaseForCreation(Student student, Drink drink, int quantity)
         {
-            stagedPurchase = new Purchase(student, drink, quantity);
+            StagedPurchase = new Purchase(student, drink, quantity);
         }
 
         /// <summary>
@@ -42,7 +41,7 @@ namespace SomerenService
         /// </remarks>
         public void ClearStagedPurchase()
         {
-            stagedPurchase = null;
+            StagedPurchase = null;
         }
     }
 }

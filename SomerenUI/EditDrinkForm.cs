@@ -32,13 +32,7 @@ namespace SomerenUI
         {
             try
             {
-                string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
-                double price = ParsePriceOrThrow(txtDrinkPrice.Text);
-                int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
-                bool isAlcoholic = rdoTrue.Checked;
-                int purchases = zero;
-
-                Drink drink = new Drink(price, isAlcoholic, name, stock, purchases);
+                Drink drink = ReadDrink();
                 drinkService.CreateDrink(drink);
                 Close();
             }
@@ -60,12 +54,9 @@ namespace SomerenUI
         {
             try
             {
-                string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
-                double price = ParsePriceOrThrow(txtDrinkPrice.Text);
-                int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
-                bool isAlcoholic = rdoTrue.Checked;
+                bool forEditDrink = true;
 
-                Drink drink = new Drink(currentDrink.Id, price, isAlcoholic, name, stock, currentDrink.NumberOfPurchases);
+                Drink drink = ReadDrink(forEditDrink);
                 drinkService.UpdateDrink(drink);
                 Close();
             }
@@ -139,6 +130,20 @@ namespace SomerenUI
                 rdoTrue.Checked = true;
             else
                 rdoFalse.Checked = true;
+        }
+
+        private Drink ReadDrink(bool forEditDrink = false)
+        {
+            string name = ValidateStringOrThrow(txtDrinkName.Text, Properties.Resources.ErrorMessageNoName);
+            double price = ParsePriceOrThrow(txtDrinkPrice.Text);
+            int stock = ParseIntOrThrow(txtDrinkStock.Text, Properties.Resources.ErrorMessageWrongStock);
+            bool isAlcoholic = rdoTrue.Checked;
+            int numberOfPurchases = zero;
+
+            if (!forEditDrink)
+                return new Drink(price, isAlcoholic, name, stock, numberOfPurchases);
+
+            return new Drink(currentDrink.Id, price, isAlcoholic, name, stock, currentDrink.NumberOfPurchases);
         }
     }
 }
