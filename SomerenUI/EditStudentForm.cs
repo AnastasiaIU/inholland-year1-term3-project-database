@@ -36,13 +36,7 @@ namespace SomerenUI
         {
             try
             {
-                string firstName = ValidateStringOrThrow(txtFirstName.Text, Properties.Resources.ErrorMessageNoFirstName);
-                string lastName = ValidateStringOrThrow(txtLastName.Text, Properties.Resources.ErrorMessageNoLastName);
-                int studentNumber = ValidateStudentNumberOrThrow(txtStudentNumber.Text);
-                string roomNumber = ((Room)cmbRooms.SelectedItem).ToString();
-                string classNumber = ValidateStringOrThrow(txtClassNumber.Text, Properties.Resources.ErrorMessageNoClass);
-
-                Student student = new Student(studentNumber, roomNumber, firstName, lastName, txtPhoneNumber.Text, classNumber);
+                Student student = ReadStudent();
                 studentService.CreateStudent(student);
                 Close();
             }
@@ -63,10 +57,9 @@ namespace SomerenUI
         {
             try
             {
-                string firstName = ValidateStringOrThrow(txtFirstName.Text, Properties.Resources.ErrorMessageNoFirstName);
-                string lastName = ValidateStringOrThrow(txtLastName.Text, Properties.Resources.ErrorMessageNoLastName);
+                bool isEditStudentForm = true;
 
-                Student student = new Student(currentStudent.StudentNumber, currentStudent.RoomNumber, firstName, lastName, txtPhoneNumber.Text, currentStudent.ClassNumber);
+                Student student = ReadStudent(isEditStudentForm);
                 studentService.UpdateStudent(student);
                 Close();
             }
@@ -170,6 +163,23 @@ namespace SomerenUI
             txtFirstName.Text = currentStudent.FirstName;
             txtLastName.Text = currentStudent.LastName;
             txtPhoneNumber.Text = currentStudent.PhoneNumber;
+        }
+
+        private Student ReadStudent(bool isEditStudentForm = false)
+        {
+            string firstName = ValidateStringOrThrow(txtFirstName.Text, Properties.Resources.ErrorMessageNoFirstName);
+            string lastName = ValidateStringOrThrow(txtLastName.Text, Properties.Resources.ErrorMessageNoLastName);
+
+            if (!isEditStudentForm)
+            {
+                int studentNumber = ValidateStudentNumberOrThrow(txtStudentNumber.Text);
+                string roomNumber = ((Room)cmbRooms.SelectedItem).ToString();
+                string classNumber = ValidateStringOrThrow(txtClassNumber.Text, Properties.Resources.ErrorMessageNoClass);
+
+                return new Student(studentNumber, roomNumber, firstName, lastName, txtPhoneNumber.Text, classNumber);
+            }
+
+            return new Student(currentStudent.StudentNumber, currentStudent.RoomNumber, firstName, lastName, txtPhoneNumber.Text, currentStudent.ClassNumber);
         }
     }
 }
